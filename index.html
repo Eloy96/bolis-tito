@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
     
+    <!-- NUEVO: Añadimos los archivos de Swiper.js (Carrusel) --><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
     <script>
       // Configuramos Tailwind para usar Quicksand como fuente principal
       tailwind.config = {
@@ -43,11 +46,12 @@
         background-attachment: fixed; /* Para que el degradado se mantenga al hacer scroll */
       }
       .card-icon {
-        /* Ajustamos la imagen para que llene el círculo */
+        /* CAMBIO AQUÍ: Usamos 'contain' para que la imagen completa quepa sin cortarse */
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Esto hace que la imagen cubra todo el círculo sin deformarse */
+        object-fit: contain; /* Esto asegura que la imagen se escala para caber completamente */
         transition: transform 0.3s ease-in-out;
+        padding: 5px; /* Pequeño padding para que no se pegue al borde del círculo si es muy ancha */
       }
       .card-icon-container {
         /* Este es el contenedor circular */
@@ -64,7 +68,7 @@
         transition: box-shadow 0.3s duration;
       }
       .card-product:hover .card-icon {
-        transform: scale(1.1) rotate(5deg); /* Efecto al pasar el mouse */
+        transform: scale(1.05) rotate(0deg); /* Ajustamos la escala al hacer hover, menos dramático con 'contain' */
       }
       .card-product:hover .card-icon-container {
          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* group-hover:shadow-xl */
@@ -141,6 +145,18 @@
         background-color: #FEE2E2; /* bg-red-100 */
         color: #991B1B; /* text-red-800 */
       }
+
+      /* NUEVO: Estilos para el carrusel y su paginación */
+      .swiper-container {
+        width: 100%;
+        padding-bottom: 40px !important; /* Espacio para los puntos de paginación */
+      }
+      .swiper-slide {
+        box-sizing: border-box; /* Asegura que el padding no rompa el diseño */
+      }
+      .swiper-pagination-bullet-active {
+        background-color: #F97316 !important; /* Color naranja para el punto activo */
+      }
     </style>
 </head>
 <body class="font-sans">
@@ -163,10 +179,8 @@
 
             <!-- 1. Tamarindo con Limón --><div class="card-product">
               <div class="bg-white rounded-3xl shadow-2xl pt-20 p-6 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <!-- Logo Circular con TU IMAGEN -->
-                <div class="absolute -top-16 left-1/2 -translate-x-1/2 bg-orange-200 card-icon-container">
-                  <!-- CAMBIO AQUÍ: ¡Ruta corregida! -->
-                  <img src="imagenes/bolis-tamarindo-con-limon.png" alt="Boli de Tamarindo con Limón" class="card-icon">
+                <!-- Logo Circular con TU IMAGEN --><div class="absolute -top-16 left-1/2 -translate-x-1/2 bg-orange-200 card-icon-container">
+                  <!-- CAMBIO AQUÍ: ¡Ruta corregida! --><img src="imagenes/bolis-tamarindo-con-limon.png" alt="Boli de Tamarindo con Limón" class="card-icon">
                 </div>
                 
                 <!-- Contenido --><div class="flex-grow">
@@ -187,10 +201,8 @@
 
             <!-- 2. Mazapán --><div class="card-product">
               <div class="bg-white rounded-3xl shadow-2xl pt-20 p-6 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <!-- Logo Circular con TU IMAGEN -->
-                <div class="absolute -top-16 left-1/2 -translate-x-1/2 bg-yellow-100 card-icon-container">
-                  <!-- CAMBIO AQUÍ: ¡Ruta corregida! -->
-                  <img src="imagenes/bolis-mazapan.png" alt="Boli de Mazapán" class="card-icon">
+                <!-- Logo Circular con TU IMAGEN --><div class="absolute -top-16 left-1/2 -translate-x-1/2 bg-yellow-100 card-icon-container">
+                  <!-- CAMBIO AQUÍ: ¡Ruta corregida! --><img src="imagenes/bolis-mazapan.png" alt="Boli de Mazapán" class="card-icon">
                 </div>
                 
                 <!-- Contenido --><div class="flex-grow">
@@ -211,10 +223,8 @@
 
             <!-- 3. Horchata --><div class="card-product">
               <div class="bg-white rounded-3xl shadow-2xl pt-20 p-6 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <!-- Logo Circular con TU IMAGEN -->
-                <div class="absolute -top-16 left-1/2 -translate-x-1/2 bg-stone-100 card-icon-container">
-                  <!-- CAMBIO AQUÍ: ¡Ruta corregida! -->
-                  <img src="imagenes/bolis-horchata.jpg" alt="Boli de Horchata" class="card-icon">
+                <!-- Logo Circular con TU IMAGEN --><div class="absolute -top-16 left-1/2 -translate-x-1/2 bg-stone-100 card-icon-container">
+                  <!-- CAMBIO AQUÍ: ¡Ruta corregida! --><img src="imagenes/bolis-horchata.jpg" alt="Boli de Horchata" class="card-icon">
                 </div>
                 
                 <!-- Contenido --><div class="flex-grow">
@@ -235,10 +245,8 @@
 
             <!-- 4. Fresas con Crema --><div class="card-product">
               <div class="bg-white rounded-3xl shadow-2xl pt-20 p-6 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <!-- Logo Circular con TU IMAGEN -->
-                <div class="absolute -top-16 left-1/2 -translate-x-1/2 bg-pink-200 card-icon-container">
-                  <!-- CAMBIO AQUÍ: ¡Ruta corregida! -->
-                  <img src="imagenes/bolis-fresas-con-crema.png" alt="Boli de Fresas con Crema" class="card-icon">
+                <!-- Logo Circular con TU IMAGEN --><div class="absolute -top-16 left-1/2 -translate-x-1/2 bg-pink-200 card-icon-container">
+                  <!-- CAMBIO AQUÍ: ¡Ruta corregida! --><img src="imagenes/bolis-fresas-con-crema.png" alt="Boli de Fresas con Crema" class="card-icon">
                 </div>
                 
                 <!-- Contenido --><div class="flex-grow">
@@ -259,10 +267,8 @@
 
             <!-- 5. Oreo --><div class="card-product">
               <div class="bg-white rounded-3xl shadow-2xl pt-20 p-6 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <!-- Logo Circular con TU IMAGEN -->
-                <div class="absolute -top-16 left-1/2 -translate-x-1/2 bg-gray-700 card-icon-container">
-                  <!-- CAMBIO AQUÍ: ¡Ruta corregida! -->
-                  <img src="imagenes/bolis-de-oreo.png" alt="Boli de Oreo" class="card-icon">
+                <!-- Logo Circular con TU IMAGEN --><div class="absolute -top-16 left-1/2 -translate-x-1/2 bg-gray-700 card-icon-container">
+                  <!-- CAMBIO AQUÍ: ¡Ruta corregida! --><img src="imagenes/bolis-de-oreo.png" alt="Boli de Oreo" class="card-icon">
                 </div>
                 
                 <!-- Contenido --><div class="flex-grow">
@@ -283,14 +289,12 @@
 
         </main>
 
-        <!-- =========== NUEVA SECCIÓN: FORMULARIO DE PEDIDO =========== -->
-        <section id="formulario-pedido" class="mt-24 pt-16">
+        <!-- =========== NUEVA SECCIÓN: FORMULARIO DE PEDIDO =========== --><section id="formulario-pedido" class="mt-24 pt-16">
           <div class="bg-white w-full max-w-3xl mx-auto p-6 md:p-10 rounded-3xl shadow-2xl">
             <h2 class="text-4xl font-extrabold text-center text-gray-800 mb-8">¡Haz tu pedido aquí!</h2>
             
             <form id="orderForm">
-              <!-- Datos Personales -->
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <!-- Datos Personales --><div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label for="nombre" class="form-label">Nombre Completo</label>
                   <input type="text" id="nombre" name="nombre" class="form-input" required>
@@ -301,11 +305,9 @@
                 </div>
               </div>
 
-              <!-- Pedidos Dinámicos -->
-              <h3 class="text-2xl font-bold text-gray-700 mb-4 border-b pb-2">Tu Pedido</h3>
+              <!-- Pedidos Dinámicos --><h3 class="text-2xl font-bold text-gray-700 mb-4 border-b pb-2">Tu Pedido</h3>
               <div id="pedidos-container" class="space-y-4 mb-4">
-                <!-- Este es el primer item, que se clonará -->
-                <div class="pedido-item grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                <!-- Este es el primer item, que se clonará --><div class="pedido-item grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
                   <div>
                     <label class="form-label text-sm">Sabor</label>
                     <select name="sabor" class="form-select sabor-select" required>
@@ -321,25 +323,21 @@
                     <label class="form-label text-sm">Cantidad</label>
                     <input type="number" name="cantidad" class="form-input cantidad-input" min="1" value="1" required>
                   </div>
-                  <!-- El primer item no tiene botón de borrar -->
-                </div>
+                  <!-- El primer item no tiene botón de borrar --></div>
               </div>
 
-              <!-- Botón para Agregar Sabor -->
-              <button type="button" id="agregar-sabor" class="flex items-center gap-2 text-orange-600 font-bold hover:text-orange-800 transition mb-6">
+              <!-- Botón para Agregar Sabor --><button type="button" id="agregar-sabor" class="flex items-center gap-2 text-orange-600 font-bold hover:text-orange-800 transition mb-6">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 Agregar otro sabor
               </button>
 
-              <!-- Total -->
-              <div class="text-right text-3xl font-extrabold text-gray-800 mb-6">
+              <!-- Total --><div class="text-right text-3xl font-extrabold text-gray-800 mb-6">
                 Total: <span id="total-price" class="text-orange-600">$12.00</span>
               </div>
 
-              <!-- Lugar y Horario de Entrega -->
-              <div class="mb-6">
+              <!-- Lugar y Horario de Entrega --><div class="mb-6">
                 <label for="lugar-entrega" class="form-label">Lugar de Entrega</label>
                 <select id="lugar-entrega" name="lugar-entrega" class="form-select" required>
                   <option value="">Selecciona un punto de entrega...</option>
@@ -352,58 +350,56 @@
                 </p>
               </div>
 
-              <!-- Comentarios -->
-              <div class="mb-6">
+              <!-- Comentarios --><div class="mb-6">
                 <label for="comentarios" class="form-label">Comentarios Adicionales</label>
                 <textarea id="comentarios" name="comentarios" rows="3" class="form-textarea" placeholder="¿Alguna indicación especial?"></textarea>
               </div>
 
-              <!-- Botón de Envío -->
-              <button type="submit" id="submit-order-btn" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-lg py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
+              <!-- Botón de Envío --><button type="submit" id="submit-order-btn" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-lg py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
                 Confirmar Pedido
               </button>
               
-              <!-- Mensaje de Estado del Formulario -->
-              <div id="order-form-message" class="form-message"></div>
+              <!-- Mensaje de Estado del Formulario --><div id="order-form-message" class="form-message"></div>
             </form>
           </div>
         </section>
 
-        <!-- =========== NUEVA SECCIÓN: RESEÑAS =========== -->
-        <section id="reseñas" class="mt-24 pt-16">
+        <!-- =========== NUEVA SECCIÓN: RESEÑAS =========== --><section id="reseñas" class="mt-24 pt-16">
           <div class="w-full max-w-3xl mx-auto">
             <h2 class="text-4xl font-extrabold text-center text-white mb-8 drop-shadow-lg">¡Lo que dicen nuestros clientes!</h2>
 
-            <!-- Contenedor de Reseñas de Ejemplo -->
-            <div class="space-y-6 mb-12">
-              <!-- Reseña 1 -->
-              <div class="bg-white p-6 rounded-2xl shadow-xl animate-fade-in-up" style="animation-delay: 0.6s;">
-                <div class="flex justify-between items-center mb-2">
-                  <span class="font-bold text-lg text-gray-800">Laura G.</span>
-                  <span class="text-amber-400 text-xl">★★★★★</span>
+            <!-- CAMBIO: Contenedor de Reseñas ahora es un Carrusel Swiper --><div class="swiper-container mySwiper mb-12">
+              <div class="swiper-wrapper">
+                
+                <!-- Reseña 1 --><div class="swiper-slide bg-white p-6 rounded-2xl shadow-xl">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="font-bold text-lg text-gray-800">Laura G.</span>
+                    <span class="text-amber-400 text-xl">★★★★★</span>
+                  </div>
+                  <p class="text-gray-600">"¡El boli de Oreo es espectacular! Súper cremoso y con muchos trocitos de galleta. 100% recomendado."</p>
                 </div>
-                <p class="text-gray-600">"¡El boli de Oreo es espectacular! Súper cremoso y con muchos trocitos de galleta. 100% recomendado."</p>
-              </div>
-              <!-- Reseña 2 -->
-              <div class="bg-white p-6 rounded-2xl shadow-xl animate-fade-in-up" style="animation-delay: 0.7s;">
-                <div class="flex justify-between items-center mb-2">
-                  <span class="font-bold text-lg text-gray-800">Miguel R.</span>
-                  <span class="text-amber-400 text-xl">★★★★☆</span>
+                
+                <!-- Reseña 2 --><div class="swiper-slide bg-white p-6 rounded-2xl shadow-xl">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="font-bold text-lg text-gray-800">Miguel R.</span>
+                    <span class="text-amber-400 text-xl">★★★★☆</span>
+                  </div>
+                  <p class="text-gray-600">"Muy rico el de Fresas con Crema, se nota que la fresa es natural. El de horchata también muy bueno. Me gustaría que tuvieran de limón."</p>
                 </div>
-                <p class="text-gray-600">"Muy rico el de Fresas con Crema, se nota que la fresa es natural. El de horchata también muy bueno. Me gustaría que tuvieran de limón."</p>
-              </div>
-              <!-- Reseña 3 -->
-              <div class="bg-white p-6 rounded-2xl shadow-xl animate-fade-in-up" style="animation-delay: 0.8s;">
-                <div class="flex justify-between items-center mb-2">
-                  <span class="font-bold text-lg text-gray-800">Sofía M.</span>
-                  <span class="text-amber-400 text-xl">★★★★★</span>
+                
+                <!-- Reseña 3 --><div class="swiper-slide bg-white p-6 rounded-2xl shadow-xl">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="font-bold text-lg text-gray-800">Sofía M.</span>
+                    <span class="text-amber-400 text-xl">★★★★★</span>
+                  </div>
+                  <p class="text-gray-600">"Excelente servicio, me contactaron rápido por WhatsApp y la entrega fue súper puntual en el kiosko. ¡Gracias!"</p>
                 </div>
-                <p class="text-gray-600">"Excelente servicio, me contactaron rápido por WhatsApp y la entrega fue súper puntual en el kiosko. ¡Gracias!"</p>
+
               </div>
+              <!-- Añadimos la paginación (los puntos de abajo) --><div class="swiper-pagination"></div>
             </div>
 
-            <!-- Formulario para Dejar Reseña -->
-            <div class="bg-white p-6 md:p-10 rounded-3xl shadow-2xl animate-fade-in-up" style="animation-delay: 0.9s;">
+            <!-- Formulario para Dejar Reseña --><div class="bg-white p-6 md:p-10 rounded-3xl shadow-2xl animate-fade-in-up" style="animation-delay: 0.9s;">
               <h3 class="text-3xl font-bold text-center text-gray-800 mb-6">¡Deja tu reseña!</h3>
               <form id="reviewForm">
                 <div class="mb-4">
@@ -413,7 +409,7 @@
                     <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 estrellas">★</label>
                     <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 estrellas">★</label>
                     <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 estrellas">★</label>
-                    <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 estrella">★</label>
+                    <input type="radio" id="star1" name="star1" value="1"><label for="star1" title="1 estrella">★</label>
                   </div>
                 </div>
                 <div class="mb-4">
@@ -427,8 +423,7 @@
                 <button type="submit" id="submit-review-btn" class="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold text-lg py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
                   Enviar Reseña
                 </button>
-                <!-- Mensaje de Estado del Formulario -->
-                <div id="review-form-message" class="form-message"></div>
+                <!-- Mensaje de Estado del Formulario --><div id="review-form-message" class="form-message"></div>
               </form>
             </div>
           </div>
@@ -441,8 +436,7 @@
 
     </div>
 
-    <!-- =========== NUEVO SCRIPT PARA FORMULARIOS =========== -->
-    <script>
+    <!-- =========== NUEVO SCRIPT PARA FORMULARIOS =========== --><script>
       // ---- ¡IMPORTANTE! ----
       // ¡YA ESTÁ CONECTADO!
       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx88q2qxy_szNMh4GOz0gT-Bpp7Fz6GOoMo5b2uvwKRoopMARciMQ8JsD-R-6kuldE/exec';
@@ -464,6 +458,32 @@
         const primerPedido = pedidosContainer.querySelector('.pedido-item');
         const agregarSaborBtn = document.getElementById('agregar-sabor');
         const totalPriceEl = document.getElementById('total-price');
+
+        // --- NUEVO: Inicialización del Carrusel de Reseñas ---
+        var swiper = new Swiper(".mySwiper", {
+          slidesPerView: 1, // Mostrar 1 reseña a la vez
+          spaceBetween: 30, // Espacio entre reseñas (si decides mostrar más)
+          loop: true, // Para que sea un ciclo infinito
+          autoplay: {
+            delay: 5000, // 5 segundos por reseña
+            disableOnInteraction: false, // Sigue automático aunque el usuario interactúe
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true, // Para poder hacer clic en los puntos
+          },
+          // Añadimos responsividad si quieres mostrar más de 1 reseña en pantallas grandes
+          breakpoints: {
+            768: { // En pantallas de 768px o más
+              slidesPerView: 2, // Muestra 2 reseñas
+              spaceBetween: 20,
+            },
+            1024: { // En pantallas de 1024px o más
+              slidesPerView: 3, // Muestra 3 reseñas
+              spaceBetween: 30,
+            },
+          },
+        });
 
         // --- Lógica del Formulario de Pedido ---
 
@@ -628,4 +648,3 @@
 
 </body>
 </html>
-

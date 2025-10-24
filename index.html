@@ -750,10 +750,16 @@
                         <div class="flex items-center justify-between gap-2 sm:gap-4 border-b pb-4">
                             <div class="flex-grow">
                                 <h4 class="font-bold text-lg">${item.sabor}</h4>
-                                <!-- CAMBIO: Input para modificar cantidad -->
+                                <!-- CAMBIO: Input para modificar cantidad con botones + y - -->
                                 <div class="flex items-center gap-2 mt-1">
                                     <label class="text-sm text-gray-600">Cant:</label>
-                                    <input type="number" class="cart-quantity-input w-16 text-center form-input py-1 text-sm" value="${item.cantidad}" min="0" data-sabor="${item.sabor}">
+                                    <!-- Usamos un div para agrupar los botones y el input -->
+                                    <div class="flex items-center border border-gray-300 rounded-lg">
+                                        <button type="button" class="cart-quantity-btn cart-quantity-minus p-2 text-lg font-bold text-orange-600" data-sabor="${item.sabor}" data-change="-1">-</button>
+                                        <!-- El input ya no es 'cart-quantity-input', solo muestra el valor -->
+                                        <input type="number" class="w-12 text-center border-none focus:ring-0 py-1 text-sm" value="${item.cantidad}" min="1" data-sabor="${item.sabor}" readonly>
+                                        <button type="button" class="cart-quantity-btn cart-quantity-plus p-2 text-lg font-bold text-orange-600" data-sabor="${item.sabor}" data-change="1">+</button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="text-right flex-shrink-0">
@@ -816,10 +822,29 @@
                 // Filtra el carrito, quitando el item
                 cart = cart.filter(item => item.sabor !== sabor);
                 updateCartUI();
+            } 
+            // NUEVO: Lógica para los botones + y -
+            else if (e.target.classList.contains('cart-quantity-btn')) {
+                const sabor = e.target.dataset.sabor;
+                const change = parseInt(e.target.dataset.change, 10);
+                const cartItem = cart.find(item => item.sabor === sabor);
+                
+                if (cartItem) {
+                    let newCantidad = cartItem.cantidad + change;
+                    if (newCantidad > 0) {
+                        cartItem.cantidad = newCantidad;
+                    } else {
+                        // Si es 0 o menos, quitarlo
+                        cart = cart.filter(item => item.sabor !== sabor);
+                    }
+                    updateCartUI();
+                }
             }
         });
 
         // --- NUEVO: Asignar evento para MODIFICAR CANTIDAD en carrito (delegación) ---
+        // CORRECCIÓN: Este evento ya no es necesario porque los botones controlan todo, lo comentamos o eliminamos
+        /*
         cartItemsContainer.addEventListener('change', (e) => { // 'change' se activa al perder el foco
             if (e.target.classList.contains('cart-quantity-input')) {
                 const sabor = e.target.dataset.sabor;
@@ -837,6 +862,7 @@
                 updateCartUI(); // Re-renderizar todo el carrito con la nueva info
             }
         });
+        */
 
 
         // --- NUEVO: Función para mostrar el Toast Global ---
@@ -875,9 +901,11 @@
             cartFormMessage.className = 'form-message'; // Reset message
 
             // Convertir el carrito al formato JSON que espera el Google Script
+            // CAMBIO: Añadido 'precio' para que el nuevo Apps Script pueda calcular el subtotal
             const pedidos = cart.map(item => ({ 
                 sabor: item.sabor, 
-                cantidad: item.cantidad 
+                cantidad: item.cantidad,
+                precio: item.precio // <-- AÑADIDO
             }));
 
             // Crear el objeto de datos
@@ -1006,5 +1034,3 @@
 
 </body>
 </html>
-
-

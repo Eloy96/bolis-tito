@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Bolis Artesanales - La Alegría Refrescante!</title>
-    <!-- Importamos Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
-    <!-- Importamos una tipografía amigable y divertida (Quicksand) --><link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <!-- NUEVO: Añadimos los archivos de Swiper.js (Carrusel) --><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- Swiper JS (para carrusel de reseñas) -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script>
@@ -28,11 +33,25 @@
               fadeInUp: {
                 '0%': { opacity: 0, transform: 'translateY(20px)' },
                 '100%': { opacity: 1, transform: 'translateY(0)' },
+              },
+              /* Animación de flotación suave */
+              'float-light': {
+                '0%, 100%': { transform: 'translateY(0px)' }, 
+                '50%': { transform: 'translateY(-8px)' },
+              },
+              /* Animación para el gradiente del título */
+              'text-gradient-anim': {
+                '0%': { 'background-position': '0% 50%' },
+                '50%': { 'background-position': '100% 50%' },
+                '100%': { 'background-position': '0% 50%' },
               }
             },
             animation: {
               'bounce-in': 'bounceIn 1s ease-out infinite',
               'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+              'float-light': 'float-light 4s ease-in-out infinite',
+              /* Animación para el gradiente del título */
+              'text-gradient-anim': 'text-gradient-anim 4s ease-in-out infinite',
             }
           }
         }
@@ -44,9 +63,26 @@
         -moz-osx-font-smoothing: grayscale;
         background: linear-gradient(to bottom right, #FFC107, #FF8A65, #FF5722); /* Degradado más alegre */
         background-attachment: fixed; /* Para que el degradado se mantenga al hacer scroll */
+        overflow-x: hidden; /* ¡Esto elimina el scroll horizontal! */
       }
+      
+      /* Keyframes para la animación del título */
+      @keyframes text-gradient-anim {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      /* Clase para el gradiente animado del título */
+      .text-gradient-animated {
+        background-image: linear-gradient(to right, #ffffff 20%, #fde047 50%, #ffffff 80%);
+        background-size: 200% auto;
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+      }
+
       .card-icon {
-        /* CAMBIO AQUÍ: Usamos 'contain' para que la imagen completa quepa sin cortarse */
+        /* Usamos 'contain' para que la imagen completa quepa sin cortarse */
         width: 100%;
         height: 100%;
         object-fit: contain; /* Esto asegura que la imagen se escala para caber completamente */
@@ -66,9 +102,14 @@
         align-items: center;
         justify-content: center;
         transition: box-shadow 0.3s duration;
+        /* Centrado para la animación float */
+        position: absolute;
+        top: -4rem; /* -top-16 */
+        left: 50%;
+        transform: translateX(-50%); /* Centrado inicial */
       }
       .card-product:hover .card-icon {
-        transform: scale(1.05) rotate(0deg); /* Ajustamos la escala al hacer hover, menos dramático con 'contain' */
+        transform: scale(1.05) rotate(0deg); 
       }
       .card-product:hover .card-icon-container {
          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* group-hover:shadow-xl */
@@ -146,10 +187,11 @@
         color: #991B1B; /* text-red-800 */
       }
 
-      /* NUEVO: Estilos para el carrusel y su paginación */
+      /* Estilos para el carrusel y su paginación */
       .swiper-container {
         width: 100%;
         padding-bottom: 40px !important; /* Espacio para los puntos de paginación */
+        touch-action: pan-y; /* Previene el 'swipe' de navegación del navegador en móviles */
       }
       .swiper-slide {
         box-sizing: border-box; /* Asegura que el padding no rompa el diseño */
@@ -161,11 +203,16 @@
 </head>
 <body class="font-sans">
 
-    <!-- Contenedor Principal --><div class="container mx-auto px-4 py-12 md:py-20">
+    
+    <!-- Contenedor Principal -->
+    <div class="container mx-auto px-4 py-12 md:py-20">
 
-        <!-- Cabecera --><header class="text-center mb-16 md:mb-24">
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-4 drop-shadow-lg leading-tight">
-                ¡Bolis Artesanales! <br> El sabor de la alegría 🎉
+        
+        <!-- Encabezado -->
+        <header class="text-center mb-16 md:mb-24">
+            <!-- CAMBIO: Se quita el emoji -->
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 leading-tight text-gradient-animated animate-text-gradient-anim">
+                ¡Bolis Artesanales! <br> El sabor de la alegría
             </h1>
             <p class="text-xl md:text-3xl text-yellow-100 font-medium drop-shadow-md">
                 Refresca tu día con nuestros deliciosos y cremosos bolis.
@@ -175,23 +222,32 @@
             </a>
         </header>
 
-        <!-- Sección de Productos --><main class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-24 pt-24 max-w-7xl mx-auto">
+        
+        <!-- Sección de Productos -->
+        <main class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-24 pt-24 max-w-7xl mx-auto">
 
-            <!-- 1. Tamarindo con Limón --><div class="card-product">
+            
+            <!-- 1. Tamarindo con Limón -->
+            <div class="card-product">
               <div class="bg-white rounded-3xl shadow-2xl pt-20 p-6 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <!-- Logo Circular con TU IMAGEN --><div class="absolute -top-16 left-1/2 -translate-x-1/2 bg-orange-200 card-icon-container">
-                  <!-- CAMBIO AQUÍ: ¡Ruta corregida! --><img src="imagenes/bolis-tamarindo-con-limon.png" alt="Boli de Tamarindo con Limón" class="card-icon">
+                <!-- Logo Circular con TU IMAGEN -->
+                <!-- Animación float-light -->
+                <div class="bg-orange-200 card-icon-container animate-float-light">
+                  <img src="imagenes/bolis-tamarindo-con-limon.png" alt="Boli de Tamarindo con Limón" class="card-icon">
                 </div>
                 
-                <!-- Contenido --><div class="flex-grow">
+                <!-- Contenido -->
+                <div class="flex-grow">
                   <h3 class="text-3xl font-bold text-gray-800 mt-4 mb-2">Tamarindo con Limón</h3>
                   <p class="text-gray-600 text-base mb-4">
                     Ingredientes: Pulpa de tamarindo 100% natural, jugo de limón fresco y un toque de sal. ¡Un clásico refrescante!
                   </p>
                 </div>
                 
-                <!-- Precio y Botón --><div class="mt-4">
-                  <span class="text-5xl font-extrabold text-orange-600 block mb-3">$12</span>
+                <!-- Precio y Botón -->
+                <div class="mt-4">
+                  <span class="text-5xl font-extrabold text-orange-600 block mb-1">$12</span>
+                  <span class="text-base font-medium text-gray-500 block mb-3">133 ml</span>
                   <a href="#formulario-pedido" class="bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
                     ¡Lo quiero!
                   </a>
@@ -199,21 +255,27 @@
               </div>
             </div>
 
-            <!-- 2. Mazapán --><div class="card-product">
+            
+            <!-- 2. Mazapán -->
+            <div class="card-product">
               <div class="bg-white rounded-3xl shadow-2xl pt-20 p-6 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <!-- Logo Circular con TU IMAGEN --><div class="absolute -top-16 left-1/2 -translate-x-1/2 bg-yellow-100 card-icon-container">
-                  <!-- CAMBIO AQUÍ: ¡Ruta corregida! --><img src="imagenes/bolis-mazapan.png" alt="Boli de Mazapán" class="card-icon">
+                <!-- Logo Circular con TU IMAGEN -->
+                <div class="bg-yellow-100 card-icon-container animate-float-light">
+                  <img src="imagenes/bolis-mazapan.png" alt="Boli de Mazapán" class="card-icon">
                 </div>
                 
-                <!-- Contenido --><div class="flex-grow">
+                <!-- Contenido -->
+                <div class="flex-grow">
                   <h3 class="text-3xl font-bold text-gray-800 mt-4 mb-2">Mazapán</h3>
                   <p class="text-gray-600 text-base mb-4">
                     Ingredientes: Mazapán de cacahuate original, leche cremosa y un toque de vainilla. ¡La dulzura perfecta!
                   </p>
                 </div>
                 
-                <!-- Precio y Botón --><div class="mt-4">
-                  <span class="text-5xl font-extrabold text-orange-600 block mb-3">$12</span>
+                <!-- Precio y Botón -->
+                <div class="mt-4">
+                  <span class="text-5xl font-extrabold text-orange-600 block mb-1">$12</span>
+                  <span class="text-base font-medium text-gray-500 block mb-3">133 ml</span>
                   <a href="#formulario-pedido" class="bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
                     ¡Lo quiero!
                   </a>
@@ -221,21 +283,27 @@
               </div>
             </div>
 
-            <!-- 3. Horchata --><div class="card-product">
+            
+            <!-- 3. Horchata -->
+            <div class="card-product">
               <div class="bg-white rounded-3xl shadow-2xl pt-20 p-6 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <!-- Logo Circular con TU IMAGEN --><div class="absolute -top-16 left-1/2 -translate-x-1/2 bg-stone-100 card-icon-container">
-                  <!-- CAMBIO AQUÍ: ¡Ruta corregida! --><img src="imagenes/bolis-horchata.jpg" alt="Boli de Horchata" class="card-icon">
+                <!-- Logo Circular con TU IMAGEN -->
+                <div class="bg-stone-100 card-icon-container animate-float-light">
+                  <img src="imagenes/bolis-horchata.jpg" alt="Boli de Horchata" class="card-icon">
                 </div>
                 
-                <!-- Contenido --><div class="flex-grow">
+                <!-- Contenido -->
+                <div class="flex-grow">
                   <h3 class="text-3xl font-bold text-gray-800 mt-4 mb-2">Horchata</h3>
                   <p class="text-gray-600 text-base mb-4">
                     Ingredientes: Agua de arroz tradicional, canela molida, leche y un toque de azúcar. ¡El sabor de casa!
                   </p>
                 </div>
                 
-                <!-- Precio y Botón --><div class="mt-4">
-                  <span class="text-5xl font-extrabold text-orange-600 block mb-3">$12</span>
+                <!-- Precio y Botón -->
+                <div class="mt-4">
+                  <span class="text-5xl font-extrabold text-orange-600 block mb-1">$12</span>
+                  <span class="text-base font-medium text-gray-500 block mb-3">133 ml</span>
                   <a href="#formulario-pedido" class="bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
                     ¡Lo quiero!
                   </a>
@@ -243,21 +311,27 @@
               </div>
             </div>
 
-            <!-- 4. Fresas con Crema --><div class="card-product">
+            
+            <!-- 4. Fresas con Crema -->
+            <div class="card-product">
               <div class="bg-white rounded-3xl shadow-2xl pt-20 p-6 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <!-- Logo Circular con TU IMAGEN --><div class="absolute -top-16 left-1/2 -translate-x-1/2 bg-pink-200 card-icon-container">
-                  <!-- CAMBIO AQUÍ: ¡Ruta corregida! --><img src="imagenes/bolis-fresas-con-crema.png" alt="Boli de Fresas con Crema" class="card-icon">
+                <!-- Logo Circular con TU IMAGEN -->
+                <div class="bg-pink-200 card-icon-container animate-float-light">
+                  <img src="imagenes/bolis-fresas-con-crema.png" alt="Boli de Fresas con Crema" class="card-icon">
                 </div>
                 
-                <!-- Contenido --><div class="flex-grow">
+                <!-- Contenido -->
+                <div class="flex-grow">
                   <h3 class="text-3xl font-bold text-gray-800 mt-4 mb-2">Fresas con Crema</h3>
                   <p class="text-gray-600 text-base mb-4">
                     Ingredientes: Fresas frescas de temporada, crema dulce, leche evaporada y un toque de lechera. ¡Irresistible!
                   </p>
                 </div>
                 
-                <!-- Precio y Botón --><div class="mt-4">
-                  <span class="text-5xl font-extrabold text-orange-600 block mb-3">$12</span>
+                <!-- Precio y Botón -->
+                <div class="mt-4">
+                  <span class="text-5xl font-extrabold text-orange-600 block mb-1">$12</span>
+                  <span class="text-base font-medium text-gray-500 block mb-3">133 ml</span>
                   <a href="#formulario-pedido" class="bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
                     ¡Lo quiero!
                   </a>
@@ -265,21 +339,27 @@
               </div>
             </div>
 
-            <!-- 5. Oreo --><div class="card-product">
+            
+            <!-- 5. Oreo -->
+            <div class="card-product">
               <div class="bg-white rounded-3xl shadow-2xl pt-20 p-6 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <!-- Logo Circular con TU IMAGEN --><div class="absolute -top-16 left-1/2 -translate-x-1/2 bg-gray-700 card-icon-container">
-                  <!-- CAMBIO AQUÍ: ¡Ruta corregida! --><img src="imagenes/bolis-de-oreo.png" alt="Boli de Oreo" class="card-icon">
+                <!-- Logo Circular con TU IMAGEN -->
+                <div class="bg-gray-700 card-icon-container animate-float-light">
+                  <img src="imagenes/bolis-de-oreo.png" alt="Boli de Oreo" class="card-icon">
                 </div>
                 
-                <!-- Contenido --><div class="flex-grow">
+                <!-- Contenido -->
+                <div class="flex-grow">
                   <h3 class="text-3xl font-bold text-gray-800 mt-4 mb-2">Oreo</h3>
                   <p class="text-gray-600 text-base mb-4">
                     Ingredientes: Galleta Oreo triturada, leche entera, crema dulce y un toque de vainilla. ¡Para amantes del chocolate!
                   </a-p>
                 </div>
                 
-                <!-- Precio y Botón --><div class="mt-4">
-                  <span class="text-5xl font-extrabold text-orange-600 block mb-3">$12</span>
+                <!-- Precio y Botón -->
+                <div class="mt-4">
+                  <span class="text-5xl font-extrabold text-orange-600 block mb-1">$12</span>
+                  <span class="text-base font-medium text-gray-500 block mb-3">133 ml</span>
                   <a href="#formulario-pedido" class="bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
                     ¡Lo quiero!
                   </a>
@@ -289,12 +369,16 @@
 
         </main>
 
-        <!-- =========== NUEVA SECCIÓN: FORMULARIO DE PEDIDO =========== --><section id="formulario-pedido" class="mt-24 pt-16">
+        
+        <!-- Sección Formulario de Pedido -->
+        <section id="formulario-pedido" class="mt-24 pt-16">
           <div class="bg-white w-full max-w-3xl mx-auto p-6 md:p-10 rounded-3xl shadow-2xl">
             <h2 class="text-4xl font-extrabold text-center text-gray-800 mb-8">¡Haz tu pedido aquí!</h2>
             
             <form id="orderForm">
-              <!-- Datos Personales --><div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              
+              <!-- Datos Personales -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label for="nombre" class="form-label">Nombre Completo</label>
                   <input type="text" id="nombre" name="nombre" class="form-input" required>
@@ -305,9 +389,13 @@
                 </div>
               </div>
 
-              <!-- Pedidos Dinámicos --><h3 class="text-2xl font-bold text-gray-700 mb-4 border-b pb-2">Tu Pedido</h3>
+              
+              <!-- Pedidos Dinámicos -->
+              <h3 class="text-2xl font-bold text-gray-700 mb-4 border-b pb-2">Tu Pedido</h3>
               <div id="pedidos-container" class="space-y-4 mb-4">
-                <!-- Este es el primer item, que se clonará --><div class="pedido-item grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                
+                <!-- Plantilla de Pedido -->
+                <div class="pedido-item grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
                   <div>
                     <label class="form-label text-sm">Sabor</label>
                     <select name="sabor" class="form-select sabor-select" required>
@@ -323,21 +411,29 @@
                     <label class="form-label text-sm">Cantidad</label>
                     <input type="number" name="cantidad" class="form-input cantidad-input" min="1" value="1" required>
                   </div>
-                  <!-- El primer item no tiene botón de borrar --></div>
+                  
+                  <!-- Espacio para el botón de borrar (se añade con JS) -->
+                </div>
               </div>
 
-              <!-- Botón para Agregar Sabor --><button type="button" id="agregar-sabor" class="flex items-center gap-2 text-orange-600 font-bold hover:text-orange-800 transition mb-6">
+              
+              <!-- Botón Agregar Sabor -->
+              <button type="button" id="agregar-sabor" class="flex items-center gap-2 text-orange-600 font-bold hover:text-orange-800 transition mb-6">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 Agregar otro sabor
               </button>
 
-              <!-- Total --><div class="text-right text-3xl font-extrabold text-gray-800 mb-6">
+              
+              <!-- Total -->
+              <div class="text-right text-3xl font-extrabold text-gray-800 mb-6">
                 Total: <span id="total-price" class="text-orange-600">$12.00</span>
               </div>
 
-              <!-- Lugar y Horario de Entrega --><div class="mb-6">
+              
+              <!-- Lugar de Entrega -->
+              <div class="mb-6">
                 <label for="lugar-entrega" class="form-label">Lugar de Entrega</label>
                 <select id="lugar-entrega" name="lugar-entrega" class="form-select" required>
                   <option value="">Selecciona un punto de entrega...</option>
@@ -350,28 +446,40 @@
                 </p>
               </div>
 
-              <!-- Comentarios --><div class="mb-6">
+              
+              <!-- Comentarios -->
+              <div class="mb-6">
                 <label for="comentarios" class="form-label">Comentarios Adicionales</label>
                 <textarea id="comentarios" name="comentarios" rows="3" class="form-textarea" placeholder="¿Alguna indicación especial?"></textarea>
               </div>
 
-              <!-- Botón de Envío --><button type="submit" id="submit-order-btn" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-lg py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
+              
+              <!-- Botón de Enviar Pedido -->
+              <button type="submit" id="submit-order-btn" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-lg py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
                 Confirmar Pedido
               </button>
               
-              <!-- Mensaje de Estado del Formulario --><div id="order-form-message" class="form-message"></div>
+              
+              <!-- Mensaje de Estado del Pedido -->
+              <div id="order-form-message" class="form-message"></div>
             </form>
           </div>
         </section>
 
-        <!-- =========== NUEVA SECCIÓN: RESEÑAS =========== --><section id="reseñas" class="mt-24 pt-16">
+        
+        <!-- Sección de Reseñas -->
+        <section id="reseñas" class="mt-24 pt-16">
           <div class="w-full max-w-3xl mx-auto">
             <h2 class="text-4xl font-extrabold text-center text-white mb-8 drop-shadow-lg">¡Lo que dicen nuestros clientes!</h2>
 
-            <!-- CAMBIO: Contenedor de Reseñas ahora es un Carrusel Swiper --><div class="swiper-container mySwiper mb-12">
+            
+            <!-- Carrusel de Reseñas -->
+            <div class="swiper-container mySwiper mb-12">
               <div class="swiper-wrapper">
                 
-                <!-- Reseña 1 --><div class="swiper-slide bg-white p-6 rounded-2xl shadow-xl">
+                
+                <!-- Reseña Estática 1 -->
+                <div class="swiper-slide bg-white p-6 rounded-2xl shadow-xl">
                   <div class="flex justify-between items-center mb-2">
                     <span class="font-bold text-lg text-gray-800">Laura G.</span>
                     <span class="text-amber-400 text-xl">★★★★★</span>
@@ -379,7 +487,9 @@
                   <p class="text-gray-600">"¡El boli de Oreo es espectacular! Súper cremoso y con muchos trocitos de galleta. 100% recomendado."</p>
                 </div>
                 
-                <!-- Reseña 2 --><div class="swiper-slide bg-white p-6 rounded-2xl shadow-xl">
+                
+                <!-- Reseña Estática 2 -->
+                <div class="swiper-slide bg-white p-6 rounded-2xl shadow-xl">
                   <div class="flex justify-between items-center mb-2">
                     <span class="font-bold text-lg text-gray-800">Miguel R.</span>
                     <span class="text-amber-400 text-xl">★★★★☆</span>
@@ -387,7 +497,9 @@
                   <p class="text-gray-600">"Muy rico el de Fresas con Crema, se nota que la fresa es natural. El de horchata también muy bueno. Me gustaría que tuvieran de limón."</p>
                 </div>
                 
-                <!-- Reseña 3 --><div class="swiper-slide bg-white p-6 rounded-2xl shadow-xl">
+                
+                <!-- Reseña Estática 3 -->
+                <div class="swiper-slide bg-white p-6 rounded-2xl shadow-xl">
                   <div class="flex justify-between items-center mb-2">
                     <span class="font-bold text-lg text-gray-800">Sofía M.</span>
                     <span class="text-amber-400 text-xl">★★★★★</span>
@@ -396,20 +508,26 @@
                 </div>
 
               </div>
-              <!-- Añadimos la paginación (los puntos de abajo) --><div class="swiper-pagination"></div>
+              
+              <!-- Paginación del Carrusel -->
+              <div class="swiper-pagination"></div>
             </div>
 
-            <!-- Formulario para Dejar Reseña --><div class="bg-white p-6 md:p-10 rounded-3xl shadow-2xl animate-fade-in-up" style="animation-delay: 0.9s;">
+            
+            <!-- Formulario para dejar Reseña -->
+            <div class="bg-white p-6 md:p-10 rounded-3xl shadow-2xl animate-fade-in-up" style="animation-delay: 0.9s;">
               <h3 class="text-3xl font-bold text-center text-gray-800 mb-6">¡Deja tu reseña!</h3>
               <form id="reviewForm">
                 <div class="mb-4">
-                  <label class="form-label text-center">¿Qué te parecieron?</label>
+                  <!-- CAMBIO: Texto más claro para las estrellas -->
+                  <label class="form-label text-center">¡Tu Calificación! (Elige las estrellas)</label>
                   <div class="star-rating">
                     <input type="radio" id="star5" name="rating" value="5" required><label for="star5" title="5 estrellas">★</label>
                     <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 estrellas">★</label>
                     <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 estrellas">★</label>
                     <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 estrellas">★</label>
-                    <input type="radio" id="star1" name="star1" value="1"><label for="star1" title="1 estrella">★</label>
+                    <!-- !!!!! CORRECCIÓN REALIZADA AQUÍ !!!!! -->
+                    <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 estrella">★</label>
                   </div>
                 </div>
                 <div class="mb-4">
@@ -423,20 +541,26 @@
                 <button type="submit" id="submit-review-btn" class="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold text-lg py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
                   Enviar Reseña
                 </button>
-                <!-- Mensaje de Estado del Formulario --><div id="review-form-message" class="form-message"></div>
+                
+                <!-- Mensaje de Estado de la Reseña -->
+                <div id="review-form-message" class="form-message"></div>
               </form>
             </div>
           </div>
         </section>
 
-        <!-- Footer Sencillo --><footer class="text-center p-8 text-yellow-50 mt-16 drop-shadow-md">
+        
+        <!-- Footer -->
+        <footer class="text-center p-8 text-yellow-50 mt-16 drop-shadow-md">
             <p class="font-bold text-lg">Bolis Artesanales "La Alegría Refrescante" &copy; 2025</p>
             <p>Hechos con ❤️ y mucho sabor en México</p>
         </footer>
 
     </div>
 
-    <!-- =========== NUEVO SCRIPT PARA FORMULARIOS =========== --><script>
+    
+    <!-- JavaScript -->
+    <script>
       // ---- ¡IMPORTANTE! ----
       // ¡YA ESTÁ CONECTADO!
       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx88q2qxy_szNMh4GOz0gT-Bpp7Fz6GOoMo5b2uvwKRoopMARciMQ8JsD-R-6kuldE/exec';
@@ -459,7 +583,7 @@
         const agregarSaborBtn = document.getElementById('agregar-sabor');
         const totalPriceEl = document.getElementById('total-price');
 
-        // --- NUEVO: Inicialización del Carrusel de Reseñas ---
+        // --- Inicialización del Carrusel de Reseñas ---
         var swiper = new Swiper(".mySwiper", {
           slidesPerView: 1, // Mostrar 1 reseña a la vez
           spaceBetween: 30, // Espacio entre reseñas (si decides mostrar más)
@@ -485,6 +609,37 @@
           },
         });
 
+        // --- FUNCIÓN: Para añadir reseñas dinámicamente ---
+        const agregarNuevaReseña = (nombre, rating, comentario) => {
+          // 1. Convertir el número de rating (ej. "4") a estrellas (ej. "★★★★☆")
+          const estrellasNum = parseInt(rating, 10) || 0;
+          const estrellasIconos = '★'.repeat(estrellasNum) + '☆'.repeat(5 - estrellasNum);
+          
+          // Sanitizar un poco el input (prevención básica)
+          const safeNombre = nombre.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+          const safeComentario = comentario.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+
+          // 2. Crear el HTML para la nueva diapositiva (slide)
+          const nuevaReseñaHTML = `
+            <div class="swiper-slide bg-white p-6 rounded-2xl shadow-xl">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-bold text-lg text-gray-800">${safeNombre}</span>
+                <span class="text-amber-400 text-xl">${estrellasIconos}</span>
+              </div>
+              <p class="text-gray-600">${safeComentario}</p>
+            </div>
+          `;
+
+          // 3. Usar la API de Swiper para añadir la nueva diapositiva y actualizar el carrusel
+          if (swiper) {
+            swiper.appendSlide(nuevaReseñaHTML);
+            swiper.update(); // Asegura que Swiper recalcule las diapositivas
+            swiper.slideTo(swiper.slides.length - 1); // Desliza automáticamente a la nueva reseña
+          }
+        };
+
+
         // --- Lógica del Formulario de Pedido ---
 
         if (orderForm) {
@@ -498,19 +653,24 @@
             const deleteBtn = document.createElement('button');
             deleteBtn.type = 'button';
             deleteBtn.innerHTML = '&times;';
-            deleteBtn.className = 'text-red-500 font-bold text-2xl hover:text-red-700';
+            deleteBtn.className = 'text-red-500 font-bold text-2xl hover:text-red-700 ml-4'; // Añadido ml-4
             deleteBtn.addEventListener('click', () => {
-              nuevoPedido.remove();
-              calcularTotal();
+              // No borrar el último item
+              if (pedidosContainer.querySelectorAll('.pedido-item').length > 1) {
+                nuevoPedido.remove();
+                calcularTotal();
+              }
             });
-            // Añadimos el botón al 3er div del grid, o creamos uno
-            let actionDiv = nuevoPedido.querySelector('.pedido-actions');
-            if (!actionDiv) {
-              actionDiv = document.createElement('div');
-              actionDiv.className = 'pedido-actions flex items-center justify-end md:justify-start pt-2 md:pt-0';
-              nuevoPedido.appendChild(actionDiv);
-            }
+            
+            // Ajustamos el grid para el botón
+            nuevoPedido.classList.remove('md:grid-cols-3');
+            nuevoPedido.classList.add('md:grid-cols-4');
+            nuevoPedido.children[0].classList.add('md:col-span-2'); // Sabor
+            
+            let actionDiv = document.createElement('div');
+            actionDiv.className = 'flex items-end justify-start';
             actionDiv.appendChild(deleteBtn);
+            nuevoPedido.appendChild(actionDiv);
             
             pedidosContainer.appendChild(nuevoPedido);
           });
@@ -609,12 +769,15 @@
             reviewMessage.className = 'form-message'; // Reset message
 
             const rating = reviewForm.querySelector('input[name="rating"]:checked');
+            const nombre = reviewForm['review-nombre'].value;
+            const comentario = reviewForm['review-comentario'].value;
+            const ratingValue = rating ? rating.value : '0';
 
             const formData = {
               tipo: 'Reseña',
-              nombre: reviewForm['review-nombre'].value,
-              rating: rating ? rating.value : 'N/A',
-              comentario: reviewForm['review-comentario'].value
+              nombre: nombre,
+              rating: ratingValue,
+              comentario: comentario
             };
 
             fetch(SCRIPT_URL, {
@@ -627,6 +790,9 @@
               body: JSON.stringify(formData)
             })
             .then(() => {
+                // ¡CAMBIO AQUÍ! Añadimos la reseña al carrusel
+                agregarNuevaReseña(nombre, ratingValue, comentario);
+                
                 reviewForm.reset();
                 reviewMessage.textContent = '¡Gracias por tu reseña!';
                 reviewMessage.className = 'form-message success';
@@ -648,3 +814,4 @@
 
 </body>
 </html>
+

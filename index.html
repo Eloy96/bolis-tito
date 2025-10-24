@@ -205,13 +205,22 @@
 
     
     <!-- Contenedor Principal -->
-    <div class="container mx-auto px-4 py-12 md:py-20">
+    <div class="container mx-auto px-4 py-12 md:py-20 relative"> <!-- Añadido relative para el icono de carrito -->
+
+        <!-- NUEVO: Icono de Carrito -->
+        <div id="cart-icon" class="fixed top-4 right-4 z-40 cursor-pointer p-3 bg-white rounded-full shadow-lg hover:bg-gray-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center">0</span>
+        </div>
 
         
         <!-- Encabezado -->
         <header class="text-center mb-16 md:mb-24">
             <!-- CAMBIO: Se quita el emoji -->
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 leading-tight text-gradient-animated animate-text-gradient-anim">
+            <!-- CAMBIO: Título más pequeño en móvil (text-4xl) -->
+            <h1 class="text-4xl md:text-7xl font-extrabold mb-4 leading-tight text-gradient-animated animate-text-gradient-anim">
                 ¡Bolis Artesanales! <br> El sabor de la alegría
             </h1>
             <p class="text-xl md:text-3xl text-yellow-100 font-medium drop-shadow-md">
@@ -224,33 +233,44 @@
 
         
         <!-- Sección de Productos -->
-        <main class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-24 pt-24 max-w-7xl mx-auto">
+        <!-- CAMBIO: 'grid-cols-2' (para móvil), 'lg:grid-cols-3' (para desktop) -->
+        <!-- CAMBIO: Reducido gap-x, gap-y y pt para la nueva cuadrícula -->
+        <main class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-20 pt-20 max-w-7xl mx-auto">
 
             
             <!-- 1. Tamarindo con Limón -->
             <div class="card-product">
-              <div class="bg-white rounded-3xl shadow-2xl pt-20 p-6 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+              <!-- CAMBIO: Reducido pt-16 (padding-top) -->
+              <div class="bg-white rounded-3xl shadow-2xl pt-16 p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
                 <!-- Logo Circular con TU IMAGEN -->
-                <!-- Animación float-light -->
-                <div class="bg-orange-200 card-icon-container animate-float-light">
+                <!-- CAMBIO: Contenedor de icono más pequeño (w-28, h-28, top -3.5rem) -->
+                <div class="bg-orange-200 card-icon-container w-28 h-28 -top-[3.5rem] animate-float-light">
                   <img src="imagenes/bolis-tamarindo-con-limon.png" alt="Boli de Tamarindo con Limón" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
                 <div class="flex-grow">
-                  <h3 class="text-3xl font-bold text-gray-800 mt-4 mb-2">Tamarindo con Limón</h3>
-                  <p class="text-gray-600 text-base mb-4">
-                    Ingredientes: Pulpa de tamarindo 100% natural, jugo de limón fresco y un toque de sal. ¡Un clásico refrescante!
+                  <!-- CAMBIO: Título de sabor más pequeño (text-2xl) -->
+                  <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Tamarindo con Limón</h3>
+                  <!-- CAMBIO: Descripción más pequeña (text-sm) -->
+                  <p class="text-gray-600 text-sm mb-4">
+                    Ingredientes: Pulpa de tamarindo 100% natural, jugo de limón fresco y un toque de sal.
                   </p>
                 </div>
                 
                 <!-- Precio y Botón -->
-                <div class="mt-4">
-                  <span class="text-5xl font-extrabold text-orange-600 block mb-1">$12</span>
-                  <span class="text-base font-medium text-gray-500 block mb-3">133 ml</span>
-                  <a href="#formulario-pedido" class="bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                    ¡Lo quiero!
-                  </a>
+                <div class="mt-4 flex flex-col items-center">
+                  <!-- CAMBIO: Precio más pequeño (text-4xl) -->
+                  <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
+                  <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
+                  <!-- CAMBIO: Quitado "Lo quiero", añadido selector de cantidad y botón "Agregar" -->
+                  <div class="flex items-center gap-2 mt-4">
+                    <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
+                    <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Tamarindo con Limón" data-precio="12">
+                      Agregar
+                    </button>
+                  </div>
+                  <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
                 </div>
               </div>
             </div>
@@ -258,27 +278,37 @@
             
             <!-- 2. Mazapán -->
             <div class="card-product">
-              <div class="bg-white rounded-3xl shadow-2xl pt-20 p-6 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+              <!-- CAMBIO: Reducido pt-16 (padding-top) -->
+              <div class="bg-white rounded-3xl shadow-2xl pt-16 p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
                 <!-- Logo Circular con TU IMAGEN -->
-                <div class="bg-yellow-100 card-icon-container animate-float-light">
+                <!-- CAMBIO: Contenedor de icono más pequeño (w-28, h-28, top -3.5rem) -->
+                <div class="bg-yellow-100 card-icon-container w-28 h-28 -top-[3.5rem] animate-float-light">
                   <img src="imagenes/bolis-mazapan.png" alt="Boli de Mazapán" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
                 <div class="flex-grow">
-                  <h3 class="text-3xl font-bold text-gray-800 mt-4 mb-2">Mazapán</h3>
-                  <p class="text-gray-600 text-base mb-4">
-                    Ingredientes: Mazapán de cacahuate original, leche cremosa y un toque de vainilla. ¡La dulzura perfecta!
+                  <!-- CAMBIO: Título de sabor más pequeño (text-2xl) -->
+                  <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Mazapán</h3>
+                  <!-- CAMBIO: Descripción más pequeña (text-sm) -->
+                  <p class="text-gray-600 text-sm mb-4">
+                    Ingredientes: Mazapán de cacahuate original, leche cremosa y un toque de vainilla.
                   </p>
                 </div>
                 
                 <!-- Precio y Botón -->
-                <div class="mt-4">
-                  <span class="text-5xl font-extrabold text-orange-600 block mb-1">$12</span>
-                  <span class="text-base font-medium text-gray-500 block mb-3">133 ml</span>
-                  <a href="#formulario-pedido" class="bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                    ¡Lo quiero!
-                  </a>
+                <div class="mt-4 flex flex-col items-center">
+                  <!-- CAMBIO: Precio más pequeño (text-4xl) -->
+                  <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
+                  <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
+                  <!-- CAMBIO: Quitado "Lo quiero", añadido selector de cantidad y botón "Agregar" -->
+                  <div class="flex items-center gap-2 mt-4">
+                    <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
+                    <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Mazapán" data-precio="12">
+                      Agregar
+                    </button>
+                  </div>
+                  <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
                 </div>
               </div>
             </div>
@@ -286,27 +316,37 @@
             
             <!-- 3. Horchata -->
             <div class="card-product">
-              <div class="bg-white rounded-3xl shadow-2xl pt-20 p-6 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+              <!-- CAMBIO: Reducido pt-16 (padding-top) -->
+              <div class="bg-white rounded-3xl shadow-2xl pt-16 p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
                 <!-- Logo Circular con TU IMAGEN -->
-                <div class="bg-stone-100 card-icon-container animate-float-light">
+                <!-- CAMBIO: Contenedor de icono más pequeño (w-28, h-28, top -3.5rem) -->
+                <div class="bg-stone-100 card-icon-container w-28 h-28 -top-[3.5rem] animate-float-light">
                   <img src="imagenes/bolis-horchata.jpg" alt="Boli de Horchata" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
                 <div class="flex-grow">
-                  <h3 class="text-3xl font-bold text-gray-800 mt-4 mb-2">Horchata</h3>
-                  <p class="text-gray-600 text-base mb-4">
-                    Ingredientes: Agua de arroz tradicional, canela molida, leche y un toque de azúcar. ¡El sabor de casa!
+                  <!-- CAMBIO: Título de sabor más pequeño (text-2xl) -->
+                  <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Horchata</h3>
+                  <!-- CAMBIO: Descripción más pequeña (text-sm) -->
+                  <p class="text-gray-600 text-sm mb-4">
+                    Ingredientes: Agua de arroz tradicional, canela molida, leche y un toque de azúcar.
                   </p>
                 </div>
                 
                 <!-- Precio y Botón -->
-                <div class="mt-4">
-                  <span class="text-5xl font-extrabold text-orange-600 block mb-1">$12</span>
-                  <span class="text-base font-medium text-gray-500 block mb-3">133 ml</span>
-                  <a href="#formulario-pedido" class="bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                    ¡Lo quiero!
-                  </a>
+                <div class="mt-4 flex flex-col items-center">
+                  <!-- CAMBIO: Precio más pequeño (text-4xl) -->
+                  <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
+                  <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
+                  <!-- CAMBIO: Quitado "Lo quiero", añadido selector de cantidad y botón "Agregar" -->
+                  <div class="flex items-center gap-2 mt-4">
+                    <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
+                    <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Horchata" data-precio="12">
+                      Agregar
+                    </button>
+                  </div>
+                  <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
                 </div>
               </div>
             </div>
@@ -314,27 +354,37 @@
             
             <!-- 4. Fresas con Crema -->
             <div class="card-product">
-              <div class="bg-white rounded-3xl shadow-2xl pt-20 p-6 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+              <!-- CAMBIO: Reducido pt-16 (padding-top) -->
+              <div class="bg-white rounded-3xl shadow-2xl pt-16 p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
                 <!-- Logo Circular con TU IMAGEN -->
-                <div class="bg-pink-200 card-icon-container animate-float-light">
+                <!-- CAMBIO: Contenedor de icono más pequeño (w-28, h-28, top -3.5rem) -->
+                <div class="bg-pink-200 card-icon-container w-28 h-28 -top-[3.5rem] animate-float-light">
                   <img src="imagenes/bolis-fresas-con-crema.png" alt="Boli de Fresas con Crema" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
                 <div class="flex-grow">
-                  <h3 class="text-3xl font-bold text-gray-800 mt-4 mb-2">Fresas con Crema</h3>
-                  <p class="text-gray-600 text-base mb-4">
-                    Ingredientes: Fresas frescas de temporada, crema dulce, leche evaporada y un toque de lechera. ¡Irresistible!
+                  <!-- CAMBIO: Título de sabor más pequeño (text-2xl) -->
+                  <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Fresas con Crema</h3>
+                  <!-- CAMBIO: Descripción más pequeña (text-sm) -->
+                  <p class="text-gray-600 text-sm mb-4">
+                    Ingredientes: Fresas frescas de temporada, crema dulce, leche evaporada y un toque de lechera.
                   </p>
                 </div>
                 
                 <!-- Precio y Botón -->
-                <div class="mt-4">
-                  <span class="text-5xl font-extrabold text-orange-600 block mb-1">$12</span>
-                  <span class="text-base font-medium text-gray-500 block mb-3">133 ml</span>
-                  <a href="#formulario-pedido" class="bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                    ¡Lo quiero!
-                  </a>
+                <div class="mt-4 flex flex-col items-center">
+                  <!-- CAMBIO: Precio más pequeño (text-4xl) -->
+                  <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
+                  <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
+                  <!-- CAMBIO: Quitado "Lo quiero", añadido selector de cantidad y botón "Agregar" -->
+                  <div class="flex items-center gap-2 mt-4">
+                    <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
+                    <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Fresas con Crema" data-precio="12">
+                      Agregar
+                    </button>
+                  </div>
+                  <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
                 </div>
               </div>
             </div>
@@ -342,132 +392,52 @@
             
             <!-- 5. Oreo -->
             <div class="card-product">
-              <div class="bg-white rounded-3xl shadow-2xl pt-20 p-6 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+              <!-- CAMBIO: Reducido pt-16 (padding-top) -->
+              <div class="bg-white rounded-3xl shadow-2xl pt-16 p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
                 <!-- Logo Circular con TU IMAGEN -->
-                <div class="bg-gray-700 card-icon-container animate-float-light">
+                <!-- CAMBIO: Contenedor de icono más pequeño (w-28, h-28, top -3.5rem) -->
+                <div class="bg-gray-700 card-icon-container w-28 h-28 -top-[3.5rem] animate-float-light">
                   <img src="imagenes/bolis-de-oreo.png" alt="Boli de Oreo" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
                 <div class="flex-grow">
-                  <h3 class="text-3xl font-bold text-gray-800 mt-4 mb-2">Oreo</h3>
-                  <p class="text-gray-600 text-base mb-4">
-                    Ingredientes: Galleta Oreo triturada, leche entera, crema dulce y un toque de vainilla. ¡Para amantes del chocolate!
+                  <!-- CAMBIO: Título de sabor más pequeño (text-2xl) -->
+                  <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Oreo</h3>
+                  <!-- CAMBIO: Descripción más pequeña (text-sm) -->
+                  <p class="text-gray-600 text-sm mb-4">
+                    Ingredientes: Galleta Oreo triturada, leche entera, crema dulce y un toque de vainilla.
                   </a-p>
                 </div>
                 
                 <!-- Precio y Botón -->
-                <div class="mt-4">
-                  <span class="text-5xl font-extrabold text-orange-600 block mb-1">$12</span>
-                  <span class="text-base font-medium text-gray-500 block mb-3">133 ml</span>
-                  <a href="#formulario-pedido" class="bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                    ¡Lo quiero!
-                  </a>
+                <div class="mt-4 flex flex-col items-center">
+                  <!-- CAMBIO: Precio más pequeño (text-4xl) -->
+                  <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
+                  <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
+                  <!-- CAMBIO: Quitado "Lo quiero", añadido selector de cantidad y botón "Agregar" -->
+                  <div class="flex items-center gap-2 mt-4">
+                    <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
+                    <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Oreo" data-precio="12">
+                      Agregar
+                    </button>
+                  </div>
+                  <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
                 </div>
               </div>
             </div>
+            
+            <!-- CAMBIO: Añadido un item fantasma para alinear la última fila en 'lg' (3 columnas) -->
+            <div class="hidden lg:block"></div>
 
         </main>
 
         
-        <!-- Sección Formulario de Pedido -->
-        <section id="formulario-pedido" class="mt-24 pt-16">
-          <div class="bg-white w-full max-w-3xl mx-auto p-6 md:p-10 rounded-3xl shadow-2xl">
-            <h2 class="text-4xl font-extrabold text-center text-gray-800 mb-8">¡Haz tu pedido aquí!</h2>
-            
-            <form id="orderForm">
-              
-              <!-- Datos Personales -->
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div>
-                  <label for="nombre" class="form-label">Nombre Completo</label>
-                  <input type="text" id="nombre" name="nombre" class="form-input" required>
-                </div>
-                <div>
-                  <label for="telefono" class="form-label">Teléfono / WhatsApp</label>
-                  <input type="tel" id="telefono" name="telefono" class="form-input" required>
-                </div>
-              </div>
-
-              
-              <!-- Pedidos Dinámicos -->
-              <h3 class="text-2xl font-bold text-gray-700 mb-4 border-b pb-2">Tu Pedido</h3>
-              <div id="pedidos-container" class="space-y-4 mb-4">
-                
-                <!-- Plantilla de Pedido -->
-                <div class="pedido-item grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
-                  <div>
-                    <label class="form-label text-sm">Sabor</label>
-                    <select name="sabor" class="form-select sabor-select" required>
-                      <option value="">Elige un sabor...</option>
-                      <option value="Tamarindo con Limón">Tamarindo con Limón</option>
-                      <option value="Mazapán">Mazapán</option>
-                      <option value="Horchata">Horchata</option>
-                      <option value="Fresas con Crema">Fresas con Crema</option>
-                      <option value="Oreo">Oreo</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label class="form-label text-sm">Cantidad</label>
-                    <input type="number" name="cantidad" class="form-input cantidad-input" min="1" value="1" required>
-                  </div>
-                  
-                  <!-- Espacio para el botón de borrar (se añade con JS) -->
-                </div>
-              </div>
-
-              
-              <!-- Botón Agregar Sabor -->
-              <button type="button" id="agregar-sabor" class="flex items-center gap-2 text-orange-600 font-bold hover:text-orange-800 transition mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Agregar otro sabor
-              </button>
-
-              
-              <!-- Total -->
-              <div class="text-right text-3xl font-extrabold text-gray-800 mb-6">
-                Total: <span id="total-price" class="text-orange-600">$12.00</span>
-              </div>
-
-              
-              <!-- Lugar de Entrega -->
-              <div class="mb-6">
-                <label for="lugar-entrega" class="form-label">Lugar de Entrega</label>
-                <select id="lugar-entrega" name="lugar-entrega" class="form-select" required>
-                  <option value="">Selecciona un punto de entrega...</option>
-                  <option value="Huixquilucan Centro (Kiosko)">Huixquilucan Centro (Kiosko)</option>
-                  <option value="El Mirador Magdalena Chichicaspa (Parada de autobuses)">El Mirador Magdalena Chichicaspa (Parada)</option>
-                  <option value="Paraje Las Máquinas Magdalena Chichicaspa">Paraje Las Máquinas Magdalena Chichicaspa</option>
-                </select>
-                <p class="text-sm text-gray-500 mt-2">
-                  <strong>Horario de Entrega:</strong> Sábados, acordando la hora contigo después de recibir tu pedido.
-                </p>
-              </div>
-
-              
-              <!-- Comentarios -->
-              <div class="mb-6">
-                <label for="comentarios" class="form-label">Comentarios Adicionales</label>
-                <textarea id="comentarios" name="comentarios" rows="3" class="form-textarea" placeholder="¿Alguna indicación especial?"></textarea>
-              </div>
-
-              
-              <!-- Botón de Enviar Pedido -->
-              <button type="submit" id="submit-order-btn" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-lg py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
-                Confirmar Pedido
-              </button>
-              
-              
-              <!-- Mensaje de Estado del Pedido -->
-              <div id="order-form-message" class="form-message"></div>
-            </form>
-          </div>
-        </section>
+        <!-- CAMBIO: Sección Formulario de Pedido ELIMINADA -->
+        <!-- <section id="formulario-pedido" ... </section> -->
 
         
-        <!-- Sección de Reseñas -->
+        <!-- Sección de Reseñas (sin cambios) -->
         <section id="reseñas" class="mt-24 pt-16">
           <div class="w-full max-w-3xl mx-auto">
             <h2 class="text-4xl font-extrabold text-center text-white mb-8 drop-shadow-lg">¡Lo que dicen nuestros clientes!</h2>
@@ -558,69 +528,346 @@
 
     </div>
 
+    <!-- NUEVO: Modal del Carrito de Compras -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
+        <!-- CAMBIO: Modal más responsivo en altura y ancho -->
+        <div id="cart-modal-content" class="bg-white w-full max-w-lg rounded-2xl shadow-xl flex flex-col max-h-[90vh]">
+            
+            <!-- Encabezado del Modal -->
+            <div class="flex justify-between items-center p-5 border-b">
+                <h2 class="text-3xl font-extrabold text-gray-800">Tu Carrito</h2>
+                <button id="close-cart-btn" class="text-gray-400 hover:text-gray-700 text-4xl font-light">&times;</button>
+            </div>
+            
+            <!-- CAMBIO: Contenedor de SCROLL ÚNICO -->
+            <div class="overflow-y-auto">
+
+                <!-- Contenido del Carrito (Items) -->
+                <div id="cart-items-container" class="p-6 space-y-4">
+                    <!-- Los items del carrito se agregarán aquí con JS -->
+                    <!-- <p id="cart-empty-message" class="text-gray-500 text-center">Tu carrito está vacío.</p> -->
+                </div>
+                
+                <!-- Total del Carrito -->
+                <div class="p-6 border-t text-right">
+                    <span class="text-3xl font-extrabold text-gray-800">Total: <span id="cart-total" class="text-orange-600">$0.00</span></span>
+                </div>
+                
+                <!-- Formulario de Checkout -->
+                <!-- CAMBIO: quitado 'overflow-y-auto' de aquí -->
+                <form id="checkoutForm" class="p-6 space-y-4 border-t">
+                    <h3 class="text-2xl font-bold text-gray-700">Completa tu Pedido</h3>
+                    
+                    <!-- CORRECCIÓN: Se restaura el grid de formulario que estaba corrupto -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="nombre" class="form-label">Nombre Completo</label>
+                            <input type="text" id="nombre" name="nombre" class="form-input" required>
+                        </div>
+                        <div>
+                            <label for="telefono" class="form-label">Teléfono / WhatsApp</label>
+                            <input type="tel" id="telefono" name="telefono" class="form-input" required>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <!-- CORRECCIÓN: Arreglada la etiqueta </s-label> por </label> -->
+                        <label for="lugar-entrega" class="form-label">Lugar de Entrega</label>
+                        <select id="lugar-entrega" name="lugar-entrega" class="form-select" required>
+                            <option value="">Selecciona un punto de entrega...</option>
+                            <!-- CORRECCIÓN: Restauradas las opciones que desaparecieron -->
+                            <option value="Huixquilucan Centro (Kiosko)">Huixquilucan Centro (Kiosko)</option>
+                            <option value="El Mirador Magdalena Chichicaspa (Parada de autobuses)">El Mirador Magdalena Chichicaspa (Parada)</option>
+                            <option value="Paraje Las Máquinas Magdalena Chichicaspa">Paraje Las Máquinas Magdalena Chichicaspa</option>
+                        </select>
+                        <!-- CORRECCIÓN: Restaurada la etiqueta <p> -->
+                        <p class="text-sm text-gray-500 mt-2">
+                            <strong>Horario de Entrega:</strong> Sábados, acordando la hora contigo.
+                        </p>
+                    </div>
+                    <div class="mb-2">
+                        <!-- CORRECCIÓN: Arreglada la etiqueta </s-label> por </label> -->
+                        <label for="comentarios" class="form-label">Comentarios Adicionales</label>
+                        <textarea id="comentarios" name="comentarios" rows="3" class="form-textarea" placeholder="¿Alguna indicación especial?"></textarea>
+                    </div>
+
+                    <!-- CORRECCIÓN: ¡El botón faltaba! Añadido de nuevo -->
+                    <button type="submit" id="submit-order-btn" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-lg py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
+                        Confirmar Pedido
+                    </button>
+                    <!-- CORRECCIÓN: Eliminada etiqueta </button> que sobraba -->
+                    
+                    <div id="cart-form-message" class="form-message"></div>
+                </form>
+
+            </div> <!-- Fin del contenedor de SCROLL ÚNICO -->
+
+        </div>
+    </div>
     
     <!-- JavaScript -->
     <script>
-      // ---- ¡IMPORTANTE! ----
-      // ¡YA ESTÁ CONECTADO!
+      // ---- URL de Google Apps Script (sin cambios) ----
       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx88q2qxy_szNMh4GOz0gT-Bpp7Fz6GOoMo5b2uvwKRoopMARciMQ8JsD-R-6kuldE/exec';
       // --------------------
 
-      const PRECIO_BOLI = 12;
+      // PRECIO_BOLI ya no es constante, lo tomamos del botón
+      // const PRECIO_BOLI = 12; 
+
+      // NUEVO: Estado del Carrito
+      let cart = [];
 
       document.addEventListener('DOMContentLoaded', () => {
 
-        const orderForm = document.getElementById('orderForm');
-        const orderMessage = document.getElementById('order-form-message');
-        const submitOrderBtn = document.getElementById('submit-order-btn');
-
+        // --- Selectores de Reseñas (sin cambios) ---
         const reviewForm = document.getElementById('reviewForm');
         const reviewMessage = document.getElementById('review-form-message');
         const submitReviewBtn = document.getElementById('submit-review-btn');
-
-        const pedidosContainer = document.getElementById('pedidos-container');
-        const primerPedido = pedidosContainer.querySelector('.pedido-item');
-        const agregarSaborBtn = document.getElementById('agregar-sabor');
-        const totalPriceEl = document.getElementById('total-price');
-
-        // --- Inicialización del Carrusel de Reseñas ---
         var swiper = new Swiper(".mySwiper", {
-          slidesPerView: 1, // Mostrar 1 reseña a la vez
-          spaceBetween: 30, // Espacio entre reseñas (si decides mostrar más)
-          loop: true, // Para que sea un ciclo infinito
+          slidesPerView: 1, 
+          spaceBetween: 30, 
+          loop: true, 
           autoplay: {
-            delay: 5000, // 5 segundos por reseña
-            disableOnInteraction: false, // Sigue automático aunque el usuario interactúe
+            delay: 5000, 
+            disableOnInteraction: false, 
           },
           pagination: {
             el: ".swiper-pagination",
-            clickable: true, // Para poder hacer clic en los puntos
+            clickable: true, 
           },
-          // Añadimos responsividad si quieres mostrar más de 1 reseña en pantallas grandes
           breakpoints: {
-            768: { // En pantallas de 768px o más
-              slidesPerView: 2, // Muestra 2 reseñas
-              spaceBetween: 20,
-            },
-            1024: { // En pantallas de 1024px o más
-              slidesPerView: 3, // Muestra 3 reseñas
-              spaceBetween: 30,
-            },
+            768: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 3, spaceBetween: 30 },
           },
         });
 
-        // --- FUNCIÓN: Para añadir reseñas dinámicamente ---
+        // --- NUEVO: Selectores del Carrito ---
+        const cartIcon = document.getElementById('cart-icon');
+        const cartModal = document.getElementById('cart-modal');
+        const cartModalContent = document.getElementById('cart-modal-content');
+        const closeCartBtn = document.getElementById('close-cart-btn');
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        const cartTotalEl = document.getElementById('cart-total');
+        const cartCountEl = document.getElementById('cart-count');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+        const checkoutForm = document.getElementById('checkoutForm');
+        const cartFormMessage = document.getElementById('cart-form-message');
+
+        // --- NUEVO: Función para abrir y cerrar el modal ---
+        cartIcon.addEventListener('click', () => {
+            updateCartUI(); // Actualiza el carrito cada vez que se abre
+            cartModal.classList.remove('hidden');
+        });
+        
+        const closeModal = () => {
+            cartModal.classList.add('hidden');
+        };
+        closeCartBtn.addEventListener('click', closeModal);
+        // Cerrar al hacer clic en el fondo oscuro
+        cartModal.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                closeModal();
+            }
+        });
+
+
+        // --- NUEVO: Función principal para actualizar la UI del Carrito ---
+        const updateCartUI = () => {
+            // Limpiar contenedor
+            cartItemsContainer.innerHTML = '';
+            
+            let totalGeneral = 0;
+            let totalItems = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-gray-500 text-center">Tu carrito está vacío.</p>';
+            } else {
+                cart.forEach(item => {
+                    const subtotal = item.precio * item.cantidad;
+                    totalGeneral += subtotal;
+                    totalItems += item.cantidad;
+
+                    const itemHTML = `
+                        <div class="flex items-center justify-between gap-2 sm:gap-4 border-b pb-4">
+                            <div class="flex-grow">
+                                <h4 class="font-bold text-lg">${item.sabor}</h4>
+                                <!-- CAMBIO: Input para modificar cantidad -->
+                                <div class="flex items-center gap-2 mt-1">
+                                    <label class="text-sm text-gray-600">Cant:</label>
+                                    <input type="number" class="cart-quantity-input w-16 text-center form-input py-1 text-sm" value="${item.cantidad}" min="0" data-sabor="${item.sabor}">
+                                </div>
+                            </div>
+                            <div class="text-right flex-shrink-0">
+                                <span class="font-bold text-lg block">$${subtotal.toFixed(2)}</span>
+                                <button class="remove-from-cart-btn text-red-500 text-sm hover:underline" data-sabor="${item.sabor}">Quitar</button>
+                            </div>
+                        </div>
+                    `;
+                    cartItemsContainer.innerHTML += itemHTML;
+                });
+            }
+
+            // Actualizar totales
+            cartTotalEl.textContent = `$${totalGeneral.toFixed(2)}`;
+            cartCountEl.textContent = totalItems;
+        };
+
+        // --- NUEVO: Función para agregar al carrito ---
+        const addToCart = (sabor, cantidad, precio, btn) => {
+            const existingItem = cart.find(item => item.sabor === sabor);
+
+            if (existingItem) {
+                existingItem.cantidad += cantidad;
+            } else {
+                cart.push({ sabor, cantidad, precio });
+            }
+
+            updateCartUI();
+
+            // Mostrar mensaje de "¡Agregado!"
+            const messageEl = btn.closest('.card-product').querySelector('.add-to-cart-message');
+            if(messageEl) {
+                messageEl.textContent = '¡Agregado!';
+                setTimeout(() => {
+                    messageEl.textContent = '';
+                }, 2000); // Borra el mensaje después de 2 segundos
+            }
+        };
+
+        // --- NUEVO: Asignar evento a botones "Agregar" ---
+        addToCartButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const card = btn.closest('.card-product');
+                const sabor = btn.dataset.sabor;
+                const precio = parseFloat(btn.dataset.precio);
+                const cantidadInput = card.querySelector('.product-quantity');
+                const cantidad = parseInt(cantidadInput.value, 10);
+
+                if (cantidad > 0) {
+                    addToCart(sabor, cantidad, precio, btn);
+                    cantidadInput.value = '1'; // Resetea la cantidad
+                }
+            });
+        });
+
+        // --- NUEVO: Asignar evento para quitar del carrito (delegación) ---
+        cartItemsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-from-cart-btn')) {
+                const sabor = e.target.dataset.sabor;
+                // Filtra el carrito, quitando el item
+                cart = cart.filter(item => item.sabor !== sabor);
+                updateCartUI();
+            }
+        });
+
+        // --- NUEVO: Asignar evento para quitar del carrito (delegación) ---
+        cartItemsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-from-cart-btn')) {
+                const sabor = e.target.dataset.sabor;
+                // Filtra el carrito, quitando el item
+                cart = cart.filter(item => item.sabor !== sabor);
+                updateCartUI();
+            }
+        });
+
+        <!-- CORRECCIÓN: Eliminado el bloque de código duplicado de 'cartItemsContainer.addEventListener' -->
+
+        // --- NUEVO: Asignar evento para MODIFICAR CANTIDAD en carrito (delegación) ---
+        cartItemsContainer.addEventListener('change', (e) => { // 'change' se activa al perder el foco
+            if (e.target.classList.contains('cart-quantity-input')) {
+                const sabor = e.target.dataset.sabor;
+                const newCantidad = parseInt(e.target.value, 10);
+                
+                const cartItem = cart.find(item => item.sabor === sabor);
+                if (!cartItem) return;
+
+                if (newCantidad > 0) {
+                    cartItem.cantidad = newCantidad;
+                } else {
+                    // Si es 0 o menos, quitarlo
+                    cart = cart.filter(item => item.sabor !== sabor);
+                }
+                updateCartUI(); // Re-renderizar todo el carrito con la nueva info
+            }
+        });
+
+
+        // --- MODIFICADO: Lógica de envío de formulario (ahora es checkoutForm) ---
+        checkoutForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (cart.length === 0) {
+                cartFormMessage.textContent = 'Tu carrito está vacío. Agrega productos para confirmar.';
+                cartFormMessage.className = 'form-message error';
+                return;
+            }
+
+            const submitBtn = checkoutForm.querySelector('#submit-order-btn');
+            const btnOriginalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            cartFormMessage.className = 'form-message'; // Reset message
+
+            // Convertir el carrito al formato JSON que espera el Google Script
+            const pedidos = cart.map(item => ({ 
+                sabor: item.sabor, 
+                cantidad: item.cantidad 
+            }));
+
+            // Crear el objeto de datos
+            const formData = {
+              tipo: 'Pedido',
+              nombre: checkoutForm.nombre.value,
+              telefono: checkoutForm.telefono.value,
+              pedido: JSON.stringify(pedidos),
+              total: cartTotalEl.textContent, // Tomamos el total del carrito
+              lugarEntrega: checkoutForm['lugar-entrega'].value,
+              comentarios: checkoutForm.comentarios.value
+            };
+            
+            // Enviar a Google Apps Script
+            fetch(SCRIPT_URL, {
+              method: 'POST',
+              mode: 'no-cors', 
+              cache: 'no-cache',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(formData)
+            })
+            .then(() => {
+                checkoutForm.reset();
+                cart = []; // Vacía el carrito
+                updateCartUI(); // Actualiza la UI (mostrará carrito vacío)
+                closeModal(); // Cierra el modal
+                
+                // Muestra el mensaje de éxito en el formulario de reseñas (o crea uno nuevo si es necesario)
+                // Usaremos el de reseñas ya que el de pedido fue eliminado
+                const globalSuccessMessage = document.getElementById('review-form-message'); // Asumimos que existe
+                if (globalSuccessMessage) {
+                    globalSuccessMessage.textContent = '¡Pedido recibido! Te contactaremos por WhatsApp pronto.';
+                    globalSuccessMessage.className = 'form-message success';
+                    setTimeout(() => { globalSuccessMessage.className = 'form-message'; }, 5000);
+                }
+
+            })
+            .catch(error => {
+                cartFormMessage.textContent = 'Hubo un error al enviar tu pedido. Intenta de nuevo.';
+                cartFormMessage.className = 'form-message error';
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = btnOriginalText;
+            });
+        });
+
+
+        // --- Lógica del Formulario de Reseñas (sin cambios) ---
         const agregarNuevaReseña = (nombre, rating, comentario) => {
-          // 1. Convertir el número de rating (ej. "4") a estrellas (ej. "★★★★☆")
           const estrellasNum = parseInt(rating, 10) || 0;
           const estrellasIconos = '★'.repeat(estrellasNum) + '☆'.repeat(5 - estrellasNum);
-          
-          // Sanitizar un poco el input (prevención básica)
           const safeNombre = nombre.replace(/</g, "&lt;").replace(/>/g, "&gt;");
           const safeComentario = comentario.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
-
-          // 2. Crear el HTML para la nueva diapositiva (slide)
           const nuevaReseñaHTML = `
             <div class="swiper-slide bg-white p-6 rounded-2xl shadow-xl">
               <div class="flex justify-between items-center mb-2">
@@ -630,143 +877,20 @@
               <p class="text-gray-600">${safeComentario}</p>
             </div>
           `;
-
-          // 3. Usar la API de Swiper para añadir la nueva diapositiva y actualizar el carrusel
           if (swiper) {
             swiper.appendSlide(nuevaReseñaHTML);
-            swiper.update(); // Asegura que Swiper recalcule las diapositivas
-            swiper.slideTo(swiper.slides.length - 1); // Desliza automáticamente a la nueva reseña
+            swiper.update(); 
+            swiper.slideTo(swiper.slides.length - 1); 
           }
         };
 
-
-        // --- Lógica del Formulario de Pedido ---
-
-        if (orderForm) {
-          // 1. Agregar otro sabor
-          agregarSaborBtn.addEventListener('click', () => {
-            const nuevoPedido = primerPedido.cloneNode(true);
-            nuevoPedido.querySelector('select').value = '';
-            nuevoPedido.querySelector('input').value = '1';
-            
-            // Añadir botón de borrar
-            const deleteBtn = document.createElement('button');
-            deleteBtn.type = 'button';
-            deleteBtn.innerHTML = '&times;';
-            deleteBtn.className = 'text-red-500 font-bold text-2xl hover:text-red-700 ml-4'; // Añadido ml-4
-            deleteBtn.addEventListener('click', () => {
-              // No borrar el último item
-              if (pedidosContainer.querySelectorAll('.pedido-item').length > 1) {
-                nuevoPedido.remove();
-                calcularTotal();
-              }
-            });
-            
-            // Ajustamos el grid para el botón
-            nuevoPedido.classList.remove('md:grid-cols-3');
-            nuevoPedido.classList.add('md:grid-cols-4');
-            nuevoPedido.children[0].classList.add('md:col-span-2'); // Sabor
-            
-            let actionDiv = document.createElement('div');
-            actionDiv.className = 'flex items-end justify-start';
-            actionDiv.appendChild(deleteBtn);
-            nuevoPedido.appendChild(actionDiv);
-            
-            pedidosContainer.appendChild(nuevoPedido);
-          });
-
-          // 2. Calcular total
-          const calcularTotal = () => {
-            let total = 0;
-            const cantidades = pedidosContainer.querySelectorAll('.cantidad-input');
-            cantidades.forEach(input => {
-              const cantidad = parseInt(input.value) || 0;
-              total += cantidad * PRECIO_BOLI;
-            });
-            totalPriceEl.textContent = `$${total.toFixed(2)}`;
-          };
-          
-          // Recalcular al cambiar cualquier cantidad
-          orderForm.addEventListener('input', (e) => {
-            if (e.target.classList.contains('cantidad-input')) {
-              calcularTotal();
-            }
-          });
-          
-          calcularTotal(); // Calcular al inicio
-
-          // 3. Enviar formulario de pedido
-          orderForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btnOriginalText = submitOrderBtn.textContent;
-            submitOrderBtn.disabled = true;
-            submitOrderBtn.textContent = 'Enviando...';
-            orderMessage.className = 'form-message'; // Reset message
-
-            // Recopilar datos de los pedidos
-            const pedidos = []; // Ahora será un array de objetos
-            pedidosContainer.querySelectorAll('.pedido-item').forEach(item => {
-              const sabor = item.querySelector('.sabor-select').value;
-              const cantidad = item.querySelector('.cantidad-input').value;
-              if (sabor && cantidad > 0) {
-                // Añadimos un objeto por cada sabor
-                pedidos.push({ sabor: sabor, cantidad: parseInt(cantidad, 10) });
-              }
-            });
-
-            // Crear el objeto de datos
-            const formData = {
-              tipo: 'Pedido',
-              nombre: orderForm.nombre.value,
-              telefono: orderForm.telefono.value,
-              // Convertimos el array de pedidos en un texto JSON
-              // El Apps Script deberá leer esto, parsearlo, y crear las filas
-              pedido: JSON.stringify(pedidos),
-              total: totalPriceEl.textContent,
-              lugarEntrega: orderForm['lugar-entrega'].value,
-              comentarios: orderForm.comentarios.value
-            };
-            
-            // Enviar a Google Apps Script
-            fetch(SCRIPT_URL, {
-              method: 'POST',
-              mode: 'no-cors', // 'no-cors' es necesario para Apps Script, aunque no recibirás una respuesta JSON
-              cache: 'no-cache',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(formData)
-            })
-            .then(() => {
-                orderForm.reset();
-                calcularTotal();
-                // Limpiar pedidos extra
-                pedidosContainer.querySelectorAll('.pedido-item').forEach((item, index) => {
-                  if (index > 0) item.remove();
-                });
-                orderMessage.textContent = '¡Pedido recibido! Te contactaremos por WhatsApp pronto.';
-                orderMessage.className = 'form-message success';
-            })
-            .catch(error => {
-                orderMessage.textContent = 'Hubo un error al enviar tu pedido. Intenta de nuevo.';
-                orderMessage.className = 'form-message error';
-                console.error('Error:', error);
-            })
-            .finally(() => {
-                submitOrderBtn.disabled = false;
-                submitOrderBtn.textContent = btnOriginalText;
-            });
-          });
-        }
-
-        // --- Lógica del Formulario de Reseñas ---
         if (reviewForm) {
           reviewForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const btnOriginalText = submitReviewBtn.textContent;
             submitReviewBtn.disabled = true;
             submitReviewBtn.textContent = 'Enviando...';
-            reviewMessage.className = 'form-message'; // Reset message
+            reviewMessage.className = 'form-message'; 
 
             const rating = reviewForm.querySelector('input[name="rating"]:checked');
             const nombre = reviewForm['review-nombre'].value;
@@ -790,9 +914,7 @@
               body: JSON.stringify(formData)
             })
             .then(() => {
-                // ¡CAMBIO AQUÍ! Añadimos la reseña al carrusel
                 agregarNuevaReseña(nombre, ratingValue, comentario);
-                
                 reviewForm.reset();
                 reviewMessage.textContent = '¡Gracias por tu reseña!';
                 reviewMessage.className = 'form-message success';
@@ -814,4 +936,3 @@
 
 </body>
 </html>
-

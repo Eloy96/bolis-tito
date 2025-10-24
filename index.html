@@ -89,8 +89,6 @@
         transition: transform 0.3s ease-in-out;
         padding: 5px; /* Pequeño padding para que no se pegue al borde del círculo si es muy ancha */
       }
-      /* CORRECCIÓN: Eliminada esta regla, ya que ahora usamos Tailwind en el HTML */
-      /* .card-icon-container { ... } */
       
       .card-product:hover .card-icon {
         transform: scale(1.05) rotate(0deg); 
@@ -180,9 +178,7 @@
       }
       .swiper-slide {
         box-sizing: border-box; /* Asegura que el padding no rompa el diseño */
-        /* CORRECCIÓN: Se eliminan las reglas de opacidad que causaban conflicto */
       }
-      /* .swiper-slide-active { ... } - Eliminado */
       
       .swiper-pagination-bullet-active {
         background-color: #F97316 !important; /* Color naranja para el punto activo */
@@ -216,7 +212,7 @@
         overflow-y: auto;
       }
       
-      /* NUEVO: Estilos para el mensaje "Toast" de éxito */
+      /* Estilos para el mensaje "Toast" de éxito */
       #global-toast {
         position: fixed;
         top: 1rem;
@@ -234,6 +230,11 @@
 </head>
 <body class="font-sans">
 
+    <!-- NUEVO: Banner de Promoción -->
+    <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white text-center p-3 font-bold shadow-lg text-sm sm:text-base">
+      ¡PROMO! 🎁 En la compra de 2 bolis o más, ¡llévate 1 de Tamarindo GRATIS!
+    </div>
+
     <!-- NUEVO: Contenedor del Mensaje "Toast" -->
     <div id="global-toast" class="hidden bg-green-500 text-white py-3 px-6 rounded-xl shadow-lg font-semibold">
       <!-- El mensaje se insertará aquí con JS -->
@@ -242,8 +243,8 @@
     <!-- Contenedor Principal -->
     <div class="container mx-auto px-4 py-12 md:py-20 relative"> <!-- Añadido relative para el icono de carrito -->
 
-        <!-- NUEVO: Icono de Carrito -->
-        <div id="cart-icon" class="fixed top-4 right-4 z-40 cursor-pointer p-3 bg-white rounded-full shadow-lg hover:bg-gray-100 transition">
+        <!-- Icono de Carrito -->
+        <div id="cart-icon" class="fixed top-16 right-4 z-40 cursor-pointer p-3 bg-white rounded-full shadow-lg hover:bg-gray-100 transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
@@ -253,39 +254,39 @@
         
         <!-- Encabezado -->
         <header class="text-center mb-16 md:mb-24">
-            <!-- CAMBIO: Se quita el emoji -->
-            <!-- CAMBIO: Título más pequeño en móvil (text-4xl) -->
+            <!-- Título sin Emoji -->
+            <!-- Título más pequeño en móvil (text-4xl) -->
             <h1 class="text-4xl md:text-7xl font-extrabold mb-4 leading-tight text-gradient-animated animate-text-gradient-anim">
                 ¡Bolis Artesanales! <br> El sabor de la alegría
             </h1>
             <p class="text-xl md:text-3xl text-yellow-100 font-medium drop-shadow-md">
                 Refresca tu día con nuestros deliciosos y cremosos bolis.
             </p>
-            <!-- CAMBIO: Botón "¡Quiero uno ya!" ELIMINADO -->
+            <!-- Botón "¡Quiero uno ya!" ELIMINADO -->
         </header>
 
         
         <!-- Sección de Productos -->
-        <!-- CAMBIO: 'grid-cols-2' (para móvil), 'lg:grid-cols-3' (para desktop) -->
-        <!-- CAMBIO: Ajustado gap-x y pt para las nuevas tarjetas cuadradas -->
+        <!-- 'grid-cols-2' (para móvil), 'lg:grid-cols-3' (para desktop) -->
+        <!-- Ajustado gap-x y pt para las nuevas tarjetas cuadradas -->
         <main class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8 pt-8 max-w-7xl mx-auto">
 
             
             <!-- 1. Tamarindo con Limón -->
             <div class="card-product">
-              <!-- CAMBIO: Padding normal, quitado pt-16 -->
+              <!-- Padding normal, quitado pt-16 -->
               <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
                 
-                <!-- CAMBIO: Contenedor de imagen CUADRADO, DENTRO del flujo -->
+                <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
                 <div class="bg-orange-200 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
                   <img src="imagenes/bolis-tamarindo-con-limon.png" alt="Boli de Tamarindo con Limón" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
                 <div class="flex-grow">
-                  <!-- CAMBIO: Título sin padding-top extra -->
+                  <!-- Título sin padding-top extra -->
                   <h3 class="text-2xl font-bold text-gray-800 mb-2">Tamarindo con Limón</h3>
-                  <!-- CAMBIO: Descripción más pequeña (text-sm) -->
+                  <!-- Descripción más pequeña (text-sm) -->
                   <p class="text-gray-600 text-sm mb-4">
                     Ingredientes: Pulpa de tamarindo 100% natural, jugo de limón fresco y un toque de sal.
                   </p>
@@ -293,10 +294,10 @@
                 
                 <!-- Precio y Botón -->
                 <div class="mt-4 flex flex-col items-center">
-                  <!-- CAMBIO: Precio más pequeño (text-4xl) -->
+                  <!-- Precio más pequeño (text-4xl) -->
                   <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
                   <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
-                  <!-- CAMBIO: Quitado "Lo quiero", añadido selector de cantidad y botón "Agregar" -->
+                  <!-- Selector de cantidad y botón "Agregar" -->
                   <div class="flex items-center gap-2 mt-4">
                     <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
                     <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Tamarindo con Limón" data-precio="12">
@@ -311,19 +312,19 @@
             
             <!-- 2. Mazapán -->
             <div class="card-product">
-              <!-- CAMBIO: Padding normal, quitado pt-16 -->
+              <!-- Padding normal, quitado pt-16 -->
               <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
                 
-                <!-- CAMBIO: Contenedor de imagen CUADRADO, DENTRO del flujo -->
+                <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
                 <div class="bg-yellow-100 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
                   <img src="imagenes/bolis-mazapan.png" alt="Boli de Mazapán" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
                 <div class="flex-grow">
-                  <!-- CAMBIO: Título sin padding-top extra -->
+                  <!-- Título sin padding-top extra -->
                   <h3 class="text-2xl font-bold text-gray-800 mb-2">Mazapán</h3>
-                  <!-- CAMBIO: Descripción más pequeña (text-sm) -->
+                  <!-- Descripción más pequeña (text-sm) -->
                   <p class="text-gray-600 text-sm mb-4">
                     Ingredientes: Mazapán de cacahuate original, leche cremosa y un toque de vainilla.
                   </p>
@@ -331,10 +332,10 @@
                 
                 <!-- Precio y Botón -->
                 <div class="mt-4 flex flex-col items-center">
-                  <!-- CAMBIO: Precio más pequeño (text-4xl) -->
+                  <!-- Precio más pequeño (text-4xl) -->
                   <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
                   <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
-                  <!-- CAMBIO: Quitado "Lo quiero", añadido selector de cantidad y botón "Agregar" -->
+                  <!-- Selector de cantidad y botón "Agregar" -->
                   <div class="flex items-center gap-2 mt-4">
                     <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
                     <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Mazapán" data-precio="12">
@@ -349,19 +350,19 @@
             
             <!-- 3. Horchata -->
             <div class="card-product">
-              <!-- CAMBIO: Padding normal, quitado pt-16 -->
+              <!-- Padding normal, quitado pt-16 -->
               <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
                 
-                <!-- CAMBIO: Contenedor de imagen CUADRADO, DENTRO del flujo -->
+                <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
                 <div class="bg-stone-100 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
                   <img src="imagenes/bolis-horchata.jpg" alt="Boli de Horchata" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
                 <div class="flex-grow">
-                  <!-- CAMBIO: Título sin padding-top extra -->
+                  <!-- Título sin padding-top extra -->
                   <h3 class="text-2xl font-bold text-gray-800 mb-2">Horchata</h3>
-                  <!-- CAMBIO: Descripción más pequeña (text-sm) -->
+                  <!-- Descripción más pequeña (text-sm) -->
                   <p class="text-gray-600 text-sm mb-4">
                     Ingredientes: Agua de arroz tradicional, canela molida, leche y un toque de azúcar.
                   </p>
@@ -369,10 +370,10 @@
                 
                 <!-- Precio y Botón -->
                 <div class="mt-4 flex flex-col items-center">
-                  <!-- CAMBIO: Precio más pequeño (text-4xl) -->
+                  <!-- Precio más pequeño (text-4xl) -->
                   <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
                   <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
-                  <!-- CAMBIO: Quitado "Lo quiero", añadido selector de cantidad y botón "Agregar" -->
+                  <!-- Selector de cantidad y botón "Agregar" -->
                   <div class="flex items-center gap-2 mt-4">
                     <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
                     <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Horchata" data-precio="12">
@@ -387,19 +388,19 @@
             
             <!-- 4. Fresas con Crema -->
             <div class="card-product">
-              <!-- CAMBIO: Padding normal, quitado pt-16 -->
+              <!-- Padding normal, quitado pt-16 -->
               <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
                 
-                <!-- CAMBIO: Contenedor de imagen CUADRADO, DENTRO del flujo -->
+                <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
                 <div class="bg-pink-200 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
                   <img src="imagenes/bolis-fresas-con-crema.png" alt="Boli de Fresas con Crema" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
                 <div class="flex-grow">
-                  <!-- CAMBIO: Título sin padding-top extra -->
+                  <!-- Título sin padding-top extra -->
                   <h3 class="text-2xl font-bold text-gray-800 mb-2">Fresas con Crema</h3>
-                  <!-- CAMBIO: Descripción más pequeña (text-sm) -->
+                  <!-- Descripción más pequeña (text-sm) -->
                   <p class="text-gray-600 text-sm mb-4">
                     Ingredientes: Fresas frescas de temporada, crema dulce, leche evaporada y un toque de lechera.
                   </p>
@@ -407,10 +408,10 @@
                 
                 <!-- Precio y Botón -->
                 <div class="mt-4 flex flex-col items-center">
-                  <!-- CAMBIO: Precio más pequeño (text-4xl) -->
+                  <!-- Precio más pequeño (text-4xl) -->
                   <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
                   <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
-                  <!-- CAMBIO: Quitado "Lo quiero", añadido selector de cantidad y botón "Agregar" -->
+                  <!-- Selector de cantidad y botón "Agregar" -->
                   <div class="flex items-center gap-2 mt-4">
                     <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
                     <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Fresas con Crema" data-precio="12">
@@ -425,20 +426,19 @@
             
             <!-- 5. Oreo -->
             <div class="card-product">
-              <!-- CAMBIO: Padding normal, quitado pt-16 -->
+              <!-- Padding normal, quitado pt-16 -->
               <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
                 
-                <!-- CAMBIO: Contenedor de imagen CUADRADO, DENTRO del flujo -->
+                <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
                 <div class="bg-gray-700 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
                   <img src="imagenes/bolis-de-oreo.png" alt="Boli de Oreo" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
                 <div class="flex-grow">
-                  <!-- CAMBIO: Título sin padding-top extra -->
+                  <!-- Título sin padding-top extra -->
                   <h3 class="text-2xl font-bold text-gray-800 mb-2">Oreo</h3>
-                  <!-- CAMBIO: Descripción más pequeña (text-sm) -->
-                  <!-- CORRECCIÓN: Etiqueta </a-p> corregida a </p> -->
+                  <!-- Descripción más pequeña (text-sm) -->
                   <p class="text-gray-600 text-sm mb-4">
                     Ingredientes: Galleta Oreo triturada, leche entera, crema dulce y un toque de vainilla.
                   </p>
@@ -446,10 +446,10 @@
                 
                 <!-- Precio y Botón -->
                 <div class="mt-4 flex flex-col items-center">
-                  <!-- CAMBIO: Precio más pequeño (text-4xl) -->
+                  <!-- Precio más pequeño (text-4xl) -->
                   <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
                   <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
-                  <!-- CAMBIO: Quitado "Lo quiero", añadido selector de cantidad y botón "Agregar" -->
+                  <!-- Selector de cantidad y botón "Agregar" -->
                   <div class="flex items-center gap-2 mt-4">
                     <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
                     <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Oreo" data-precio="12">
@@ -461,24 +461,20 @@
               </div>
             </div>
             
-            <!-- CAMBIO: Añadido un item fantasma para alinear la última fila en 'lg' (3 columnas) -->
+            <!-- Añadido un item fantasma para alinear la última fila en 'lg' (3 columnas) -->
             <div class="hidden lg:block"></div>
 
         </main>
 
         
-        <!-- CAMBIO: Sección Formulario de Pedido ELIMINADA -->
-        <!-- <section id="formulario-pedido" ... </section> -->
-
-        
-        <!-- Sección de Reseñas (sin cambios) -->
+        <!-- Sección de Reseñas -->
         <section id="reseñas" class="mt-24 pt-16">
           <div class="w-full max-w-3xl mx-auto">
             <h2 class="text-4xl font-extrabold text-center text-white mb-8 drop-shadow-lg">¡Lo que dicen nuestros clientes!</h2>
 
             
             <!-- Carrusel de Reseñas -->
-            <!-- CAMBIO: Añadido 'relative' para posicionar flechas -->
+            <!-- Añadido 'relative' para posicionar flechas -->
             <div class="relative">
               <div class="swiper-container mySwiper mb-12">
                 <div class="swiper-wrapper">
@@ -519,7 +515,7 @@
                 <div class="swiper-pagination"></div>
               </div>
 
-              <!-- CAMBIO: Flechas de Navegación Añadidas -->
+              <!-- Flechas de Navegación Añadidas -->
               <div class="swiper-button-prev -left-2"></div>
               <div class="swiper-button-next -right-2"></div>
             </div>
@@ -531,14 +527,13 @@
               <h3 class="text-3xl font-bold text-center text-gray-800 mb-6">¡Deja tu reseña!</h3>
               <form id="reviewForm">
                 <div class="mb-4">
-                  <!-- CAMBIO: Texto más claro para las estrellas -->
+                  <!-- Texto más claro para las estrellas -->
                   <label class="form-label text-center">¡Tu Calificación! (Elige las estrellas)</label>
                   <div class="star-rating">
                     <input type="radio" id="star5" name="rating" value="5" required><label for="star5" title="5 estrellas">★</label>
                     <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 estrellas">★</label>
                     <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 estrellas">★</label>
                     <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 estrellas">★</label>
-                    <!-- !!!!! CORRECCIÓN REALIZADA AQUÍ !!!!! -->
                     <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 estrella">★</label>
                   </div>
                 </div>
@@ -564,7 +559,7 @@
         
         <!-- Footer -->
         <footer class="text-center p-8 text-yellow-50 mt-16 drop-shadow-md">
-            <!-- CAMBIO: Añadida la marca "Bolis Tito" -->
+            <!-- Añadida la marca "Bolis Tito" -->
             <p class="font-extrabold text-2xl mb-2">Bolis Tito</p>
             <p class="font-bold text-lg">Bolis Artesanales "La Alegría Refrescante" &copy; 2025</p>
             <p>Hechos con ❤️ y mucho sabor en México</p>
@@ -572,9 +567,9 @@
 
     </div>
 
-    <!-- NUEVO: Modal del Carrito de Compras -->
+    <!-- Modal del Carrito de Compras -->
     <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
-        <!-- CAMBIO: Modal más responsivo en altura y ancho -->
+        <!-- Modal más responsivo en altura y ancho -->
         <div id="cart-modal-content" class="bg-white w-full max-w-lg rounded-2xl shadow-xl flex flex-col max-h-[90vh]">
             
             <!-- Encabezado del Modal -->
@@ -583,7 +578,7 @@
                 <button id="close-cart-btn" class="text-gray-400 hover:text-gray-700 text-4xl font-light">&times;</button>
             </div>
             
-            <!-- CAMBIO: Contenedor de SCROLL ÚNICO -->
+            <!-- Contenedor de SCROLL ÚNICO -->
             <div class="overflow-y-auto">
 
                 <!-- Contenido del Carrito (Items) -->
@@ -598,11 +593,9 @@
                 </div>
                 
                 <!-- Formulario de Checkout -->
-                <!-- CAMBIO: quitado 'overflow-y-auto' de aquí -->
                 <form id="checkoutForm" class="p-6 space-y-4 border-t">
                     <h3 class="text-2xl font-bold text-gray-700">Completa tu Pedido</h3>
                     
-                    <!-- CORRECCIÓN: Se restaura el grid de formulario que estaba corrupto -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="nombre" class="form-label">Nombre Completo</label>
@@ -614,31 +607,26 @@
                         </div>
                     </div>
                     <div class="mb-2">
-                        <!-- CORRECCIÓN: Arreglada la etiqueta </s-label> por </label> -->
                         <label for="lugar-entrega" class="form-label">Lugar de Entrega</label>
                         <select id="lugar-entrega" name="lugar-entrega" class="form-select" required>
                             <option value="">Selecciona un punto de entrega...</option>
-                            <!-- CORRECCIÓN: Restauradas las opciones que desaparecieron -->
                             <option value="Huixquilucan Centro (Kiosko)">Huixquilucan Centro (Kiosko)</option>
                             <option value="El Mirador Magdalena Chichicaspa (Parada de autobuses)">El Mirador Magdalena Chichicaspa (Parada)</option>
                             <option value="Paraje Las Máquinas Magdalena Chichicaspa">Paraje Las Máquinas Magdalena Chichicaspa</option>
                         </select>
-                        <!-- CORRECCIÓN: Restaurada la etiqueta <p> -->
                         <p class="text-sm text-gray-500 mt-2">
                             <strong>Horario de Entrega:</strong> Sábados, acordando la hora contigo.
                         </p>
                     </div>
                     <div class="mb-2">
-                        <!-- CORRECCIÓN: Arreglada la etiqueta </s-label> por </label> -->
                         <label for="comentarios" class="form-label">Comentarios Adicionales</label>
                         <textarea id="comentarios" name="comentarios" rows="3" class="form-textarea" placeholder="¿Alguna indicación especial?"></textarea>
                     </div>
 
-                    <!-- CORRECCIÓN: ¡El botón faltaba! Añadido de nuevo -->
+                    <!-- Botón de Confirmar Pedido (restaurado) -->
                     <button type="submit" id="submit-order-btn" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-lg py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
                         Confirmar Pedido
                     </button>
-                    <!-- CORRECCIÓN: Eliminada etiqueta </button> que sobraba -->
                     
                     <div id="cart-form-message" class="form-message"></div>
                 </form>
@@ -650,56 +638,53 @@
     
     <!-- JavaScript -->
     <script>
-      // ---- URL de Google Apps Script (sin cambios) ----
+      // ---- URL de Google Apps Script ----
+      // IMPORTANTE: Si actualizaste tu script, pega la NUEVA URL aquí
       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx88q2qxy_szNMh4GOz0gT-Bpp7Fz6GOoMo5b2uvwKRoopMARciMQ8JsD-R-6kuldE/exec';
       // --------------------
 
-      // PRECIO_BOLI ya no es constante, lo tomamos del botón
-      // const PRECIO_BOLI = 12; 
-
-      // NUEVO: Estado del Carrito
+      // Estado del Carrito
       let cart = [];
+      const PROMO_ITEM_NAME = 'Tamarindo (Promo)';
+      const PROMO_ITEM_PRICE = 0;
 
       document.addEventListener('DOMContentLoaded', () => {
         
-        // --- NUEVO: Selector para el Toast ---
+        // --- Selector para el Toast ---
         const globalToast = document.getElementById('global-toast');
 
-        // --- Selectores de Reseñas (sin cambios) ---
+        // --- Selectores de Reseñas ---
         const reviewForm = document.getElementById('reviewForm');
         const reviewMessage = document.getElementById('review-form-message');
         const submitReviewBtn = document.getElementById('submit-review-btn');
         
-        // --- CAMBIO EN EL CARRUSEL ---
+        // --- Configuración del Carrusel de Reseñas ---
         var swiper = new Swiper(".mySwiper", {
-          slidesPerView: 1, // Mostrar 1 slide a la vez
+          slidesPerView: 1, 
           spaceBetween: 30, 
-          effect: 'fade', // Efecto de desvanecido
+          effect: 'fade', 
           fadeEffect: {
             crossFade: true
           },
           loop: true, 
-          centeredSlides: true, // Centrar el slide activo
+          centeredSlides: true, 
           autoplay: {
-            delay: 3000, // 3 segundos (3000ms)
+            delay: 3000, 
             disableOnInteraction: false, 
           },
           pagination: {
             el: ".swiper-pagination",
             clickable: true, 
           },
-          // Añadidas flechas de navegación
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
           },
-          // Breakpoints eliminados para forzar 1 slide siempre
         });
 
-        // --- NUEVO: Selectores del Carrito ---
+        // --- Selectores del Carrito ---
         const cartIcon = document.getElementById('cart-icon');
         const cartModal = document.getElementById('cart-modal');
-        // CORRECCIÓN: Restaurando selectores que faltaban
         const cartModalContent = document.getElementById('cart-modal-content');
         const closeCartBtn = document.getElementById('close-cart-btn');
         const cartItemsContainer = document.getElementById('cart-items-container');
@@ -710,28 +695,57 @@
         const cartFormMessage = document.getElementById('cart-form-message');
 
 
-        // --- NUEVO: Función para abrir y cerrar el modal ---
+        // --- Función para abrir y cerrar el modal ---
         cartIcon.addEventListener('click', () => {
-            updateCartUI(); // Actualiza el carrito cada vez que se abre
+            updateCartUI(); 
             cartModal.classList.remove('hidden');
-            document.body.classList.add('modal-open'); // <-- AÑADIDO: Congela el fondo
+            document.body.classList.add('modal-open'); 
         });
         
         const closeModal = () => {
             cartModal.classList.add('hidden');
-            document.body.classList.remove('modal-open'); // <-- AÑADIDO: Descongela el fondo
+            document.body.classList.remove('modal-open'); 
         };
         closeCartBtn.addEventListener('click', closeModal);
-        // Cerrar al hacer clic en el fondo oscuro
-        // CORRECCIÓN: Restaurando función que faltaba
         cartModal.addEventListener('click', (e) => {
             if (e.target === cartModal) {
                 closeModal();
             }
         });
 
-        // --- NUEVO: Función principal para actualizar la UI del Carrito ---
+        // --- Función principal para actualizar la UI del Carrito ---
         const updateCartUI = () => {
+            
+            // --- NUEVA LÓGICA DE PROMOCIÓN (MODIFICADA) ---
+            // 1. Contar cuántos bolis PAGADOS hay
+            let totalPaidItems = 0;
+            cart.forEach(item => {
+                if (item.sabor !== PROMO_ITEM_NAME) { // No contamos el de promo
+                    totalPaidItems += item.cantidad;
+                }
+            });
+
+            // 2. Calcular cuántos bolis de promo tocan (1 por cada 2 pagados)
+            const promoItemsToGet = Math.floor(totalPaidItems / 2);
+
+            // 3. Verificar si el item de promo ya existe
+            const promoItem = cart.find(item => item.sabor === PROMO_ITEM_NAME);
+
+            // 4. Aplicar/Quitar/Actualizar promoción
+            if (promoItemsToGet > 0) {
+                if (promoItem) {
+                    // Si ya existe, solo actualizar la cantidad
+                    promoItem.cantidad = promoItemsToGet; 
+                } else {
+                    // Si no existe, agregarlo con la cantidad correcta
+                    cart.push({ sabor: PROMO_ITEM_NAME, cantidad: promoItemsToGet, precio: PROMO_ITEM_PRICE });
+                }
+            } else {
+                // Si es 0, quitar la promo del carrito
+                cart = cart.filter(item => item.sabor !== PROMO_ITEM_NAME);
+            }
+            // --- FIN LÓGICA DE PROMOCIÓN ---
+
             // Limpiar contenedor
             cartItemsContainer.innerHTML = '';
             
@@ -746,25 +760,28 @@
                     totalGeneral += subtotal;
                     totalItems += item.cantidad;
 
+                    // El item de promo no se puede modificar
+                    const isPromoItem = item.sabor === PROMO_ITEM_NAME;
+
                     const itemHTML = `
                         <div class="flex items-center justify-between gap-2 sm:gap-4 border-b pb-4">
                             <div class="flex-grow">
-                                <h4 class="font-bold text-lg">${item.sabor}</h4>
-                                <!-- CAMBIO: Input para modificar cantidad con botones + y - -->
+                                <h4 class="font-bold text-lg ${isPromoItem ? 'text-green-600' : ''}">${item.sabor}</h4>
+                                <!-- Input para modificar cantidad con botones + y - -->
                                 <div class="flex items-center gap-2 mt-1">
                                     <label class="text-sm text-gray-600">Cant:</label>
-                                    <!-- Usamos un div para agrupar los botones y el input -->
                                     <div class="flex items-center border border-gray-300 rounded-lg">
-                                        <button type="button" class="cart-quantity-btn cart-quantity-minus p-2 text-lg font-bold text-orange-600" data-sabor="${item.sabor}" data-change="-1">-</button>
-                                        <!-- El input ya no es 'cart-quantity-input', solo muestra el valor -->
-                                        <input type="number" class="w-12 text-center border-none focus:ring-0 py-1 text-sm" value="${item.cantidad}" min="1" data-sabor="${item.sabor}" readonly>
-                                        <button type="button" class="cart-quantity-btn cart-quantity-plus p-2 text-lg font-bold text-orange-600" data-sabor="${item.sabor}" data-change="1">+</button>
+                                        <!-- Deshabilitar botones si es promo -->
+                                        <button type="button" class="cart-quantity-btn cart-quantity-minus p-2 text-lg font-bold text-orange-600 ${isPromoItem ? 'opacity-50 cursor-not-allowed' : ''}" data-sabor="${item.sabor}" data-change="-1" ${isPromoItem ? 'disabled' : ''}>-</button>
+                                        <input type="number" class="w-12 text-center border-none focus:ring-0 py-1 text-sm bg-transparent" value="${item.cantidad}" min="1" data-sabor="${item.sabor}" readonly>
+                                        <button type="button" class="cart-quantity-btn cart-quantity-plus p-2 text-lg font-bold text-orange-600 ${isPromoItem ? 'opacity-50 cursor-not-allowed' : ''}" data-sabor="${item.sabor}" data-change="1" ${isPromoItem ? 'disabled' : ''}>+</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="text-right flex-shrink-0">
-                                <span class="font-bold text-lg block">$${subtotal.toFixed(2)}</span>
-                                <button class="remove-from-cart-btn text-red-500 text-sm hover:underline" data-sabor="${item.sabor}">Quitar</button>
+                                <span class="font-bold text-lg block ${isPromoItem ? 'text-green-600' : ''}">$${subtotal.toFixed(2)}</span>
+                                <!-- No se puede quitar la promo manualmente -->
+                                ${!isPromoItem ? `<button class="remove-from-cart-btn text-red-500 text-sm hover:underline" data-sabor="${item.sabor}">Quitar</button>` : '<span class="text-green-600 text-sm">¡Promo!</span>'}
                             </div>
                         </div>
                     `;
@@ -777,8 +794,11 @@
             cartCountEl.textContent = totalItems;
         };
 
-        // --- NUEVO: Función para agregar al carrito ---
+        // --- Función para agregar al carrito ---
         const addToCart = (sabor, cantidad, precio, btn) => {
+            // No permitir agregar el item de promo manualmente
+            if (sabor === PROMO_ITEM_NAME) return; 
+
             const existingItem = cart.find(item => item.sabor === sabor);
 
             if (existingItem) {
@@ -787,7 +807,7 @@
                 cart.push({ sabor, cantidad, precio });
             }
 
-            updateCartUI();
+            updateCartUI(); // La lógica de la promo se correrá aquí
 
             // Mostrar mensaje de "¡Agregado!"
             const messageEl = btn.closest('.card-product').querySelector('.add-to-cart-message');
@@ -799,7 +819,7 @@
             }
         };
 
-        // --- NUEVO: Asignar evento a botones "Agregar" ---
+        // --- Asignar evento a botones "Agregar" ---
         addToCartButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 const card = btn.closest('.card-product');
@@ -815,18 +835,27 @@
             });
         });
 
-        // --- NUEVO: Asignar evento para quitar del carrito (delegación) ---
+        // --- Asignar evento para botones del carrito (delegación) ---
         cartItemsContainer.addEventListener('click', (e) => {
-            if (e.target.classList.contains('remove-from-cart-btn')) {
-                const sabor = e.target.dataset.sabor;
-                // Filtra el carrito, quitando el item
+            const target = e.target;
+            
+            // Botón "Quitar"
+            if (target.classList.contains('remove-from-cart-btn')) {
+                const sabor = target.dataset.sabor;
+                // No permitir quitar la promo (aunque el botón no debería existir)
+                if (sabor === PROMO_ITEM_NAME) return;
+                
                 cart = cart.filter(item => item.sabor !== sabor);
                 updateCartUI();
             } 
-            // NUEVO: Lógica para los botones + y -
-            else if (e.target.classList.contains('cart-quantity-btn')) {
-                const sabor = e.target.dataset.sabor;
-                const change = parseInt(e.target.dataset.change, 10);
+            
+            // Botones + y -
+            else if (target.classList.contains('cart-quantity-btn')) {
+                const sabor = target.dataset.sabor;
+                // No permitir modificar la promo
+                if (sabor === PROMO_ITEM_NAME) return;
+
+                const change = parseInt(target.dataset.change, 10);
                 const cartItem = cart.find(item => item.sabor === sabor);
                 
                 if (cartItem) {
@@ -842,53 +871,11 @@
             }
         });
 
-        // --- NUEVO: Asignar evento para MODIFICAR CANTIDAD en carrito (delegación) ---
-        // CORRECCIÓN: Este evento ya no es necesario porque los botones controlan todo, lo comentamos o eliminamos
-        /*
-        cartItemsContainer.addEventListener('change', (e) => { // 'change' se activa al perder el foco
-            if (e.target.classList.contains('cart-quantity-input')) {
-                const sabor = e.target.dataset.sabor;
-                const newCantidad = parseInt(e.target.value, 10);
-                
-                const cartItem = cart.find(item => item.sabor === sabor);
-                if (!cartItem) return;
-
-                if (newCantidad > 0) {
-                    cartItem.cantidad = newCantidad;
-                } else {
-                    // Si es 0 o menos, quitarlo
-                    cart = cart.filter(item => item.sabor !== sabor);
-                }
-                updateCartUI(); // Re-renderizar todo el carrito con la nueva info
-            }
-        });
-        */
-
-
-        // --- NUEVO: Función para mostrar el Toast Global ---
-        const showToast = (message) => {
-          if (!globalToast) return;
-          globalToast.textContent = message;
-          globalToast.classList.remove('hidden', 'opacity-0');
-          globalToast.classList.add('show');
-          
-          // Ocultar después de 3 segundos
-          setTimeout(() => {
-            globalToast.classList.remove('show');
-            globalToast.classList.add('opacity-0');
-            // Añadir 'hidden' después de que termine la transición
-            setTimeout(() => {
-              globalToast.classList.add('hidden');
-            }, 300); // 300ms = duration-300
-          }, 3000);
-        };
-
-
-        // --- MODIFICADO: Lógica de envío de formulario (ahora es checkoutForm) ---
+        // --- Lógica de envío de formulario (checkoutForm) ---
         checkoutForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            if (cart.length === 0) {
+            if (cart.length === 0 || (cart.length === 1 && cart[0].sabor === PROMO_ITEM_NAME)) {
                 cartFormMessage.textContent = 'Tu carrito está vacío. Agrega productos para confirmar.';
                 cartFormMessage.className = 'form-message error';
                 return;
@@ -898,14 +885,13 @@
             const btnOriginalText = submitBtn.textContent;
             submitBtn.disabled = true;
             submitBtn.textContent = 'Enviando...';
-            cartFormMessage.className = 'form-message'; // Reset message
+            cartFormMessage.className = 'form-message'; 
 
-            // Convertir el carrito al formato JSON que espera el Google Script
-            // CAMBIO: Añadido 'precio' para que el nuevo Apps Script pueda calcular el subtotal
+            // Convertir el carrito al formato JSON
             const pedidos = cart.map(item => ({ 
                 sabor: item.sabor, 
                 cantidad: item.cantidad,
-                precio: item.precio // <-- AÑADIDO
+                precio: item.precio 
             }));
 
             // Crear el objeto de datos
@@ -914,7 +900,7 @@
               nombre: checkoutForm.nombre.value,
               telefono: checkoutForm.telefono.value,
               pedido: JSON.stringify(pedidos),
-              total: cartTotalEl.textContent, // Tomamos el total del carrito
+              total: cartTotalEl.textContent, 
               lugarEntrega: checkoutForm['lugar-entrega'].value,
               comentarios: checkoutForm.comentarios.value
             };
@@ -935,18 +921,9 @@
                 updateCartUI(); // Actualiza la UI (mostrará carrito vacío)
                 closeModal(); // Cierra el modal
                 
-                // CAMBIO: Mostrar el nuevo "Toast" global
+                // Mostrar el nuevo "Toast" global
                 showToast('¡Gracias por tu pedido! Te contactaremos pronto.');
                 
-                // ELIMINADO: Ya no usamos el mensaje del formulario de reseñas
-                /*
-                const globalSuccessMessage = document.getElementById('review-form-message'); // Asumimos que existe
-                if (globalSuccessMessage) {
-                    globalSuccessMessage.textContent = '¡Pedido recibido! Te contactaremos por WhatsApp pronto.';
-                    globalSuccessMessage.className = 'form-message success';
-                    setTimeout(() => { globalSuccessMessage.className = 'form-message'; }, 5000);
-                }
-                */
             })
             .catch(error => {
                 cartFormMessage.textContent = 'Hubo un error al enviar tu pedido. Intenta de nuevo.';
@@ -959,11 +936,31 @@
             });
         });
 
+        // --- Función para mostrar el Toast Global ---
+        const showToast = (message) => {
+          if (!globalToast) return;
+          globalToast.textContent = message;
+          globalToast.classList.remove('hidden', 'opacity-0');
+          globalToast.classList.add('show');
+          
+          // Ocultar después de 3 segundos
+          setTimeout(() => {
+            globalToast.classList.remove('show');
+            globalToast.classList.add('opacity-0');
+            // Añadir 'hidden' después de que termine la transición
+            setTimeout(() => {
+              globalToast.classList.add('hidden');
+            }, 300); // 300ms = duration-300
+          }, 3000);
+        };
 
-        // --- Lógica del Formulario de Reseñas (sin cambios) ---
+        // --- Lógica del Formulario de Reseñas ---
         const agregarNuevaReseña = (nombre, rating, comentario) => {
           const estrellasNum = parseInt(rating, 10) || 0;
-          const estrellasIconos = '★'.repeat(estrellasNum) + '☆'.repeat(5 - estrellasNum);
+          let estrellasIconos = '';
+          if (estrellasNum > 0) {
+            estrellasIconos = '★'.repeat(estrellasNum) + '☆'.repeat(5 - estrellasNum);
+          }
           const safeNombre = nombre.replace(/</g, "&lt;").replace(/>/g, "&gt;");
           const safeComentario = comentario.replace(/</g, "&lt;").replace(/>/g, "&gt;");
           const nuevaReseñaHTML = `
@@ -1034,3 +1031,5 @@
 
 </body>
 </html>
+
+

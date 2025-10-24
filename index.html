@@ -187,24 +187,47 @@
         color: #991B1B; /* text-red-800 */
       }
 
-      /* Estilos para el carrusel y su paginación */
+      /* --- CAMBIOS EN EL CARRUSEL --- */
       .swiper-container {
         width: 100%;
-        padding-bottom: 40px !important; /* Espacio para los puntos de paginación */
+        padding-bottom: 50px !important; /* Más espacio para puntos */
         touch-action: pan-y; /* Previene el 'swipe' de navegación del navegador en móviles */
+        overflow: hidden !important; /* Previene que se vean slides cortados */
       }
       .swiper-slide {
         box-sizing: border-box; /* Asegura que el padding no rompa el diseño */
+        /* CORRECCIÓN: Se eliminan las reglas de opacidad que causaban conflicto */
       }
+      /* .swiper-slide-active { ... } - Eliminado */
+      
       .swiper-pagination-bullet-active {
         background-color: #F97316 !important; /* Color naranja para el punto activo */
       }
+      /* Estilos para las flechas de navegación */
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: #FFFFFF !important; /* Color blanco */
+        background-color: rgba(0, 0, 0, 0.2); /* Fondo semitransparente */
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 9999px; /* Círculo */
+        transition: background-color 0.2s;
+      }
+      .swiper-button-next:hover,
+      .swiper-button-prev:hover {
+        background-color: rgba(0, 0, 0, 0.4); /* Más oscuro al pasar el mouse */
+      }
+      .swiper-button-next:after,
+      .swiper-button-prev:after {
+        font-size: 20px !important; /* Tamaño del icono de flecha */
+        font-weight: 900 !important;
+      }
 
-      /* NUEVO: Regla para evitar el scroll del body cuando el modal está abierto */
+      /* Regla para evitar el scroll del body cuando el modal está abierto */
       body.modal-open {
         overflow: hidden;
       }
-      /* NUEVO: Aseguramos que el modal en sí pueda scrollear internamente */
+      /* Aseguramos que el modal en sí pueda scrollear internamente */
       #cart-modal {
         overflow-y: auto;
       }
@@ -452,44 +475,52 @@
 
             
             <!-- Carrusel de Reseñas -->
-            <div class="swiper-container mySwiper mb-12">
-              <div class="swiper-wrapper">
-                
-                
-                <!-- Reseña Estática 1 -->
-                <div class="swiper-slide bg-white p-6 rounded-2xl shadow-xl">
-                  <div class="flex justify-between items-center mb-2">
-                    <span class="font-bold text-lg text-gray-800">Laura G.</span>
-                    <span class="text-amber-400 text-xl">★★★★★</span>
+            <!-- CAMBIO: Añadido 'relative' para posicionar flechas -->
+            <div class="relative">
+              <div class="swiper-container mySwiper mb-12">
+                <div class="swiper-wrapper">
+                  
+                  
+                  <!-- Reseña Estática 1 -->
+                  <div class="swiper-slide bg-white p-6 rounded-2xl shadow-xl">
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="font-bold text-lg text-gray-800">Laura G.</span>
+                      <span class="text-amber-400 text-xl">★★★★★</span>
+                    </div>
+                    <p class="text-gray-600">"¡El boli de Oreo es espectacular! Súper cremoso y con muchos trocitos de galleta. 100% recomendado."</p>
                   </div>
-                  <p class="text-gray-600">"¡El boli de Oreo es espectacular! Súper cremoso y con muchos trocitos de galleta. 100% recomendado."</p>
-                </div>
-                
-                
-                <!-- Reseña Estática 2 -->
-                <div class="swiper-slide bg-white p-6 rounded-2xl shadow-xl">
-                  <div class="flex justify-between items-center mb-2">
-                    <span class="font-bold text-lg text-gray-800">Miguel R.</span>
-                    <span class="text-amber-400 text-xl">★★★★☆</span>
+                  
+                  
+                  <!-- Reseña Estática 2 -->
+                  <div class="swiper-slide bg-white p-6 rounded-2xl shadow-xl">
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="font-bold text-lg text-gray-800">Miguel R.</span>
+                      <span class="text-amber-400 text-xl">★★★★☆</span>
+                    </div>
+                    <p class="text-gray-600">"Muy rico el de Fresas con Crema, se nota que la fresa es natural. El de horchata también muy bueno. Me gustaría que tuvieran de limón."</p>
                   </div>
-                  <p class="text-gray-600">"Muy rico el de Fresas con Crema, se nota que la fresa es natural. El de horchata también muy bueno. Me gustaría que tuvieran de limón."</p>
-                </div>
-                
-                
-                <!-- Reseña Estática 3 -->
-                <div class="swiper-slide bg-white p-6 rounded-2xl shadow-xl">
-                  <div class="flex justify-between items-center mb-2">
-                    <span class="font-bold text-lg text-gray-800">Sofía M.</span>
-                    <span class="text-amber-400 text-xl">★★★★★</span>
+                  
+                  
+                  <!-- Reseña Estática 3 -->
+                  <div class="swiper-slide bg-white p-6 rounded-2xl shadow-xl">
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="font-bold text-lg text-gray-800">Sofía M.</span>
+                      <span class="text-amber-400 text-xl">★★★★★</span>
+                    </div>
+                    <p class="text-gray-600">"Excelente servicio, me contactaron rápido por WhatsApp y la entrega fue súper puntual en el kiosko. ¡Gracias!"</p>
                   </div>
-                  <p class="text-gray-600">"Excelente servicio, me contactaron rápido por WhatsApp y la entrega fue súper puntual en el kiosko. ¡Gracias!"</p>
-                </div>
 
+                </div>
+                
+                <!-- Paginación del Carrusel -->
+                <div class="swiper-pagination"></div>
               </div>
-              
-              <!-- Paginación del Carrusel -->
-              <div class="swiper-pagination"></div>
+
+              <!-- CAMBIO: Flechas de Navegación Añadidas -->
+              <div class="swiper-button-prev -left-2"></div>
+              <div class="swiper-button-next -right-2"></div>
             </div>
+
 
             
             <!-- Formulario para dejar Reseña -->
@@ -530,6 +561,8 @@
         
         <!-- Footer -->
         <footer class="text-center p-8 text-yellow-50 mt-16 drop-shadow-md">
+            <!-- CAMBIO: Añadida la marca "Bolis Tito" -->
+            <p class="font-extrabold text-2xl mb-2">Bolis Tito</p>
             <p class="font-bold text-lg">Bolis Artesanales "La Alegría Refrescante" &copy; 2025</p>
             <p>Hechos con ❤️ y mucho sabor en México</p>
         </footer>
@@ -630,22 +663,31 @@
         const reviewForm = document.getElementById('reviewForm');
         const reviewMessage = document.getElementById('review-form-message');
         const submitReviewBtn = document.getElementById('submit-review-btn');
+        
+        // --- CAMBIO EN EL CARRUSEL ---
         var swiper = new Swiper(".mySwiper", {
-          slidesPerView: 1, 
+          slidesPerView: 1, // Mostrar 1 slide a la vez
           spaceBetween: 30, 
+          effect: 'fade', // Efecto de desvanecido
+          fadeEffect: {
+            crossFade: true
+          },
           loop: true, 
+          centeredSlides: true, // Centrar el slide activo
           autoplay: {
-            delay: 5000, 
+            delay: 3000, // 3 segundos (3000ms)
             disableOnInteraction: false, 
           },
           pagination: {
             el: ".swiper-pagination",
             clickable: true, 
           },
-          breakpoints: {
-            768: { slidesPerView: 2, spaceBetween: 20 },
-            1024: { slidesPerView: 3, spaceBetween: 30 },
+          // Añadidas flechas de navegación
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
           },
+          // Breakpoints eliminados para forzar 1 slide siempre
         });
 
         // --- NUEVO: Selectores del Carrito ---

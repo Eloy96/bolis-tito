@@ -199,6 +199,15 @@
       .swiper-pagination-bullet-active {
         background-color: #F97316 !important; /* Color naranja para el punto activo */
       }
+
+      /* NUEVO: Regla para evitar el scroll del body cuando el modal está abierto */
+      body.modal-open {
+        overflow: hidden;
+      }
+      /* NUEVO: Aseguramos que el modal en sí pueda scrollear internamente */
+      #cart-modal {
+        overflow-y: auto;
+      }
     </style>
 </head>
 <body class="font-sans">
@@ -226,9 +235,7 @@
             <p class="text-xl md:text-3xl text-yellow-100 font-medium drop-shadow-md">
                 Refresca tu día con nuestros deliciosos y cremosos bolis.
             </p>
-            <a href="#formulario-pedido" class="mt-8 inline-block px-8 py-3 bg-white text-orange-600 font-bold text-lg rounded-full shadow-lg hover:bg-gray-100 transform hover:scale-105 transition duration-300 ease-in-out animate-bounce-in">
-              ¡Quiero uno ya!
-            </a>
+            <!-- CAMBIO: Botón "¡Quiero uno ya!" ELIMINADO -->
         </header>
 
         
@@ -405,9 +412,10 @@
                   <!-- CAMBIO: Título de sabor más pequeño (text-2xl) -->
                   <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Oreo</h3>
                   <!-- CAMBIO: Descripción más pequeña (text-sm) -->
+                  <!-- CORRECCIÓN: Etiqueta </a-p> corregida a </p> -->
                   <p class="text-gray-600 text-sm mb-4">
                     Ingredientes: Galleta Oreo triturada, leche entera, crema dulce y un toque de vainilla.
-                  </a-p>
+                  </p>
                 </div>
                 
                 <!-- Precio y Botón -->
@@ -643,6 +651,7 @@
         // --- NUEVO: Selectores del Carrito ---
         const cartIcon = document.getElementById('cart-icon');
         const cartModal = document.getElementById('cart-modal');
+        // CORRECCIÓN: Restaurando selectores que faltaban
         const cartModalContent = document.getElementById('cart-modal-content');
         const closeCartBtn = document.getElementById('close-cart-btn');
         const cartItemsContainer = document.getElementById('cart-items-container');
@@ -652,23 +661,26 @@
         const checkoutForm = document.getElementById('checkoutForm');
         const cartFormMessage = document.getElementById('cart-form-message');
 
+
         // --- NUEVO: Función para abrir y cerrar el modal ---
         cartIcon.addEventListener('click', () => {
             updateCartUI(); // Actualiza el carrito cada vez que se abre
             cartModal.classList.remove('hidden');
+            document.body.classList.add('modal-open'); // <-- AÑADIDO: Congela el fondo
         });
         
         const closeModal = () => {
             cartModal.classList.add('hidden');
+            document.body.classList.remove('modal-open'); // <-- AÑADIDO: Descongela el fondo
         };
         closeCartBtn.addEventListener('click', closeModal);
         // Cerrar al hacer clic en el fondo oscuro
+        // CORRECCIÓN: Restaurando función que faltaba
         cartModal.addEventListener('click', (e) => {
             if (e.target === cartModal) {
                 closeModal();
             }
         });
-
 
         // --- NUEVO: Función principal para actualizar la UI del Carrito ---
         const updateCartUI = () => {
@@ -758,18 +770,6 @@
                 updateCartUI();
             }
         });
-
-        // --- NUEVO: Asignar evento para quitar del carrito (delegación) ---
-        cartItemsContainer.addEventListener('click', (e) => {
-            if (e.target.classList.contains('remove-from-cart-btn')) {
-                const sabor = e.target.dataset.sabor;
-                // Filtra el carrito, quitando el item
-                cart = cart.filter(item => item.sabor !== sabor);
-                updateCartUI();
-            }
-        });
-
-        <!-- CORRECCIÓN: Eliminado el bloque de código duplicado de 'cartItemsContainer.addEventListener' -->
 
         // --- NUEVO: Asignar evento para MODIFICAR CANTIDAD en carrito (delegación) ---
         cartItemsContainer.addEventListener('change', (e) => { // 'change' se activa al perder el foco
@@ -936,3 +936,4 @@
 
 </body>
 </html>
+

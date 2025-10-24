@@ -89,25 +89,9 @@
         transition: transform 0.3s ease-in-out;
         padding: 5px; /* Pequeño padding para que no se pegue al borde del círculo si es muy ancha */
       }
-      .card-icon-container {
-        /* Este es el contenedor circular */
-        width: 144px; /* w-36 */
-        height: 144px; /* h-36 */
-        border-radius: 9999px; /* rounded-full */
-        overflow: hidden; /* Recorta la imagen a la forma del círculo */
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
-        border-width: 6px; /* border-6 */
-        border-color: #FFFFFF; /* border-white */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: box-shadow 0.3s duration;
-        /* Centrado para la animación float */
-        position: absolute;
-        top: -4rem; /* -top-16 */
-        left: 50%;
-        transform: translateX(-50%); /* Centrado inicial */
-      }
+      /* CORRECCIÓN: Eliminada esta regla, ya que ahora usamos Tailwind en el HTML */
+      /* .card-icon-container { ... } */
+      
       .card-product:hover .card-icon {
         transform: scale(1.05) rotate(0deg); 
       }
@@ -231,10 +215,29 @@
       #cart-modal {
         overflow-y: auto;
       }
+      
+      /* NUEVO: Estilos para el mensaje "Toast" de éxito */
+      #global-toast {
+        position: fixed;
+        top: 1rem;
+        left: 50%;
+        transform: translate(-50%, -30px);
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+        z-index: 100;
+      }
+      #global-toast.show {
+        transform: translate(-50%, 0);
+        opacity: 1;
+      }
     </style>
 </head>
 <body class="font-sans">
 
+    <!-- NUEVO: Contenedor del Mensaje "Toast" -->
+    <div id="global-toast" class="hidden bg-green-500 text-white py-3 px-6 rounded-xl shadow-lg font-semibold">
+      <!-- El mensaje se insertará aquí con JS -->
+    </div>
     
     <!-- Contenedor Principal -->
     <div class="container mx-auto px-4 py-12 md:py-20 relative"> <!-- Añadido relative para el icono de carrito -->
@@ -264,24 +267,24 @@
         
         <!-- Sección de Productos -->
         <!-- CAMBIO: 'grid-cols-2' (para móvil), 'lg:grid-cols-3' (para desktop) -->
-        <!-- CAMBIO: Reducido gap-x, gap-y y pt para la nueva cuadrícula -->
-        <main class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-20 pt-20 max-w-7xl mx-auto">
+        <!-- CAMBIO: Ajustado gap-x y pt para las nuevas tarjetas cuadradas -->
+        <main class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8 pt-8 max-w-7xl mx-auto">
 
             
             <!-- 1. Tamarindo con Limón -->
             <div class="card-product">
-              <!-- CAMBIO: Reducido pt-16 (padding-top) -->
-              <div class="bg-white rounded-3xl shadow-2xl pt-16 p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <!-- Logo Circular con TU IMAGEN -->
-                <!-- CAMBIO: Contenedor de icono más pequeño (w-28, h-28, top -3.5rem) -->
-                <div class="bg-orange-200 card-icon-container w-28 h-28 -top-[3.5rem] animate-float-light">
+              <!-- CAMBIO: Padding normal, quitado pt-16 -->
+              <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+                
+                <!-- CAMBIO: Contenedor de imagen CUADRADO, DENTRO del flujo -->
+                <div class="bg-orange-200 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
                   <img src="imagenes/bolis-tamarindo-con-limon.png" alt="Boli de Tamarindo con Limón" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
                 <div class="flex-grow">
-                  <!-- CAMBIO: Título de sabor más pequeño (text-2xl) -->
-                  <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Tamarindo con Limón</h3>
+                  <!-- CAMBIO: Título sin padding-top extra -->
+                  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tamarindo con Limón</h3>
                   <!-- CAMBIO: Descripción más pequeña (text-sm) -->
                   <p class="text-gray-600 text-sm mb-4">
                     Ingredientes: Pulpa de tamarindo 100% natural, jugo de limón fresco y un toque de sal.
@@ -308,18 +311,18 @@
             
             <!-- 2. Mazapán -->
             <div class="card-product">
-              <!-- CAMBIO: Reducido pt-16 (padding-top) -->
-              <div class="bg-white rounded-3xl shadow-2xl pt-16 p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <!-- Logo Circular con TU IMAGEN -->
-                <!-- CAMBIO: Contenedor de icono más pequeño (w-28, h-28, top -3.5rem) -->
-                <div class="bg-yellow-100 card-icon-container w-28 h-28 -top-[3.5rem] animate-float-light">
+              <!-- CAMBIO: Padding normal, quitado pt-16 -->
+              <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+                
+                <!-- CAMBIO: Contenedor de imagen CUADRADO, DENTRO del flujo -->
+                <div class="bg-yellow-100 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
                   <img src="imagenes/bolis-mazapan.png" alt="Boli de Mazapán" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
                 <div class="flex-grow">
-                  <!-- CAMBIO: Título de sabor más pequeño (text-2xl) -->
-                  <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Mazapán</h3>
+                  <!-- CAMBIO: Título sin padding-top extra -->
+                  <h3 class="text-2xl font-bold text-gray-800 mb-2">Mazapán</h3>
                   <!-- CAMBIO: Descripción más pequeña (text-sm) -->
                   <p class="text-gray-600 text-sm mb-4">
                     Ingredientes: Mazapán de cacahuate original, leche cremosa y un toque de vainilla.
@@ -346,18 +349,18 @@
             
             <!-- 3. Horchata -->
             <div class="card-product">
-              <!-- CAMBIO: Reducido pt-16 (padding-top) -->
-              <div class="bg-white rounded-3xl shadow-2xl pt-16 p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <!-- Logo Circular con TU IMAGEN -->
-                <!-- CAMBIO: Contenedor de icono más pequeño (w-28, h-28, top -3.5rem) -->
-                <div class="bg-stone-100 card-icon-container w-28 h-28 -top-[3.5rem] animate-float-light">
+              <!-- CAMBIO: Padding normal, quitado pt-16 -->
+              <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+                
+                <!-- CAMBIO: Contenedor de imagen CUADRADO, DENTRO del flujo -->
+                <div class="bg-stone-100 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
                   <img src="imagenes/bolis-horchata.jpg" alt="Boli de Horchata" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
                 <div class="flex-grow">
-                  <!-- CAMBIO: Título de sabor más pequeño (text-2xl) -->
-                  <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Horchata</h3>
+                  <!-- CAMBIO: Título sin padding-top extra -->
+                  <h3 class="text-2xl font-bold text-gray-800 mb-2">Horchata</h3>
                   <!-- CAMBIO: Descripción más pequeña (text-sm) -->
                   <p class="text-gray-600 text-sm mb-4">
                     Ingredientes: Agua de arroz tradicional, canela molida, leche y un toque de azúcar.
@@ -384,18 +387,18 @@
             
             <!-- 4. Fresas con Crema -->
             <div class="card-product">
-              <!-- CAMBIO: Reducido pt-16 (padding-top) -->
-              <div class="bg-white rounded-3xl shadow-2xl pt-16 p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <!-- Logo Circular con TU IMAGEN -->
-                <!-- CAMBIO: Contenedor de icono más pequeño (w-28, h-28, top -3.5rem) -->
-                <div class="bg-pink-200 card-icon-container w-28 h-28 -top-[3.5rem] animate-float-light">
+              <!-- CAMBIO: Padding normal, quitado pt-16 -->
+              <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+                
+                <!-- CAMBIO: Contenedor de imagen CUADRADO, DENTRO del flujo -->
+                <div class="bg-pink-200 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
                   <img src="imagenes/bolis-fresas-con-crema.png" alt="Boli de Fresas con Crema" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
                 <div class="flex-grow">
-                  <!-- CAMBIO: Título de sabor más pequeño (text-2xl) -->
-                  <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Fresas con Crema</h3>
+                  <!-- CAMBIO: Título sin padding-top extra -->
+                  <h3 class="text-2xl font-bold text-gray-800 mb-2">Fresas con Crema</h3>
                   <!-- CAMBIO: Descripción más pequeña (text-sm) -->
                   <p class="text-gray-600 text-sm mb-4">
                     Ingredientes: Fresas frescas de temporada, crema dulce, leche evaporada y un toque de lechera.
@@ -422,18 +425,18 @@
             
             <!-- 5. Oreo -->
             <div class="card-product">
-              <!-- CAMBIO: Reducido pt-16 (padding-top) -->
-              <div class="bg-white rounded-3xl shadow-2xl pt-16 p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <!-- Logo Circular con TU IMAGEN -->
-                <!-- CAMBIO: Contenedor de icono más pequeño (w-28, h-28, top -3.5rem) -->
-                <div class="bg-gray-700 card-icon-container w-28 h-28 -top-[3.5rem] animate-float-light">
+              <!-- CAMBIO: Padding normal, quitado pt-16 -->
+              <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+                
+                <!-- CAMBIO: Contenedor de imagen CUADRADO, DENTRO del flujo -->
+                <div class="bg-gray-700 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
                   <img src="imagenes/bolis-de-oreo.png" alt="Boli de Oreo" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
                 <div class="flex-grow">
-                  <!-- CAMBIO: Título de sabor más pequeño (text-2xl) -->
-                  <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Oreo</h3>
+                  <!-- CAMBIO: Título sin padding-top extra -->
+                  <h3 class="text-2xl font-bold text-gray-800 mb-2">Oreo</h3>
                   <!-- CAMBIO: Descripción más pequeña (text-sm) -->
                   <!-- CORRECCIÓN: Etiqueta </a-p> corregida a </p> -->
                   <p class="text-gray-600 text-sm mb-4">
@@ -658,6 +661,9 @@
       let cart = [];
 
       document.addEventListener('DOMContentLoaded', () => {
+        
+        // --- NUEVO: Selector para el Toast ---
+        const globalToast = document.getElementById('global-toast');
 
         // --- Selectores de Reseñas (sin cambios) ---
         const reviewForm = document.getElementById('reviewForm');
@@ -833,6 +839,25 @@
         });
 
 
+        // --- NUEVO: Función para mostrar el Toast Global ---
+        const showToast = (message) => {
+          if (!globalToast) return;
+          globalToast.textContent = message;
+          globalToast.classList.remove('hidden', 'opacity-0');
+          globalToast.classList.add('show');
+          
+          // Ocultar después de 3 segundos
+          setTimeout(() => {
+            globalToast.classList.remove('show');
+            globalToast.classList.add('opacity-0');
+            // Añadir 'hidden' después de que termine la transición
+            setTimeout(() => {
+              globalToast.classList.add('hidden');
+            }, 300); // 300ms = duration-300
+          }, 3000);
+        };
+
+
         // --- MODIFICADO: Lógica de envío de formulario (ahora es checkoutForm) ---
         checkoutForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -882,15 +907,18 @@
                 updateCartUI(); // Actualiza la UI (mostrará carrito vacío)
                 closeModal(); // Cierra el modal
                 
-                // Muestra el mensaje de éxito en el formulario de reseñas (o crea uno nuevo si es necesario)
-                // Usaremos el de reseñas ya que el de pedido fue eliminado
+                // CAMBIO: Mostrar el nuevo "Toast" global
+                showToast('¡Gracias por tu pedido! Te contactaremos pronto.');
+                
+                // ELIMINADO: Ya no usamos el mensaje del formulario de reseñas
+                /*
                 const globalSuccessMessage = document.getElementById('review-form-message'); // Asumimos que existe
                 if (globalSuccessMessage) {
                     globalSuccessMessage.textContent = '¡Pedido recibido! Te contactaremos por WhatsApp pronto.';
                     globalSuccessMessage.className = 'form-message success';
                     setTimeout(() => { globalSuccessMessage.className = 'form-message'; }, 5000);
                 }
-
+                */
             })
             .catch(error => {
                 cartFormMessage.textContent = 'Hubo un error al enviar tu pedido. Intenta de nuevo.';
@@ -978,4 +1006,5 @@
 
 </body>
 </html>
+
 

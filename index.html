@@ -282,7 +282,7 @@
                 
                 <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
                 <div class="bg-orange-200 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
-                  <img src="https://placehold.co/300x300/FDBA74/7C2D12?text=Boli+Tamarindo" alt="Boli de Tamarindo con Limón" class="card-icon" onerror="this.src='https://placehold.co/300x300/FDBA74/7C2D12?text=Boli+Tamarindo'">
+                  <img src="imagenes/bolis-tamarindo-con-limon.png" alt="Boli de Tamarindo con Limón" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
@@ -320,7 +320,7 @@
                 
                 <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
                 <div class="bg-yellow-100 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
-                  <img src="https://placehold.co/300x300/FEF08A/713F12?text=Boli+Mazapan" alt="Boli de Mazapán" class="card-icon" onerror="this.src='https://placehold.co/300x300/FEF08A/713F12?text=Boli+Mazapan'">
+                  <img src="imagenes/bolis-mazapan.png" alt="Boli de Mazapán" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
@@ -358,7 +358,7 @@
                 
                 <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
                 <div class="bg-stone-100 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
-                  <img src="https://placehold.co/300x300/F5F5F4/44403C?text=Boli+Horchata" alt="Boli de Horchata" class="card-icon" onerror="this.src='https://placehold.co/300x300/F5F5F4/44403C?text=Boli+Horchata'">
+                  <img src="imagenes/bolis-horchata.jpg" alt="Boli de Horchata" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
@@ -396,7 +396,7 @@
                 
                 <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
                 <div class="bg-pink-200 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
-                  <img src="https://placehold.co/300x300/FBCFE8/831843?text=Boli+Fresa" alt="Boli de Fresas con Crema" class="card-icon" onerror="this.src='https://placehold.co/300x300/FBCFE8/831843?text=Boli+Fresa'">
+                  <img src="imagenes/bolis-fresas-con-crema.png" alt="Boli de Fresas con Crema" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
@@ -434,7 +434,7 @@
                 
                 <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
                 <div class="bg-gray-700 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
-                  <img src="https://placehold.co/300x300/374151/FFFFFF?text=Boli+Oreo" alt="Boli de Oreo" class="card-icon" onerror="this.src='https://placehold.co/300x300/374151/FFFFFF?text=Boli+Oreo'">
+                  <img src="imagenes/bolis-de-oreo.png" alt="Boli de Oreo" class="card-icon">
                 </div>
                 
                 <!-- Contenido -->
@@ -1077,28 +1077,11 @@
 
         // --- Corrección de imágenes ---
         // Reemplazo las rutas locales por placeholders
-        const images = document.querySelectorAll('img.card-icon');
-        const imageMap = {
-          'imagenes/bolis-tamarindo-con-limon.png': 'https://placehold.co/300x300/FDBA74/7C2D12?text=Boli+Tamarindo',
-          'imagenes/bolis-mazapan.png': 'https://placehold.co/300x300/FEF08A/713F12?text=Boli+Mazapan',
-          'imagenes/bolis-horchata.jpg': 'https://placehold.co/300x300/F5F5F4/44403C?text=Boli+Horchata',
-          'imagenes/bolis-fresas-con-crema.png': 'https://placehold.co/300x300/FBCFE8/831843?text=Boli+Fresa',
-          'imagenes/bolis-de-oreo.png': 'https://placehold.co/300x300/374151/FFFFFF?text=Boli+Oreo',
-          /* ---- NUEVA IMAGEN (ROPOPE) ---- */
-          'imagenes/bolis-rompope.png': 'https://placehold.co/300x300/FDE68A/78350F?text=Boli+Rompope'
-        };
-
-        images.forEach(img => {
-          const localSrc = img.getAttribute('src');
-          if (imageMap[localSrc]) {
-            img.setAttribute('src', imageMap[localSrc]);
-            // Agrego un 'onerror' por si acaso
-            img.setAttribute('onerror', `this.src='${imageMap[localSrc]}'`);
-          }
-        });
+        // (Este bloque se elimina)
 
       });
     </script>
 
 </body>
 </html>
+

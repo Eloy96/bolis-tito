@@ -106,6 +106,9 @@
       .card-product:nth-child(3) { animation-delay: 0.3s; }
       .card-product:nth-child(4) { animation-delay: 0.4s; }
       .card-product:nth-child(5) { animation-delay: 0.5s; }
+      /* ---- REGLA ACTUALIZADA (AHORA ES ROMPOPE) ---- */
+      .card-product:nth-child(6) { animation-delay: 0.6s; }
+      /* ---- REGLA 7 ELIMINADA ---- */
 
       /* --- Estilos para el formulario y reseñas --- */
       .form-label {
@@ -279,7 +282,7 @@
                 
                 <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
                 <div class="bg-orange-200 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
-                  <img src="imagenes/bolis-tamarindo-con-limon.png" alt="Boli de Tamarindo con Limón" class="card-icon">
+                  <img src="https://placehold.co/300x300/FDBA74/7C2D12?text=Boli+Tamarindo" alt="Boli de Tamarindo con Limón" class="card-icon" onerror="this.src='https://placehold.co/300x300/FDBA74/7C2D12?text=Boli+Tamarindo'">
                 </div>
                 
                 <!-- Contenido -->
@@ -317,7 +320,7 @@
                 
                 <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
                 <div class="bg-yellow-100 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
-                  <img src="imagenes/bolis-mazapan.png" alt="Boli de Mazapán" class="card-icon">
+                  <img src="https://placehold.co/300x300/FEF08A/713F12?text=Boli+Mazapan" alt="Boli de Mazapán" class="card-icon" onerror="this.src='https://placehold.co/300x300/FEF08A/713F12?text=Boli+Mazapan'">
                 </div>
                 
                 <!-- Contenido -->
@@ -355,7 +358,7 @@
                 
                 <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
                 <div class="bg-stone-100 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
-                  <img src="imagenes/bolis-horchata.jpg" alt="Boli de Horchata" class="card-icon">
+                  <img src="https://placehold.co/300x300/F5F5F4/44403C?text=Boli+Horchata" alt="Boli de Horchata" class="card-icon" onerror="this.src='https://placehold.co/300x300/F5F5F4/44403C?text=Boli+Horchata'">
                 </div>
                 
                 <!-- Contenido -->
@@ -393,7 +396,7 @@
                 
                 <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
                 <div class="bg-pink-200 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
-                  <img src="imagenes/bolis-fresas-con-crema.png" alt="Boli de Fresas con Crema" class="card-icon">
+                  <img src="https://placehold.co/300x300/FBCFE8/831843?text=Boli+Fresa" alt="Boli de Fresas con Crema" class="card-icon" onerror="this.src='https://placehold.co/300x300/FBCFE8/831843?text=Boli+Fresa'">
                 </div>
                 
                 <!-- Contenido -->
@@ -431,7 +434,7 @@
                 
                 <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
                 <div class="bg-gray-700 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
-                  <img src="imagenes/bolis-de-oreo.png" alt="Boli de Oreo" class="card-icon">
+                  <img src="https://placehold.co/300x300/374151/FFFFFF?text=Boli+Oreo" alt="Boli de Oreo" class="card-icon" onerror="this.src='https://placehold.co/300x300/374151/FFFFFF?text=Boli+Oreo'">
                 </div>
                 
                 <!-- Contenido -->
@@ -461,8 +464,54 @@
               </div>
             </div>
             
-            <!-- Añadido un item fantasma para alinear la última fila en 'lg' (3 columnas) -->
-            <div class="hidden lg:block"></div>
+            <!-- ---- INICIO DE LA NUEVA CAPA (PRODUCTO) (ELIMINADA) ---- -->
+            <!-- 6. Coco (ELIMINADO) -->
+            <!-- ---- FIN DE LA NUEVA CAPA (PRODUCTO) (ELIMINADA) ---- -->
+
+            <!-- ---- INICIO DE LA NUEVA CAPA (ROPOPE) (AHORA ES 6) ---- -->
+            <!-- 7. Rompope -->
+            <div class="card-product">
+              <!-- Padding normal, quitado pt-16 -->
+              <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+                
+                <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
+                <div class="bg-amber-100 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
+                  <!-- Ruta de imagen proporcionada por el usuario -->
+                  <img src="imagenes/bolis-rompope.png" alt="Boli de Rompope" class="card-icon">
+                </div>
+                
+                <!-- Contenido -->
+                <div class="flex-grow">
+                  <!-- Título sin padding-top extra -->
+                  <h3 class="text-2xl font-bold text-gray-800 mb-2">Rompope</h3>
+                  <!-- Descripción más pequeña (text-sm) -->
+                  <p class="text-gray-600 text-sm mb-4">
+                    Ingredientes: Cremosa base de leche con el sabor tradicional del rompope marca Coronado.
+                  </p>
+                </div>
+                
+                <!-- Precio y Botón -->
+                <div class="mt-4 flex flex-col items-center">
+                  <!-- Precio más pequeño (text-4xl) -->
+                  <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
+                  <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
+                  <!-- Selector de cantidad y botón "Agregar" -->
+                  <div class="flex items-center gap-2 mt-4">
+                    <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
+                    <!-- CAMBIAR data-sabor -->
+                    <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Rompope" data-precio="12">
+                      Agregar
+                    </button>
+                  </div>
+                  <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
+                </div>
+              </div>
+            </div>
+            <!-- ---- FIN DE LA NUEVA CAPA (ROPOPE) ---- -->
+            
+            <!-- ---- ITEM FANTASMA ELIMINADO ---- -->
+            <!-- Ya no es necesario con 6 productos (6 es divisible entre 3) -->
+            <!-- <div class="hidden lg:block"></div> -->
 
         </main>
 
@@ -569,71 +618,71 @@
 
     <!-- Modal del Carrito de Compras -->
     <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
-        <!-- Modal más responsivo en altura y ancho -->
-        <div id="cart-modal-content" class="bg-white w-full max-w-lg rounded-2xl shadow-xl flex flex-col max-h-[90vh]">
-            
-            <!-- Encabezado del Modal -->
-            <div class="flex justify-between items-center p-5 border-b">
-                <h2 class="text-3xl font-extrabold text-gray-800">Tu Carrito</h2>
-                <button id="close-cart-btn" class="text-gray-400 hover:text-gray-700 text-4xl font-light">&times;</button>
+      <!-- Modal más responsivo en altura y ancho -->
+      <div id="cart-modal-content" class="bg-white w-full max-w-lg rounded-2xl shadow-xl flex flex-col max-h-[90vh]">
+          
+          <!-- Encabezado del Modal -->
+          <div class="flex justify-between items-center p-5 border-b">
+            <h2 class="text-3xl font-extrabold text-gray-800">Tu Carrito</h2>
+            <button id="close-cart-btn" class="text-gray-400 hover:text-gray-700 text-4xl font-light">&times;</button>
+          </div>
+          
+          <!-- Contenedor de SCROLL ÚNICO -->
+          <div class="overflow-y-auto">
+
+            <!-- Contenido del Carrito (Items) -->
+            <div id="cart-items-container" class="p-6 space-y-4">
+                <!-- Los items del carrito se agregarán aquí con JS -->
+                <!-- <p id="cart-empty-message" class="text-gray-500 text-center">Tu carrito está vacío.</p> -->
             </div>
             
-            <!-- Contenedor de SCROLL ÚNICO -->
-            <div class="overflow-y-auto">
-
-                <!-- Contenido del Carrito (Items) -->
-                <div id="cart-items-container" class="p-6 space-y-4">
-                    <!-- Los items del carrito se agregarán aquí con JS -->
-                    <!-- <p id="cart-empty-message" class="text-gray-500 text-center">Tu carrito está vacío.</p> -->
-                </div>
+            <!-- Total del Carrito -->
+            <div class="p-6 border-t text-right">
+                <span class="text-3xl font-extrabold text-gray-800">Total: <span id="cart-total" class="text-orange-600">$0.00</span></span>
+            </div>
+            
+            <!-- Formulario de Checkout -->
+            <form id="checkoutForm" class="p-6 space-y-4 border-t">
+                <h3 class="text-2xl font-bold text-gray-700">Completa tu Pedido</h3>
                 
-                <!-- Total del Carrito -->
-                <div class="p-6 border-t text-right">
-                    <span class="text-3xl font-extrabold text-gray-800">Total: <span id="cart-total" class="text-orange-600">$0.00</span></span>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="nombre" class="form-label">Nombre Completo</label>
+                        <input type="text" id="nombre" name="nombre" class="form-input" required>
+                    </div>
+                    <div>
+                        <label for="telefono" class="form-label">Teléfono / WhatsApp</label>
+                        <input type="tel" id="telefono" name="telefono" class="form-input" required>
+                    </div>
                 </div>
+                <div class="mb-2">
+                    <label for="lugar-entrega" class="form-label">Lugar de Entrega</label>
+                    <select id="lugar-entrega" name="lugar-entrega" class="form-select" required>
+                        <option value="">Selecciona un punto de entrega...</option>
+                        <option value="Huixquilucan Centro (Kiosko)">Huixquilucan Centro (Kiosko)</option>
+                        <option value="El Mirador Magdalena Chichicaspa (Parada de autobuses)">El Mirador Magdalena Chichicaspa (Parada)</option>
+                        <option value="Paraje Las Máquinas Magdalena Chichicaspa">Paraje Las Máquinas Magdalena Chichicaspa</option>
+                    </select>
+                    <p class="text-sm text-gray-500 mt-2">
+                        <strong>Horario de Entrega:</strong> Sábados, acordando la hora contigo.
+                    </p>
+                </div>
+                <div class="mb-2">
+                    <label for="comentarios" class="form-label">Comentarios Adicionales</label>
+                    <textarea id="comentarios" name="comentarios" rows="3" class="form-textarea" placeholder="¿Alguna indicación especial?"></textarea>
+                </div>
+
+                <!-- Botón de Confirmar Pedido (restaurado) -->
+                <button type="submit" id="submit-order-btn" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-lg py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
+                    Confirmar Pedido
+                </button>
                 
-                <!-- Formulario de Checkout -->
-                <form id="checkoutForm" class="p-6 space-y-4 border-t">
-                    <h3 class="text-2xl font-bold text-gray-700">Completa tu Pedido</h3>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="nombre" class="form-label">Nombre Completo</label>
-                            <input type="text" id="nombre" name="nombre" class="form-input" required>
-                        </div>
-                        <div>
-                            <label for="telefono" class="form-label">Teléfono / WhatsApp</label>
-                            <input type="tel" id="telefono" name="telefono" class="form-input" required>
-                        </div>
-                    </div>
-                    <div class="mb-2">
-                        <label for="lugar-entrega" class="form-label">Lugar de Entrega</label>
-                        <select id="lugar-entrega" name="lugar-entrega" class="form-select" required>
-                            <option value="">Selecciona un punto de entrega...</option>
-                            <option value="Huixquilucan Centro (Kiosko)">Huixquilucan Centro (Kiosko)</option>
-                            <option value="El Mirador Magdalena Chichicaspa (Parada de autobuses)">El Mirador Magdalena Chichicaspa (Parada)</option>
-                            <option value="Paraje Las Máquinas Magdalena Chichicaspa">Paraje Las Máquinas Magdalena Chichicaspa</option>
-                        </select>
-                        <p class="text-sm text-gray-500 mt-2">
-                            <strong>Horario de Entrega:</strong> Sábados, acordando la hora contigo.
-                        </p>
-                    </div>
-                    <div class="mb-2">
-                        <label for="comentarios" class="form-label">Comentarios Adicionales</label>
-                        <textarea id="comentarios" name="comentarios" rows="3" class="form-textarea" placeholder="¿Alguna indicación especial?"></textarea>
-                    </div>
+                <div id="cart-form-message" class="form-message"></div>
+            </form>
 
-                    <!-- Botón de Confirmar Pedido (restaurado) -->
-                    <button type="submit" id="submit-order-btn" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-lg py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
-                        Confirmar Pedido
-                    </button>
-                    
-                    <div id="cart-form-message" class="form-message"></div>
-                </form>
+          </div> <!-- Fin del contenedor de SCROLL ÚNICO -->
 
-            </div> <!-- Fin del contenedor de SCROLL ÚNICO -->
-
-        </div>
+      </div>
     </div>
     
     <!-- JavaScript -->
@@ -796,7 +845,7 @@
 
         // --- Función para agregar al carrito ---
         const addToCart = (sabor, cantidad, precio, btn) => {
-            // No permitir agregar el item de promo manualmente
+            // No permitir agregar el item de promo manually
             if (sabor === PROMO_ITEM_NAME) return; 
 
             const existingItem = cart.find(item => item.sabor === sabor);
@@ -1026,10 +1075,30 @@
           });
         }
 
+        // --- Corrección de imágenes ---
+        // Reemplazo las rutas locales por placeholders
+        const images = document.querySelectorAll('img.card-icon');
+        const imageMap = {
+          'imagenes/bolis-tamarindo-con-limon.png': 'https://placehold.co/300x300/FDBA74/7C2D12?text=Boli+Tamarindo',
+          'imagenes/bolis-mazapan.png': 'https://placehold.co/300x300/FEF08A/713F12?text=Boli+Mazapan',
+          'imagenes/bolis-horchata.jpg': 'https://placehold.co/300x300/F5F5F4/44403C?text=Boli+Horchata',
+          'imagenes/bolis-fresas-con-crema.png': 'https://placehold.co/300x300/FBCFE8/831843?text=Boli+Fresa',
+          'imagenes/bolis-de-oreo.png': 'https://placehold.co/300x300/374151/FFFFFF?text=Boli+Oreo',
+          /* ---- NUEVA IMAGEN (ROPOPE) ---- */
+          'imagenes/bolis-rompope.png': 'https://placehold.co/300x300/FDE68A/78350F?text=Boli+Rompope'
+        };
+
+        images.forEach(img => {
+          const localSrc = img.getAttribute('src');
+          if (imageMap[localSrc]) {
+            img.setAttribute('src', imageMap[localSrc]);
+            // Agrego un 'onerror' por si acaso
+            img.setAttribute('onerror', `this.src='${imageMap[localSrc]}'`);
+          }
+        });
+
       });
     </script>
 
 </body>
 </html>
-
-

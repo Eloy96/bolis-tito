@@ -106,9 +106,13 @@
       .card-product:nth-child(3) { animation-delay: 0.3s; }
       .card-product:nth-child(4) { animation-delay: 0.4s; }
       .card-product:nth-child(5) { animation-delay: 0.5s; }
-      /* ---- REGLA ACTUALIZADA (AHORA ES ROMPOPE) ---- */
+      /* ---- REGLA ACTUALIZADA (AHORA ES MANGO) ---- */
       .card-product:nth-child(6) { animation-delay: 0.6s; }
-      /* ---- REGLA 7 ELIMINADA ---- */
+      /* ---- NUEVA REGLA (ZARZAMORA) ---- */
+      .card-product:nth-child(7) { animation-delay: 0.7s; }
+      /* ---- NUEVA REGLA (GUAYABA) ---- */
+      .card-product:nth-child(8) { animation-delay: 0.8s; }
+
 
       /* --- Estilos para el formulario y reseñas --- */
       .form-label {
@@ -172,6 +176,26 @@
         color: #991B1B; /* text-red-800 */
       }
 
+      /* --- NUEVO: Estilos para etiquetas de producto --- */
+      .product-label {
+        position: absolute;
+        top: 0.75rem; /* 12px */
+        right: 0.75rem; /* 12px */
+        padding: 0.25rem 0.75rem; /* py-1 px-3 */
+        border-radius: 9999px; /* rounded-full */
+        font-size: 0.75rem; /* text-xs */
+        font-weight: 700; /* font-bold */
+        color: white;
+        text-transform: uppercase;
+        z-index: 10;
+      }
+      .label-popular {
+        background-color: #EF4444; /* bg-red-500 */
+      }
+      .label-new {
+        background-color: #22C55E; /* bg-green-500 */
+      }
+
       /* --- CAMBIOS EN EL CARRUSEL --- */
       .swiper-container {
         width: 100%;
@@ -215,39 +239,20 @@
         overflow-y: auto;
       }
       
-      /* Estilos para el mensaje "Toast" de éxito */
-      #global-toast {
-        position: fixed;
-        top: 1rem;
-        left: 50%;
-        transform: translate(-50%, -30px);
-        opacity: 0;
-        transition: all 0.3s ease-in-out;
-        z-index: 100;
-      }
-      #global-toast.show {
-        transform: translate(-50%, 0);
-        opacity: 1;
-      }
+      /* Estilos para el mensaje "Toast" de éxito (ELIMINADO) */
+     
     </style>
 </head>
 <body class="font-sans">
 
-    <!-- NUEVO: Banner de Promoción -->
-    <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white text-center p-3 font-bold shadow-lg text-sm sm:text-base">
-      ¡PROMO! 🎁 En la compra de 2 bolis o más, ¡llévate 1 de Tamarindo GRATIS!
-    </div>
-
-    <!-- NUEVO: Contenedor del Mensaje "Toast" -->
-    <div id="global-toast" class="hidden bg-green-500 text-white py-3 px-6 rounded-xl shadow-lg font-semibold">
-      <!-- El mensaje se insertará aquí con JS -->
-    </div>
+    <!-- Contenedor del Mensaje "Toast" (ELIMINADO) -->
     
     <!-- Contenedor Principal -->
     <div class="container mx-auto px-4 py-12 md:py-20 relative"> <!-- Añadido relative para el icono de carrito -->
 
         <!-- Icono de Carrito -->
-        <div id="cart-icon" class="fixed top-16 right-4 z-40 cursor-pointer p-3 bg-white rounded-full shadow-lg hover:bg-gray-100 transition">
+        <!-- Ajustado 'top-4' porque el banner se fue -->
+        <div id="cart-icon" class="fixed top-4 right-4 z-40 cursor-pointer p-3 bg-white rounded-full shadow-lg hover:bg-gray-100 transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
@@ -272,247 +277,307 @@
         <!-- Sección de Productos -->
         <!-- 'grid-cols-2' (para móvil), 'lg:grid-cols-3' (para desktop) -->
         <!-- Ajustado gap-x y pt para las nuevas tarjetas cuadradas -->
+        <!-- Ahora tenemos 8 productos -->
         <main class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8 pt-8 max-w-7xl mx-auto">
 
             
-            <!-- 1. Tamarindo con Limón -->
+            <!-- 1. Tamarindo (ACTUALIZADO) -->
             <div class="card-product">
-              <!-- Padding normal, quitado pt-16 -->
-              <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                
-                <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
-                <div class="bg-orange-200 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
-                  <img src="imagenes/bolis-tamarindo-con-limon.png" alt="Boli de Tamarindo con Limón" class="card-icon">
+                <!-- Padding normal, quitado pt-16 -->
+                <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+                    <span class="product-label label-popular">Más Comprado</span>
+                    
+                    <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
+                    <div class="bg-orange-200 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
+                        <img src="imagenes/bolis-tamarindo-con-limon.png" alt="Boli de Tamarindo" class="card-icon" onerror="this.src='https://placehold.co/400x400/D32F2F/FFFFFF?text=Tamarindo'; this.onerror=null;">
+                    </div>
+                    
+                    <!-- Contenido -->
+                    <div class="flex-grow">
+                        <!-- Título sin padding-top extra -->
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Tamarindo</h3>
+                        <!-- Descripción más pequeña (text-sm) -->
+                        <p class="text-gray-600 text-sm mb-4">
+                            Ingredientes: Pulpa de tamarindo 100% natural y un toque de sal.
+                        </p>
+                    </div>
+                    
+                    <!-- Precio y Botón -->
+                    <div class="mt-4 flex flex-col items-center">
+                        <!-- Precio más pequeño (text-4xl) -->
+                        <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
+                        <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
+                        <!-- Selector de cantidad y botón "Agregar" -->
+                        <div class="flex items-center gap-2 mt-4">
+                            <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
+                            <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Tamarindo" data-precio="12">
+                                Agregar
+                            </button>
+                        </div>
+                        <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
+                    </div>
                 </div>
-                
-                <!-- Contenido -->
-                <div class="flex-grow">
-                  <!-- Título sin padding-top extra -->
-                  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tamarindo con Limón</h3>
-                  <!-- Descripción más pequeña (text-sm) -->
-                  <p class="text-gray-600 text-sm mb-4">
-                    Ingredientes: Pulpa de tamarindo 100% natural, jugo de limón fresco y un toque de sal.
-                  </p>
-                </div>
-                
-                <!-- Precio y Botón -->
-                <div class="mt-4 flex flex-col items-center">
-                  <!-- Precio más pequeño (text-4xl) -->
-                  <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
-                  <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
-                  <!-- Selector de cantidad y botón "Agregar" -->
-                  <div class="flex items-center gap-2 mt-4">
-                    <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
-                    <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Tamarindo con Limón" data-precio="12">
-                      Agregar
-                    </button>
-                  </div>
-                  <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
-                </div>
-              </div>
             </div>
 
             
             <!-- 2. Mazapán -->
             <div class="card-product">
-              <!-- Padding normal, quitado pt-16 -->
-              <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                
-                <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
-                <div class="bg-yellow-100 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
-                  <img src="imagenes/bolis-mazapan.png" alt="Boli de Mazapán" class="card-icon">
+                <!-- Padding normal, quitado pt-16 -->
+                <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+                    <span class="product-label label-new">Nuevo</span>
+                    
+                    <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
+                    <div class="bg-yellow-100 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
+                        <img src="imagenes/bolis-mazapan.png" alt="Boli de Mazapán" class="card-icon" onerror="this.src='https://placehold.co/400x400/FBC02D/795548?text=Mazap%C3%A1n'; this.onerror=null;">
+                    </div>
+                    
+                    <!-- Contenido -->
+                    <div class="flex-grow">
+                        <!-- Título sin padding-top extra -->
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Mazapán</h3>
+                        <!-- Descripción más pequeña (text-sm) -->
+                        <p class="text-gray-600 text-sm mb-4">
+                            Ingredientes: Mazapán de cacahuate original, leche cremosa y un toque de vainilla.
+                        </p>
+                    </div>
+                    
+                    <!-- Precio y Botón -->
+                    <div class="mt-4 flex flex-col items-center">
+                        <!-- Precio más pequeño (text-4xl) -->
+                        <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
+                        <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
+                        <!-- Selector de cantidad y botón "Agregar" -->
+                        <div class="flex items-center gap-2 mt-4">
+                            <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
+                            <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Mazapán" data-precio="12">
+                                Agregar
+                            </button>
+                        </div>
+                        <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
+                    </div>
                 </div>
-                
-                <!-- Contenido -->
-                <div class="flex-grow">
-                  <!-- Título sin padding-top extra -->
-                  <h3 class="text-2xl font-bold text-gray-800 mb-2">Mazapán</h3>
-                  <!-- Descripción más pequeña (text-sm) -->
-                  <p class="text-gray-600 text-sm mb-4">
-                    Ingredientes: Mazapán de cacahuate original, leche cremosa y un toque de vainilla.
-                  </p>
-                </div>
-                
-                <!-- Precio y Botón -->
-                <div class="mt-4 flex flex-col items-center">
-                  <!-- Precio más pequeño (text-4xl) -->
-                  <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
-                  <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
-                  <!-- Selector de cantidad y botón "Agregar" -->
-                  <div class="flex items-center gap-2 mt-4">
-                    <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
-                    <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Mazapán" data-precio="12">
-                      Agregar
-                    </button>
-                  </div>
-                  <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
-                </div>
-              </div>
             </div>
 
             
-            <!-- 3. Horchata -->
+            <!-- 3. Rompope (en lugar de Horchata) -->
             <div class="card-product">
-              <!-- Padding normal, quitado pt-16 -->
-              <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                
-                <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
-                <div class="bg-stone-100 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
-                  <img src="imagenes/bolis-horchata.jpg" alt="Boli de Horchata" class="card-icon">
+                <!-- Padding normal, quitado pt-16 -->
+                <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+                    <span class="product-label label-popular">Más Comprado</span>
+                    
+                    <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
+                    <div class="bg-amber-100 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
+                        <img src="imagenes/bolis-rompope.png" alt="Boli de Rompope" class="card-icon" onerror="this.src='https://placehold.co/400x400/FCE68A/D3890D?text=Rompope'; this.onerror=null;">
+                    </div>
+                    
+                    <!-- Contenido -->
+                    <div class="flex-grow">
+                        <!-- Título sin padding-top extra -->
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Rompope</h3>
+                        <!-- Descripción más pequeña (text-sm) -->
+                        <p class="text-gray-600 text-sm mb-4">
+                            Ingredientes: Cremosa base de leche con el sabor tradicional del rompope marca Coronado.
+                        </p>
+                    </div>
+                    
+                    <!-- Precio y Botón -->
+                    <div class="mt-4 flex flex-col items-center">
+                        <!-- Precio más pequeño (text-4xl) -->
+                        <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
+                        <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
+                        <!-- Selector de cantidad y botón "Agregar" -->
+                        <div class="flex items-center gap-2 mt-4">
+                            <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
+                            <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Rompope" data-precio="12">
+                                Agregar
+                            </button>
+                        </div>
+                        <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
+                    </div>
                 </div>
-                
-                <!-- Contenido -->
-                <div class="flex-grow">
-                  <!-- Título sin padding-top extra -->
-                  <h3 class="text-2xl font-bold text-gray-800 mb-2">Horchata</h3>
-                  <!-- Descripción más pequeña (text-sm) -->
-                  <p class="text-gray-600 text-sm mb-4">
-                    Ingredientes: Agua de arroz tradicional, canela molida, leche y un toque de azúcar.
-                  </p>
-                </div>
-                
-                <!-- Precio y Botón -->
-                <div class="mt-4 flex flex-col items-center">
-                  <!-- Precio más pequeño (text-4xl) -->
-                  <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
-                  <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
-                  <!-- Selector de cantidad y botón "Agregar" -->
-                  <div class="flex items-center gap-2 mt-4">
-                    <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
-                    <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Horchata" data-precio="12">
-                      Agregar
-                    </button>
-                  </div>
-                  <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
-                </div>
-              </div>
             </div>
 
             
             <!-- 4. Fresas con Crema -->
             <div class="card-product">
-              <!-- Padding normal, quitado pt-16 -->
-              <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                
-                <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
-                <div class="bg-pink-200 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
-                  <img src="imagenes/bolis-fresas-con-crema.png" alt="Boli de Fresas con Crema" class="card-icon">
+                <!-- Padding normal, quitado pt-16 -->
+                <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+                    <span class="product-label label-popular">Más Comprado</span>
+                    
+                    <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
+                    <div class="bg-pink-200 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
+                        <img src="imagenes/bolis-fresas-con-crema.png" alt="Boli de Fresas con Crema" class="card-icon" onerror="this.src='https://placehold.co/400x400/F8BBD0/C2185B?text=Fresas%0ACon+Crema'; this.onerror=null;">
+                    </div>
+                    
+                    <!-- Contenido -->
+                    <div class="flex-grow">
+                        <!-- Título sin padding-top extra -->
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Fresas con Crema</h3>
+                        <!-- Descripción más pequeña (text-sm) -->
+                        <p class="text-gray-600 text-sm mb-4">
+                            Ingredientes: Fresas frescas de temporada, crema dulce, leche evaporada y un toque de lechera.
+                        </p>
+                    </div>
+                    
+                    <!-- Precio y Botón -->
+                    <div class="mt-4 flex flex-col items-center">
+                        <!-- Precio más pequeño (text-4xl) -->
+                        <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
+                        <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
+                        <!-- Selector de cantidad y botón "Agregar" -->
+                        <div class="flex items-center gap-2 mt-4">
+                            <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
+                            <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Fresas con Crema" data-precio="12">
+                                Agregar
+                            </button>
+                        </div>
+                        <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
+                    </div>
                 </div>
-                
-                <!-- Contenido -->
-                <div class="flex-grow">
-                  <!-- Título sin padding-top extra -->
-                  <h3 class="text-2xl font-bold text-gray-800 mb-2">Fresas con Crema</h3>
-                  <!-- Descripción más pequeña (text-sm) -->
-                  <p class="text-gray-600 text-sm mb-4">
-                    Ingredientes: Fresas frescas de temporada, crema dulce, leche evaporada y un toque de lechera.
-                  </p>
-                </div>
-                
-                <!-- Precio y Botón -->
-                <div class="mt-4 flex flex-col items-center">
-                  <!-- Precio más pequeño (text-4xl) -->
-                  <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
-                  <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
-                  <!-- Selector de cantidad y botón "Agregar" -->
-                  <div class="flex items-center gap-2 mt-4">
-                    <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
-                    <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Fresas con Crema" data-precio="12">
-                      Agregar
-                    </button>
-                  </div>
-                  <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
-                </div>
-              </div>
             </div>
 
             
             <!-- 5. Oreo -->
             <div class="card-product">
-              <!-- Padding normal, quitado pt-16 -->
-              <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                
-                <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
-                <div class="bg-gray-700 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
-                  <img src="imagenes/bolis-de-oreo.png" alt="Boli de Oreo" class="card-icon">
+                <!-- Padding normal, quitado pt-16 -->
+                <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+                    <span class="product-label label-popular">Más Comprado</span>
+                    
+                    <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
+                    <div class="bg-gray-700 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
+                        <img src="imagenes/bolis-de-oreo.png" alt="Boli de Oreo" class="card-icon" onerror="this.src='https://placehold.co/400x400/424242/FFFFFF?text=Oreo'; this.onerror=null;">
+                    </div>
+                    
+                    <!-- Contenido -->
+                    <div class="flex-grow">
+                        <!-- Título sin padding-top extra -->
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Oreo</h3>
+                        <!-- Descripción más pequeña (text-sm) -->
+                        <p class="text-gray-600 text-sm mb-4">
+                            Ingredientes: Galleta Oreo triturada, leche entera, crema dulce y un toque de vainilla.
+                        </p>
+                    </div>
+                    
+                    <!-- Precio y Botón -->
+                    <div class="mt-4 flex flex-col items-center">
+                        <!-- Precio más pequeño (text-4xl) -->
+                        <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
+                        <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
+                        <!-- Selector de cantidad y botón "Agregar" -->
+                        <div class="flex items-center gap-2 mt-4">
+                            <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
+                            <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Oreo" data-precio="12">
+                                Agregar
+                            </button>
+                        </div>
+                        <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
+                    </div>
                 </div>
-                
-                <!-- Contenido -->
-                <div class="flex-grow">
-                  <!-- Título sin padding-top extra -->
-                  <h3 class="text-2xl font-bold text-gray-800 mb-2">Oreo</h3>
-                  <!-- Descripción más pequeña (text-sm) -->
-                  <p class="text-gray-600 text-sm mb-4">
-                    Ingredientes: Galleta Oreo triturada, leche entera, crema dulce y un toque de vainilla.
-                  </p>
-                </div>
-                
-                <!-- Precio y Botón -->
-                <div class="mt-4 flex flex-col items-center">
-                  <!-- Precio más pequeño (text-4xl) -->
-                  <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
-                  <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
-                  <!-- Selector de cantidad y botón "Agregar" -->
-                  <div class="flex items-center gap-2 mt-4">
-                    <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
-                    <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Oreo" data-precio="12">
-                      Agregar
-                    </button>
-                  </div>
-                  <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
-                </div>
-              </div>
             </div>
             
-            <!-- ---- INICIO DE LA NUEVA CAPA (PRODUCTO) (ELIMINADA) ---- -->
-            <!-- 6. Coco (ELIMINADO) -->
-            <!-- ---- FIN DE LA NUEVA CAPA (PRODUCTO) (ELIMINADA) ---- -->
 
-            <!-- ---- INICIO DE LA NUEVA CAPA (ROPOPE) (AHORA ES 6) ---- -->
-            <!-- 7. Rompope -->
+            <!-- 6. NUEVO: Mango con Crema -->
             <div class="card-product">
-              <!-- Padding normal, quitado pt-16 -->
-              <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                
-                <!-- Contenedor de imagen CUADRADO, DENTRO del flujo -->
-                <div class="bg-amber-100 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
-                  <!-- Ruta de imagen proporcionada por el usuario -->
-                  <img src="imagenes/bolis-rompope.png" alt="Boli de Rompope" class="card-icon">
+                <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+                    <span class="product-label label-new">Nuevo</span>
+                    
+                    <!-- Contenedor de imagen -->
+                    <div class="bg-orange-100 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
+                        <!-- Te sugiero usar un placeholder si aún no tienes la imagen, o poner la ruta que usarás -->
+                        <img src="imagenes/bolis-mango-con-crema.png" alt="Boli de Mango con Crema" class="card-icon" onerror="this.src='https://placehold.co/400x400/FFD180/E65100?text=Mango%0ACon+Crema'; this.onerror=null;">
+                    </div>
+                    
+                    <!-- Contenido -->
+                    <div class="flex-grow">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Mango con Crema</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Ingredientes: Mango fresco de temporada, crema dulce y un toque de lechera.
+                        </p>
+                    </div>
+                    
+                    <!-- Precio y Botón -->
+                    <div class="mt-4 flex flex-col items-center">
+                        <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
+                        <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
+                        <!-- Selector de cantidad y botón "Agregar" -->
+                        <div class="flex items-center gap-2 mt-4">
+                            <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
+                            <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Mango con Crema" data-precio="12">
+                                Agregar
+                            </button>
+                        </div>
+                        <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
+                    </div>
                 </div>
-                
-                <!-- Contenido -->
-                <div class="flex-grow">
-                  <!-- Título sin padding-top extra -->
-                  <h3 class="text-2xl font-bold text-gray-800 mb-2">Rompope</h3>
-                  <!-- Descripción más pequeña (text-sm) -->
-                  <p class="text-gray-600 text-sm mb-4">
-                    Ingredientes: Cremosa base de leche con el sabor tradicional del rompope marca Coronado.
-                  </p>
-                </div>
-                
-                <!-- Precio y Botón -->
-                <div class="mt-4 flex flex-col items-center">
-                  <!-- Precio más pequeño (text-4xl) -->
-                  <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
-                  <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
-                  <!-- Selector de cantidad y botón "Agregar" -->
-                  <div class="flex items-center gap-2 mt-4">
-                    <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
-                    <!-- CAMBIAR data-sabor -->
-                    <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Rompope" data-precio="12">
-                      Agregar
-                    </button>
-                  </div>
-                  <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
-                </div>
-              </div>
             </div>
-            <!-- ---- FIN DE LA NUEVA CAPA (ROPOPE) ---- -->
-            
-            <!-- ---- ITEM FANTASMA ELIMINADO ---- -->
-            <!-- Ya no es necesario con 6 productos (6 es divisible entre 3) -->
-            <!-- <div class="hidden lg:block"></div> -->
 
+            <!-- 7. NUEVO: Zarzamora con Crema -->
+            <div class="card-product">
+                <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+                    <span class="product-label label-new">Nuevo</span>
+                    
+                    <!-- Contenedor de imagen -->
+                    <div class="bg-purple-200 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
+                        <!-- Te sugiero usar un placeholder si aún no tienes la imagen, o poner la ruta que usarás -->
+                        <img src="imagenes/bolis-zarzamora-con-crema.png" alt="Boli de Zarzamora con Crema" class="card-icon" onerror="this.src='https://placehold.co/400x400/E1BEE7/6A1B9A?text=Zarzamora%0ACon+Crema'; this.onerror=null;">
+                    </div>
+                    
+                    <!-- Contenido -->
+                    <div class="flex-grow">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Zarzamora con Crema</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Ingredientes: Zarzamoras frescas, crema dulce, leche y un toque de vainilla.
+                        </p>
+                    </div>
+                    
+                    <!-- Precio y Botón -->
+                    <div class="mt-4 flex flex-col items-center">
+                        <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
+                        <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
+                        <!-- Selector de cantidad y botón "Agregar" -->
+                        <div class="flex items-center gap-2 mt-4">
+                            <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
+                            <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Zarzamora con Crema" data-precio="12">
+                                Agregar
+                            </button>
+                        </div>
+                        <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. NUEVO: Guayaba de Agua -->
+            <div class="card-product">
+                <div class="bg-white rounded-3xl shadow-2xl p-4 text-center relative h-full flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out group">
+                    <span class="product-label label-new">Nuevo</span>
+                    <!-- Contenedor de imagen -->
+                    <div class="bg-lime-200 w-full aspect-square rounded-xl shadow-lg border-6 border-white flex items-center justify-center overflow-hidden mb-4">
+                        <img src="imagenes/bolis-guayaba-agua.png" alt="Boli de Guayaba de Agua" class="card-icon" onerror="this.src='https://placehold.co/400x400/D4E157/7E553A?text=Guayaba%0Ade+Agua'; this.onerror=null;">
+                    </div>
+                    
+                    <!-- Contenido -->
+                    <div class="flex-grow">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Guayaba de Agua</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Ingredientes: Guayaba fresca, agua purificada y un toque de azúcar.
+                        </p>
+                    </div>
+                    
+                    <!-- Precio y Botón -->
+                    <div class="mt-4 flex flex-col items-center">
+                        <span class="text-4xl font-extrabold text-orange-600 block mb-1">$12</span>
+                        <span class="text-sm font-medium text-gray-500 block mb-3">133 ml</span>
+                        <div class="flex items-center gap-2 mt-4">
+                            <input type="number" class="product-quantity w-16 text-center form-input py-2" value="1" min="1">
+                            <button class="add-to-cart-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-sm" data-sabor="Guayaba de Agua" data-precio="12">
+                                Agregar
+                            </button>
+                        </div>
+                        <span class="add-to-cart-message text-green-600 h-4 mt-1 text-xs font-medium"></span>
+                    </div>
+                </div>
+            </div>
+            
         </main>
 
         
@@ -545,7 +610,8 @@
                       <span class="font-bold text-lg text-gray-800">Miguel R.</span>
                       <span class="text-amber-400 text-xl">★★★★☆</span>
                     </div>
-                    <p class="text-gray-600">"Muy rico el de Fresas con Crema, se nota que la fresa es natural. El de horchata también muy bueno. Me gustaría que tuvieran de limón."</p>
+                    <!-- Cambié "horchata" por "rompope" en la reseña estática para que tenga sentido -->
+                    <p class="text-gray-600">"Muy rico el de Fresas con Crema, se nota que la fresa es natural. El de rompope también muy bueno. Me gustaría que tuvieran de limón."</p>
                   </div>
                   
                   
@@ -608,8 +674,8 @@
         
         <!-- Footer -->
         <footer class="text-center p-8 text-yellow-50 mt-16 drop-shadow-md">
-            <!-- Añadida la marca "Bolis Tito" -->
-            <p class="font-extrabold text-2xl mb-2">Bolis Tito</p>
+            <!-- Marca "BOLIS TITO" actualizada -->
+            <p class="font-extrabold text-2xl mb-2">BOLIS TITO</p>
             <p class="font-bold text-lg">Bolis Artesanales "La Alegría Refrescante" &copy; 2025</p>
             <p>Hechos con ❤️ y mucho sabor en México</p>
         </footer>
@@ -662,6 +728,8 @@
                         <option value="Huixquilucan Centro (Kiosko)">Huixquilucan Centro (Kiosko)</option>
                         <option value="El Mirador Magdalena Chichicaspa (Parada de autobuses)">El Mirador Magdalena Chichicaspa (Parada)</option>
                         <option value="Paraje Las Máquinas Magdalena Chichicaspa">Paraje Las Máquinas Magdalena Chichicaspa</option>
+                        <!-- NUEVA UBICACIÓN -->
+                        <option value="Av. Toluca 481">Av. Toluca 481</option>
                     </select>
                     <p class="text-sm text-gray-500 mt-2">
                         <strong>Horario de Entrega:</strong> Sábados, acordando la hora contigo.
@@ -685,51 +753,70 @@
       </div>
     </div>
     
-    <!-- JavaScript -->
+    <!-- NUEVO: Modal de Agradecimiento -->
+    <div id="thank-you-modal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
+       <div class="bg-white w-full max-w-md rounded-2xl shadow-xl p-8 text-center relative">
+           <!-- Botón de Cerrar (X) -->
+           <button id="close-thank-you-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-4xl font-light">&times;</button>
+           
+           <!-- Icono de Éxito -->
+           <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+               <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+           </div>
+           
+           <h2 class="text-3xl font-extrabold text-gray-800 mb-4">¡Pedido Recibido!</h2>
+           <p class="text-gray-600 text-lg mb-8">¡Gracias por tu compra! Te contactaremos pronto por WhatsApp para confirmar la hora de entrega.</p>
+           
+           <button id="new-order-btn" class="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold text-lg py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
+               Hacer otro pedido
+           </button>
+       </div>
+    </div>
+
+    <!-- JavaScript (SCRIPT COMPLETO Y CORREGIDO) -->
     <script>
       // ---- URL de Google Apps Script ----
-      // IMPORTANTE: Si actualizaste tu script, pega la NUEVA URL aquí
       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx88q2qxy_szNMh4GOz0gT-Bpp7Fz6GOoMo5b2uvwKRoopMARciMQ8JsD-R-6kuldE/exec';
       // --------------------
 
       // Estado del Carrito
       let cart = [];
-      const PROMO_ITEM_NAME = 'Tamarindo (Promo)';
-      const PROMO_ITEM_PRICE = 0;
 
+      // --- TODO EL CÓDIGO DENTRO DE DOMCONTENTLOADED ---
       document.addEventListener('DOMContentLoaded', () => {
         
-        // --- Selector para el Toast ---
-        const globalToast = document.getElementById('global-toast');
-
         // --- Selectores de Reseñas ---
         const reviewForm = document.getElementById('reviewForm');
         const reviewMessage = document.getElementById('review-form-message');
         const submitReviewBtn = document.getElementById('submit-review-btn');
         
         // --- Configuración del Carrusel de Reseñas ---
-        var swiper = new Swiper(".mySwiper", {
-          slidesPerView: 1, 
-          spaceBetween: 30, 
-          effect: 'fade', 
-          fadeEffect: {
-            crossFade: true
-          },
-          loop: true, 
-          centeredSlides: true, 
-          autoplay: {
-            delay: 3000, 
-            disableOnInteraction: false, 
-          },
-          pagination: {
-            el: ".swiper-pagination",
-            clickable: true, 
-          },
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-        });
+        try {
+          var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1, 
+            spaceBetween: 30, 
+            effect: 'fade', 
+            fadeEffect: {
+              crossFade: true
+            },
+            loop: true, 
+            centeredSlides: true, 
+            autoplay: {
+              delay: 3000, 
+              disableOnInteraction: false, 
+            },
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true, 
+            },
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+          });
+        } catch (e) {
+          console.error("Error inicializando Swiper:", e);
+        }
 
         // --- Selectores del Carrito ---
         const cartIcon = document.getElementById('cart-icon');
@@ -743,58 +830,69 @@
         const checkoutForm = document.getElementById('checkoutForm');
         const cartFormMessage = document.getElementById('cart-form-message');
 
+        // --- Selectores del NUEVO Modal de Agradecimiento ---
+        const thankYouModal = document.getElementById('thank-you-modal');
+        const closeThankYouBtn = document.getElementById('close-thank-you-btn');
+        const newOrderBtn = document.getElementById('new-order-btn');
 
-        // --- Función para abrir y cerrar el modal ---
-        cartIcon.addEventListener('click', () => {
-            updateCartUI(); 
-            cartModal.classList.remove('hidden');
-            document.body.classList.add('modal-open'); 
-        });
-        
-        const closeModal = () => {
-            cartModal.classList.add('hidden');
-            document.body.classList.remove('modal-open'); 
+
+        // --- Función para abrir y cerrar el modal de Carrito ---
+        const openCartModal = () => {
+          updateCartUI(); 
+          cartModal.classList.remove('hidden');
+          document.body.classList.add('modal-open'); 
         };
-        closeCartBtn.addEventListener('click', closeModal);
-        cartModal.addEventListener('click', (e) => {
-            if (e.target === cartModal) {
-                closeModal();
-            }
-        });
+        
+        const closeCartModal = () => {
+            cartModal.classList.add('hidden');
+            // No quitamos modal-open aquí, por si abrimos el de "gracias"
+            // Se quitará al cerrar el último modal
+        };
+
+        // --- Función para abrir y cerrar el modal de Agradecimiento ---
+        const showThankYouModal = () => {
+            thankYouModal.classList.remove('hidden');
+            document.body.classList.add('modal-open'); // Asegura que el body esté bloqueado
+        };
+
+        const closeThankYouModal = () => {
+            thankYouModal.classList.add('hidden');
+            document.body.classList.remove('modal-open'); // Desbloquea el body
+        };
+        
+        // --- Event Listeners para Modales ---
+        if (cartIcon) {
+          cartIcon.addEventListener('click', openCartModal);
+        }
+        if (closeCartBtn) {
+          closeCartBtn.addEventListener('click', closeCartModal);
+        }
+        if (cartModal) {
+          cartModal.addEventListener('click', (e) => {
+              if (e.target === cartModal) {
+                  closeCartModal();
+                  document.body.classList.remove('modal-open'); // Desbloquear si se cierra desde el fondo
+              }
+          });
+        }
+        
+        // Listeners para el nuevo modal de "Gracias"
+        if (closeThankYouBtn) {
+          closeThankYouBtn.addEventListener('click', closeThankYouModal);
+        }
+        if (newOrderBtn) {
+          newOrderBtn.addEventListener('click', closeThankYouModal); // Ambos botones cierran el modal
+        }
+        if (thankYouModal) {
+          thankYouModal.addEventListener('click', (e) => {
+              if (e.target === thankYouModal) {
+                  closeThankYouModal();
+              }
+          });
+        }
 
         // --- Función principal para actualizar la UI del Carrito ---
         const updateCartUI = () => {
-            
-            // --- NUEVA LÓGICA DE PROMOCIÓN (MODIFICADA) ---
-            // 1. Contar cuántos bolis PAGADOS hay
-            let totalPaidItems = 0;
-            cart.forEach(item => {
-                if (item.sabor !== PROMO_ITEM_NAME) { // No contamos el de promo
-                    totalPaidItems += item.cantidad;
-                }
-            });
-
-            // 2. Calcular cuántos bolis de promo tocan (1 por cada 2 pagados)
-            const promoItemsToGet = Math.floor(totalPaidItems / 2);
-
-            // 3. Verificar si el item de promo ya existe
-            const promoItem = cart.find(item => item.sabor === PROMO_ITEM_NAME);
-
-            // 4. Aplicar/Quitar/Actualizar promoción
-            if (promoItemsToGet > 0) {
-                if (promoItem) {
-                    // Si ya existe, solo actualizar la cantidad
-                    promoItem.cantidad = promoItemsToGet; 
-                } else {
-                    // Si no existe, agregarlo con la cantidad correcta
-                    cart.push({ sabor: PROMO_ITEM_NAME, cantidad: promoItemsToGet, precio: PROMO_ITEM_PRICE });
-                }
-            } else {
-                // Si es 0, quitar la promo del carrito
-                cart = cart.filter(item => item.sabor !== PROMO_ITEM_NAME);
-            }
-            // --- FIN LÓGICA DE PROMOCIÓN ---
-
             // Limpiar contenedor
             cartItemsContainer.innerHTML = '';
             
@@ -809,28 +907,22 @@
                     totalGeneral += subtotal;
                     totalItems += item.cantidad;
 
-                    // El item de promo no se puede modificar
-                    const isPromoItem = item.sabor === PROMO_ITEM_NAME;
-
                     const itemHTML = `
                         <div class="flex items-center justify-between gap-2 sm:gap-4 border-b pb-4">
                             <div class="flex-grow">
-                                <h4 class="font-bold text-lg ${isPromoItem ? 'text-green-600' : ''}">${item.sabor}</h4>
-                                <!-- Input para modificar cantidad con botones + y - -->
+                                <h4 class="font-bold text-lg">${item.sabor}</h4>
                                 <div class="flex items-center gap-2 mt-1">
                                     <label class="text-sm text-gray-600">Cant:</label>
                                     <div class="flex items-center border border-gray-300 rounded-lg">
-                                        <!-- Deshabilitar botones si es promo -->
-                                        <button type="button" class="cart-quantity-btn cart-quantity-minus p-2 text-lg font-bold text-orange-600 ${isPromoItem ? 'opacity-50 cursor-not-allowed' : ''}" data-sabor="${item.sabor}" data-change="-1" ${isPromoItem ? 'disabled' : ''}>-</button>
+                                        <button type="button" class="cart-quantity-btn cart-quantity-minus p-2 text-lg font-bold text-orange-600" data-sabor="${item.sabor}" data-change="-1">-</button>
                                         <input type="number" class="w-12 text-center border-none focus:ring-0 py-1 text-sm bg-transparent" value="${item.cantidad}" min="1" data-sabor="${item.sabor}" readonly>
-                                        <button type="button" class="cart-quantity-btn cart-quantity-plus p-2 text-lg font-bold text-orange-600 ${isPromoItem ? 'opacity-50 cursor-not-allowed' : ''}" data-sabor="${item.sabor}" data-change="1" ${isPromoItem ? 'disabled' : ''}>+</button>
+                                        <button type="button" class="cart-quantity-btn cart-quantity-plus p-2 text-lg font-bold text-orange-600" data-sabor="${item.sabor}" data-change="1">+</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="text-right flex-shrink-0">
-                                <span class="font-bold text-lg block ${isPromoItem ? 'text-green-600' : ''}">$${subtotal.toFixed(2)}</span>
-                                <!-- No se puede quitar la promo manualmente -->
-                                ${!isPromoItem ? `<button class="remove-from-cart-btn text-red-500 text-sm hover:underline" data-sabor="${item.sabor}">Quitar</button>` : '<span class="text-green-600 text-sm">¡Promo!</span>'}
+                                <span class="font-bold text-lg block">$${subtotal.toFixed(2)}</span>
+                                <button class="remove-from-cart-btn text-red-500 text-sm hover:underline" data-sabor="${item.sabor}">Quitar</button>
                             </div>
                         </div>
                     `;
@@ -845,9 +937,6 @@
 
         // --- Función para agregar al carrito ---
         const addToCart = (sabor, cantidad, precio, btn) => {
-            // No permitir agregar el item de promo manually
-            if (sabor === PROMO_ITEM_NAME) return; 
-
             const existingItem = cart.find(item => item.sabor === sabor);
 
             if (existingItem) {
@@ -856,7 +945,7 @@
                 cart.push({ sabor, cantidad, precio });
             }
 
-            updateCartUI(); // La lógica de la promo se correrá aquí
+            updateCartUI(); // Actualiza el contador y el total
 
             // Mostrar mensaje de "¡Agregado!"
             const messageEl = btn.closest('.card-product').querySelector('.add-to-cart-message');
@@ -869,12 +958,22 @@
         };
 
         // --- Asignar evento a botones "Agregar" ---
+        // console.log(`Encontrados ${addToCartButtons.length} botones de "Agregar"`);
         addToCartButtons.forEach(btn => {
             btn.addEventListener('click', () => {
+                // console.log("Botón presionado:", btn.dataset.sabor);
                 const card = btn.closest('.card-product');
+                if (!card) {
+                  // console.error("No se encontró '.card-product' padre");
+                  return;
+                }
                 const sabor = btn.dataset.sabor;
                 const precio = parseFloat(btn.dataset.precio);
                 const cantidadInput = card.querySelector('.product-quantity');
+                if (!cantidadInput) {
+                  // console.error("No se encontró '.product-quantity'");
+                  return;
+                }
                 const cantidad = parseInt(cantidadInput.value, 10);
 
                 if (cantidad > 0) {
@@ -885,123 +984,103 @@
         });
 
         // --- Asignar evento para botones del carrito (delegación) ---
-        cartItemsContainer.addEventListener('click', (e) => {
-            const target = e.target;
-            
-            // Botón "Quitar"
-            if (target.classList.contains('remove-from-cart-btn')) {
-                const sabor = target.dataset.sabor;
-                // No permitir quitar la promo (aunque el botón no debería existir)
-                if (sabor === PROMO_ITEM_NAME) return;
-                
-                cart = cart.filter(item => item.sabor !== sabor);
-                updateCartUI();
-            } 
-            
-            // Botones + y -
-            else if (target.classList.contains('cart-quantity-btn')) {
-                const sabor = target.dataset.sabor;
-                // No permitir modificar la promo
-                if (sabor === PROMO_ITEM_NAME) return;
-
-                const change = parseInt(target.dataset.change, 10);
-                const cartItem = cart.find(item => item.sabor === sabor);
-                
-                if (cartItem) {
-                    let newCantidad = cartItem.cantidad + change;
-                    if (newCantidad > 0) {
-                        cartItem.cantidad = newCantidad;
-                    } else {
-                        // Si es 0 o menos, quitarlo
-                        cart = cart.filter(item => item.sabor !== sabor);
-                    }
-                    updateCartUI();
-                }
-            }
-        });
+        if (cartItemsContainer) {
+          cartItemsContainer.addEventListener('click', (e) => {
+              const target = e.target;
+              
+              // Botón "Quitar"
+              if (target.classList.contains('remove-from-cart-btn')) {
+                  const sabor = target.dataset.sabor;
+                  cart = cart.filter(item => item.sabor !== sabor);
+                  updateCartUI();
+              } 
+              
+              // Botones + y -
+              else if (target.classList.contains('cart-quantity-btn')) {
+                  const sabor = target.dataset.sabor;
+                  const change = parseInt(target.dataset.change, 10);
+                  const cartItem = cart.find(item => item.sabor === sabor);
+                  
+                  if (cartItem) {
+                      let newCantidad = cartItem.cantidad + change;
+                      if (newCantidad > 0) {
+                          cartItem.cantidad = newCantidad;
+                      } else {
+                          // Si es 0 o menos, quitarlo
+                          cart = cart.filter(item => item.sabor !== sabor);
+                      }
+                      updateCartUI();
+                  }
+              }
+          });
+        }
 
         // --- Lógica de envío de formulario (checkoutForm) ---
-        checkoutForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+        if (checkoutForm) {
+          checkoutForm.addEventListener('submit', (e) => {
+              e.preventDefault();
 
-            if (cart.length === 0 || (cart.length === 1 && cart[0].sabor === PROMO_ITEM_NAME)) {
-                cartFormMessage.textContent = 'Tu carrito está vacío. Agrega productos para confirmar.';
-                cartFormMessage.className = 'form-message error';
-                return;
-            }
+              if (cart.length === 0) {
+                  cartFormMessage.textContent = 'Tu carrito está vacío. Agrega productos para confirmar.';
+                  cartFormMessage.className = 'form-message error';
+                  return;
+              }
 
-            const submitBtn = checkoutForm.querySelector('#submit-order-btn');
-            const btnOriginalText = submitBtn.textContent;
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Enviando...';
-            cartFormMessage.className = 'form-message'; 
+              const submitBtn = checkoutForm.querySelector('#submit-order-btn');
+              const btnOriginalText = submitBtn.textContent;
+              submitBtn.disabled = true;
+              submitBtn.textContent = 'Enviando...';
+              cartFormMessage.className = 'form-message'; 
 
-            // Convertir el carrito al formato JSON
-            const pedidos = cart.map(item => ({ 
-                sabor: item.sabor, 
-                cantidad: item.cantidad,
-                precio: item.precio 
-            }));
+              // Convertir el carrito al formato JSON
+              const pedidos = cart.map(item => ({ 
+                  sabor: item.sabor, 
+                  cantidad: item.cantidad,
+                  precio: item.precio 
+              }));
 
-            // Crear el objeto de datos
-            const formData = {
-              tipo: 'Pedido',
-              nombre: checkoutForm.nombre.value,
-              telefono: checkoutForm.telefono.value,
-              pedido: JSON.stringify(pedidos),
-              total: cartTotalEl.textContent, 
-              lugarEntrega: checkoutForm['lugar-entrega'].value,
-              comentarios: checkoutForm.comentarios.value
-            };
-            
-            // Enviar a Google Apps Script
-            fetch(SCRIPT_URL, {
-              method: 'POST',
-              mode: 'no-cors', 
-              cache: 'no-cache',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(formData)
-            })
-            .then(() => {
-                checkoutForm.reset();
-                cart = []; // Vacía el carrito
-                updateCartUI(); // Actualiza la UI (mostrará carrito vacío)
-                closeModal(); // Cierra el modal
-                
-                // Mostrar el nuevo "Toast" global
-                showToast('¡Gracias por tu pedido! Te contactaremos pronto.');
-                
-            })
-            .catch(error => {
-                cartFormMessage.textContent = 'Hubo un error al enviar tu pedido. Intenta de nuevo.';
-                cartFormMessage.className = 'form-message error';
-                console.error('Error:', error);
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.textContent = btnOriginalText;
-            });
-        });
-
-        // --- Función para mostrar el Toast Global ---
-        const showToast = (message) => {
-          if (!globalToast) return;
-          globalToast.textContent = message;
-          globalToast.classList.remove('hidden', 'opacity-0');
-          globalToast.classList.add('show');
-          
-          // Ocultar después de 3 segundos
-          setTimeout(() => {
-            globalToast.classList.remove('show');
-            globalToast.classList.add('opacity-0');
-            // Añadir 'hidden' después de que termine la transición
-            setTimeout(() => {
-              globalToast.classList.add('hidden');
-            }, 300); // 300ms = duration-300
-          }, 3000);
-        };
+              // Crear el objeto de datos
+              const formData = {
+                tipo: 'Pedido',
+                nombre: checkoutForm.nombre.value,
+                telefono: checkoutForm.telefono.value,
+                pedido: JSON.stringify(pedidos),
+                total: cartTotalEl.textContent, 
+                lugarEntrega: checkoutForm['lugar-entrega'].value,
+                comentarios: checkoutForm.comentarios.value
+              };
+              
+              // Enviar a Google Apps Script
+              fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', 
+                cache: 'no-cache',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+              })
+              .then(() => {
+                  checkoutForm.reset();
+                  cart = []; // Vacía el carrito
+                  updateCartUI(); // Actualiza la UI (mostrará carrito vacío)
+                  closeCartModal(); // Cierra el modal de *carrito*
+                  
+                  // ¡AQUÍ ESTÁ EL CAMBIO!
+                  showThankYouModal(); // Mostramos el nuevo modal
+                  
+              })
+              .catch(error => {
+                  cartFormMessage.textContent = 'Hubo un error al enviar tu pedido. Intenta de nuevo.';
+                  cartFormMessage.className = 'form-message error';
+                  console.error('Error:', error);
+              })
+              .finally(() => {
+                  submitBtn.disabled = false;
+                  submitBtn.textContent = btnOriginalText;
+              });
+          });
+        }
 
         // --- Lógica del Formulario de Reseñas ---
         const agregarNuevaReseña = (nombre, rating, comentario) => {
@@ -1075,13 +1154,8 @@
           });
         }
 
-        // --- Corrección de imágenes ---
-        // Reemplazo las rutas locales por placeholders
-        // (Este bloque se elimina)
-
       });
     </script>
 
 </body>
 </html>
-
